@@ -1,7 +1,7 @@
 # User config
-set my_realname="John Smith"
-set my_username="john.smith"
-set my_domain="example.com"
-set my_password="This password is secure"
+set my_realname="Fan Ni"
+set my_username="nifan"
+set my_domain="outlook.com"
+set my_password=""
 set my_lang="en_US"
 
