@@ -101,7 +101,7 @@ bind    pager   <up>        previous-line
 bind    pager   <down>      next-line
 bind    pager   <left>      previous-entry
 bind    pager   <right>     next-entry
-bind    pager   <delete>    delete-message
+#bind    pager   <delete>    delete-message
 bind    pager   k           previous-line
 bind    pager   j           next-line
 #bind    pager   n           next-entry
