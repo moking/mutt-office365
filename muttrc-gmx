@@ -15,15 +15,24 @@ set smtp_authenticators = "login"
 
 set from = "fan.ni@gmx.us"
 set realname = "Fan Ni"
-set folder = "imaps://imap.gmx.com:993"
-set spoolfile = "+INBOX"
-set header_cache=~/.mutt/cache/headers
-set message_cachedir=~/.mutt/cache/bodies
-set certificate_file=~/.mutt/certificates
-set move = no
+set folder="imaps://imap.gmx.com:993/"
+set spoolfile = +INBOX
+mailboxes = +INBOX
+set header_cache="~/.mutt/hdr_cache"
+set message_cachedir="~/.mutt/cache/"
+#set certificate_file="~/.mutt/certificates"
+#set move = no
 set sort = 'threads'
 set sort_aux = 'last-date-received'
 set imap_check_subscribed
+
+set postponed = "+Drafts"
+#set record = "imaps://imap.gmx.com:993/Sent"
+#set record = "+Sent"
+set copy=yes
+set record = "+Sent"
+#set save_name = yes
+#set force_name = yes
 
 # Some tweaks
 set imap_keepalive = 300
@@ -32,9 +41,8 @@ set timeout = 15
 set charset = iso-8859-1
 
 
-
-set message_cachedir="~/.mutt/message_cache"
-set header_cache="~/.mutt/header_cache"
+#set message_cachedir="~/.mutt/message_cache"
+#set header_cache="~/.mutt/header_cache"
 set tmpdir="~/.mutt/tmp"
 
 # Text view first
@@ -70,9 +78,9 @@ set index_format=" %?M?   ↳&%4C?   %Z      %D     %-15.15n    %s"
 # Mailboxes
 bind    index   G  imap-fetch-mail
 macro   index   gi "<change-folder>=INBOX<enter>"       "Go to Inbox"
-macro   index   gs "<change-folder>=$my_sent<enter>"    "Go to Sent"
-macro   index   gd "<change-folder>=$my_drafts<enter>"  "Go to Drafts"
-macro   index   gt "<change-folder>=$my_trash<enter>"   "Go to Trash"
+macro   index   gs "<change-folder>=Sent<enter>"    "Go to Sent"
+macro   index   gd "<change-folder>=Drafts<enter>"  "Go to Drafts"
+macro   index   gt "<change-folder>=Trash<enter>"   "Go to Trash"
 
 # Index
 #bind    index   <up>        previous-entry
@@ -125,8 +133,6 @@ set pager_context = 3
 set pager_stop = yes
 set sort = threads
 set sort_aux = reverse-date-received
-set header_cache = "~/.mutt/hdr_cache"
-set copy = no
 set collapse_unread = "yes"
 bind index = collapse-all
 
