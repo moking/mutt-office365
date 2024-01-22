@@ -1,0 +1,410 @@
+Received: from KL1PR0601MB5486.apcprd06.prod.outlook.com
+ (2603:1096:820:be::11) by SG2PR06MB3397.apcprd06.prod.outlook.com with HTTPS;
+ Thu, 12 Oct 2023 20:45:42 +0000
+ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
+ b=JoetSle0KcFYVh/qmQnFsZPA6P1IwVD6S2He+LhfWFzvFIQmNW1n+PBXgENIJcz1c/8wk3oLPRg8aOSSJJrT5860KsbPC94JaqDYU0wpelMHM4i4ANKhIcZ39EspUId/kXgEwhsGb2rcSSkmwqJJIfaO0e+fFZuQCHppM18fJhdx/rV75k6Zh4G64wZ8JEf9OKsf5p1R7CX4H2zQJP9y5tWvEnVEfm+f2SjeHr4aD+ujrvLiyDq7NE/Rl8UIOAlpwQTCeJE/fjJO+pv6yai9vGJTyx+Of2CmAQPSMc6duSa9ykBBrJ0rAjZP/nYKN5ey2k4dW717+qR+2LebrK6wNg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r3OKOPbno/onPbRt5fpowU/Ib5yhpY0rUJefKm2Pb3c=;
+ b=cVPjK4fP6fyjmP0YMaiP0NoHTl27Jfs7ZI9PjScBzRa8wJ5XVvm/NVvLLS3ENnbcR7Ze9Xkhyu3yeJDZyao1+S0Ani8k+NwQktCcTVOOHXW0VgXegCc5ShMnRIVZzSvPeKmI3DyCHwB4lIAnoIOYmvr6LSqthInejetwW1ukvL9R9zzRZ70ihvMWbiLJt9AtxMYtczrX/ICo935KB1t3hWtJK63lbwhJ3sbHSQxbUYpoJzvU7GLPfEleFd4gCMH3yo44schxQQ9RPVyb7elrv+q7pJ2ZDmCNIRoRVYo4o6goQqo59KKUcxiQA86ZnHFrL5t7oXForJcPhMtX52nLjA==
+ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
+ 40.92.107.94) smtp.rcpttodomain=outlook.com smtp.mailfrom=outlook.com;
+ dmarc=pass (p=none sp=quarantine pct=100) action=none
+ header.from=outlook.com; dkim=pass (signature was verified)
+ header.d=outlook.com; arc=pass (0 oda=0 ltdi=1)
+Received: from CYXPR03CA0095.namprd03.prod.outlook.com (2603:10b6:930:d3::6)
+ by KL1PR0601MB5486.apcprd06.prod.outlook.com (2603:1096:820:be::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Thu, 12 Oct
+ 2023 20:45:40 +0000
+Received: from CY4PEPF0000E9CE.namprd03.prod.outlook.com
+ (2603:10b6:930:d3:cafe::f7) by CYXPR03CA0095.outlook.office365.com
+ (2603:10b6:930:d3::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.30 via Frontend
+ Transport; Thu, 12 Oct 2023 20:45:38 +0000
+Authentication-Results: spf=pass (sender IP is 40.92.107.94)
+ smtp.mailfrom=outlook.com; dkim=pass (signature was verified)
+ header.d=outlook.com;dmarc=pass action=none
+ header.from=outlook.com;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of outlook.com designates
+ 40.92.107.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=40.92.107.94; helo=APC01-TYZ-obe.outbound.protection.outlook.com;
+ pr=C
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (40.92.107.94) by
+ CY4PEPF0000E9CE.mail.protection.outlook.com (10.167.241.141) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.22 via Frontend Transport; Thu, 12 Oct 2023 20:45:38 +0000
+X-IncomingTopHeaderMarker:
+ OriginalChecksum:1FDBC0233416C001BCA616A6D21B2314A46BB84D2142BAA74FF5852FC47FDF9A;UpperCasedChecksum:10E34926D0B524414516DCA5B97FE5237055DC1A35C9CC8F9E37BFF6FE46CE76;SizeAsReceived:6881;Count:39
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ffhQxbmFcP/UVqUhEbK8QbDiuuK4bMvooN6XDSSWCdNKouvx9rVqQAh6ONhcqeJoaAR7rVVfSaC6LcXVruB59kDfolcIcFtAkWuy43yA4duxdvjcQ5AFOBXDTrGnfmpbJYzmz9MZdH3KHKUo3R4qKDqykPWYiG8nbrtDHdV4Jd8y5xd5ITv4oXcMIHf3jQSvdQ+TWDKV1KbrD1PSCt88JOOk0ZxcSCvIegq6mOwcr48beMB//CS4jyQY6Dm1PqsfxfhEc4hjjOrKGc+xY2ZjP7TUq81vxx6aASDsjWFt/pWbQXsPGtsgFLKMlPNlcA5XDtuPb2dlkktuG32kzjsT+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=r3OKOPbno/onPbRt5fpowU/Ib5yhpY0rUJefKm2Pb3c=;
+ b=MamfbOi8EQfYPmQfOGvCdYcJ+rXo8NXTPnBN8U9I3mgNKasWU7S5ImU64a5y0YW2w05lxDf+hBg3jFMgdt7Do/qZ8yJP366+r1DjZkiFeRijf1xU7P7o1B0ECoTOAn624WF2ebSMzjyWjA6nBFv8tOaJOHZMnSliP+aRuPUgxoBXQCbEVgoE2KpZMB7X8ht9qZCPn0mrwVZGwFg9j9TW0URp1sTK4rSo1HOwXQRk7PsCXzoP1ZjyqAoDuXsnys/UKHnL619SJWKylxQIaNX8TGAwEJsmujub6xO7Q2zWlGN31EPJOZnr+ykmJO5cZzrYgQZ9aQOSc6foKu/QrxS0tg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r3OKOPbno/onPbRt5fpowU/Ib5yhpY0rUJefKm2Pb3c=;
+ b=vCxiEJsZrj+hCcR0Czqar/TeVGWzoFiHicsxgLNs74T2U7xyRwk6Kyvx8m8fcif9bi8i0RsXkzK3DArZIL6mf3Z13PeBim8+Ngn1ug3et6oSA1Ue+lMNjJEKqGeE9/uK91fhoV3BZZX1cXEn93/JP/NpSMv4huc2davux972MXTn+xNWqD/BHwdIhrhiJPwU2H805+JBKftLT8uM6S2kd9xEFk5AD9DkupQXLiQET5AjhCYBSewDsdYxBOzXdgF8QykZKZ051pEDjq0mzzeYnbkm4GJh3AU3Ase6EmFzIEPOkDU6LaZuzHXT+o0rP8i3sgdutbZbKEIpk5IsssISeg==
+Received: from SG2PR06MB3397.apcprd06.prod.outlook.com (2603:1096:4:7a::17) by
+ TYZPR06MB5075.apcprd06.prod.outlook.com (2603:1096:400:1c5::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6863.45; Thu, 12 Oct 2023 20:45:36 +0000
+Received: from SG2PR06MB3397.apcprd06.prod.outlook.com
+ ([fe80::355e:ac7b:ee52:aade]) by SG2PR06MB3397.apcprd06.prod.outlook.com
+ ([fe80::355e:ac7b:ee52:aade%4]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
+ 20:45:36 +0000
+From: nifan@outlook.com
+To: fan.ni@samsung.com
+Cc: Fan Ni <nifan@outlook.com>
+Subject: [PATCH 1/1] hw/mem/cxl_type3: Add dpa range validation for accesses to dc regions
+Date: Thu, 12 Oct 2023 13:43:34 -0700
+Message-ID:
+ <SG2PR06MB339799BE9620108628999E04B2D3A@SG2PR06MB3397.apcprd06.prod.outlook.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231012204503.14566-1-nifan@outlook.com>
+References: <20231012204503.14566-1-nifan@outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-TMN: [8O/2YpRiRKVszU4DXZZfE8sf+abvlcUI]
+X-ClientProxiedBy: BY5PR17CA0026.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::39) To SG2PR06MB3397.apcprd06.prod.outlook.com
+ (2603:1096:4:7a::17)
+Return-Path: nifan@outlook.com
+X-Microsoft-Original-Message-ID: <20231012204503.14566-2-nifan@outlook.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-TrafficTypeDiagnostic:
+ SG2PR06MB3397:EE_|TYZPR06MB5075:EE_|CY4PEPF0000E9CE:EE_|KL1PR0601MB5486:EE_|SG2PR06MB3397:EE_
+X-MS-Office365-Filtering-Correlation-Id: 09be46ab-7872-443e-0b5f-08dbcb643163
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original:
+ KRLjXshuqiU0BUQNNT/UOBVeWXgtLu6SwZJk3/aTCGKVNtueqMQEUOt7J9EvfxAQ4ef8niFu7qunrTfmeO40hUx7M2zHSlrkBQ96/i+jBsVTTawM/J/0ZMIXLAMZwSUzUvcg2loEB9ae2c/Gfu0BoTeSKfXfCOqGHxZsyZvm/fw9Y2KDmZF/3Ku6Z+3S7u1zaVLQqNsj6zqhPoNXBo3ZYQl+NZarDNCErDLIuWi0y/a7TABCyooe2MZFJq1BICshyBxoTqDrhjCgEjzt4q8kym57kTcQTeK1+2g285L+Af7A62mN9WmY05b7l8dfF+BXwh1u/n3htMMq3zL7E8B4OkYqFgcFb1WbvbNHQ73PZNm8GM8qsaFEEARBfdou5ehS6mFpLHmrDR6NLxakZbTr8mJEAtJFo+nbKJRXXCORTXh6T9xEGP/bUJ2wEzA5iKQ+pz1P4TA0wYPVS2HwbD7RrZzzlubF1BdsdzilMcDjNBThFgRx+ttuQbiF67t1KFbG2Epl+tfawwZsMLWOd1a6ZDJCqpG1Ea6FLIcOvrauS7L5tqqPkI5pnE//DELQAMMs9I/woI2c0jCz4A8+Op4B6wUhSJ2sDznlNR2ByocYmdRUJI+u3lSgkDXtsp2o3TuQRPOol8SDAUtVmQrs3iy9pu3nEchCkzMmzY5Rl2IQbF4=
+X-MS-Exchange-AntiSpam-MessageData-Original-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-Original-0:
+ =?utf-8?B?eGtHdmowZFNUeWRYQnZJUVZPSlgvYVhxcTU0SFU5VFM1ZFFFc3hHME5hZyt5?=
+ =?utf-8?B?ZVNZNnNBelptODRJMnh6WklYWjB4djM4U3FCNHRHV25LOFBlNFVEaG84RVZR?=
+ =?utf-8?B?dTAreTF0UWpOMjVES3F2SjdtNG5nTllFQzkwSFZVRWNCaDBtd3NISGlqKzZH?=
+ =?utf-8?B?M1dLT3BGLzZFcEtELzArT2o4cit6eDJRT3NwTjdZekdCempYVnByRC9aem1z?=
+ =?utf-8?B?c0xFTVR0QzRHMVpiRnhKUlRVRXliclRLakFIUHVhMkpqMlZTNWFGYkh4S1Vs?=
+ =?utf-8?B?Q0p4MnZ6UWNuOHd4RnRKci9YRGpualRmTER3QTE1ZFl6UlNZREJ4TVBkS09Y?=
+ =?utf-8?B?cGRTVkhjRFY3cFQ1Z1VrblB5UXJscVNFKzk3My9lZ2M2YVgvVkd0amtwSUxq?=
+ =?utf-8?B?RmtSNUh3N3MzaVBldzJzU2NleDZJdTRneUR6Q0hIS1QzSUxnVFJydVhQbFQ5?=
+ =?utf-8?B?SmFzelAwNnd6VGRRWGx1VFkvR1dzbWFiY0pweC8xN2dHTldTOEx6cm9IdmJR?=
+ =?utf-8?B?bms5TS84U3VCaDhWei9vR29qU2hrSkJRVTV6a2RxWTJ5UlMwUGdUeGVpR1hy?=
+ =?utf-8?B?ZmxkWVBMYTZBc1NBQkRtYitubDNmeTJoT21UVHVTaVRvSzBNZFZoRGhPZzZy?=
+ =?utf-8?B?Z0hGMnF5Yy90VXVZalNTL2NYTk50N0dJdHNEMWZjdDVmNDdBZGdBUElmRjdC?=
+ =?utf-8?B?U0J1b2wybU1PZExtMm5CWjFEbDFWMFo5bkk1ZUVFUitRVzFkNU9pVDNCNVVy?=
+ =?utf-8?B?dG9HZVFYaTZybzVMcXMvVlNiY1NyanlEcWxLcWd1YWd3QStUeUNZaXRiZGZN?=
+ =?utf-8?B?MWJYdE9UREovcTFtWnR3eUN4RW5lYlFsSzNpVDBwbVoyU1NjZmxKd3lLd1JB?=
+ =?utf-8?B?M3BlQTVtUENIWTB0bDdZTURTTDVzMmhCZEdKZ3Y4c21FbW5IMCt6Zzh0anBP?=
+ =?utf-8?B?UEQvaThWVDh0RkxEV0t6NFZYaC9DY0ZhYnE0NG5FVWl0bjVSQ3lZNENqYWxB?=
+ =?utf-8?B?Z2tlclVhM0VGZzNNV28rMVh5ZWJFaitGbzZjdGVtN2VGNWkvc1NNWHVLcVFo?=
+ =?utf-8?B?VjdBZnVDZjB4UDRaMU9EQ044bE51MHRRdDBpMmFhK2JqZ2ltNTNraFVObSto?=
+ =?utf-8?B?V045ZlB2V3hZcS9rVkR4YnpRUmN6TUVUbzZzUnJUdW1hVnkxZ0hUT09kRjVY?=
+ =?utf-8?B?Q1huWkRvVm00ZTZNbDhacGtPcWZjdHdIVDBVY21zell5WG9VL1YvdFFBdStC?=
+ =?utf-8?B?emlvUy9aVnc5bWVYN1RKVDROckhza3lBVlhhOUJDR3h2MlYwdGV3Ynl2aGpr?=
+ =?utf-8?B?OGY2dVR5bUZ4cGtxODB6TGticmNaZU9CZ0swSmRkaVYzUzZYL1gvSkVldEJm?=
+ =?utf-8?B?ampyY1UyYVhzUVpPMUxHTzdVdlkzd0NYWTBCajVFMHc4aTN1RHU0eXFRc3g0?=
+ =?utf-8?B?RWlXbUxTRmJrZ0tjYWxiK1BYczFQVWhXOEsxMTRCUTlCQWhmTEM3NmE5RTkx?=
+ =?utf-8?B?OHlLYjJ4eGZmejRaZjRVV2hIRnc0aDZYa3RGd2YvR01KSnBKS0xqNHkwdzM3?=
+ =?utf-8?B?V3VOZE05NkhDNTJHVnpQMWgwQnhrKzZRWngyWjUrN0tFdjBEMUZoN3M1MzFt?=
+ =?utf-8?B?bnc5aldDby9pSEJISnZMRUFGWjJFT2c9PQ==?=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5075
+X-IncomingHeaderCount: 39
+X-MS-Exchange-Organization-ExpirationStartTime: 12 Oct 2023 20:45:38.8799
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id:
+ 09be46ab-7872-443e-0b5f-08dbcb643163
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ CY4PEPF0000E9CE.namprd03.prod.outlook.com
+X-MS-Exchange-Transport-CrossTenantHeadersPromoted:
+ CY4PEPF0000E9CE.namprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Exchange-Organization-AuthSource:
+ CY4PEPF0000E9CE.namprd03.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-UserLastLogonTime: 10/12/2023 8:45:08 PM
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+ fa66942f-517d-4f6f-033a-08dbcb642f2a
+X-MS-Exchange-EOPDirect: true
+X-Sender-IP: 40.92.107.94
+X-SID-PRA: NIFAN@OUTLOOK.COM
+X-SID-Result: PASS
+X-MS-Exchange-Organization-PCL: 2
+X-MS-Exchange-Organization-SCL: 1
+X-Microsoft-Antispam: BCL:0;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 20:45:38.7393
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 09be46ab-7872-443e-0b5f-08dbcb643163
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-AuthSource:
+ CY4PEPF0000E9CE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0601MB5486
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:03.3801832
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.6863.043
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;ex:0;auth:1;dest:I;OFR:SpamFilterPass;ENG:(5062000305)(920221119095)(90000117)(920221120095)(90011020)(91015020)(91040095)(9050020)(9060121)(9081003)(9100341)(1000006)(944500132)(2008001134)(4810010)(4910033)(9920006)(9510006)(10105021)(9320005)(9230038)(120001);
+X-Message-Info:
+	qZelhIiYnPkBvml7Rvc5qQZvwL3lzgVz81P+cV3d9cBOGs3UOfHiBfoWFLGeC2uuaJvc6nm54La0cBld8TzPOtxzKME/ZJLXxgZf2ojejnrnIo6keZxodGfXMmBQ0Y7+mNob3xL6nxrvJZPgfWkM92TuLrdXEFuSkHgTq98s9xTQUfJJarT2eIprv5uTJMuDS5kEuxcwjRI=
+X-Message-Delivery: Vj0xLjE7dXM9MDtsPTA7YT0xO0Q9MTtHRD0xO1NDTD0tMQ==
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?MmJtOVd6YzJGRC9JMi82alh1R2Y4NitBSFU5QmFOMVM5RnM2RDUzSnhPRDZs?=
+ =?utf-8?B?RktxODk5VkRCdWF0dVdYbTU1VjUzeFBQVjRVajhiYndNUnpmMVlQbnVGVHdL?=
+ =?utf-8?B?Y0hFQWNzcFpRK0RpR3VmR0g0TER1T2UrYVl4dVMxbTFsWjBBK3plN3A0ZmdJ?=
+ =?utf-8?B?a2FscTI1NTZhU1l2RTNlV05VMVBWVDBqUHFCYXZTVFRqQ2E2bjdPaHJNWTFx?=
+ =?utf-8?B?c0lxM2pHYnNmcW5rSFc4R0ZwZVZwU3F6L3R1STRQYkc0WkprdEJmb0Z1MWtU?=
+ =?utf-8?B?eUVyK1R1VS9HdGkrRGlsbUJ2SWZVUFJGZ1o3cjUyd0hYMzVQM1prdENXUzNt?=
+ =?utf-8?B?SURxNnpoWUluZnd3akZScGs2K1ZZZmYyZE1GaENlV2ppbUw1cUFiVkhnbnpF?=
+ =?utf-8?B?d09lWFhXZkVVcytCcHhSVWFNVHZrT0J4QkQ1RkRhZEE0d0FVZ20vYnphRk5o?=
+ =?utf-8?B?b1R3REhsNDRtZnMwNEZqVHZqNVZuQlRHQ0FHNGxaNVNmbjhGVTkrc3doOU9Y?=
+ =?utf-8?B?RDFvMURGTUpObmVWZXBhQk9kdU1FMSs1L1g0c2VYK3VuWnY5bElzNmNKd3hB?=
+ =?utf-8?B?MUNoYUI3Rk43TWNobnJuMkpRdStpSFhCaml1ejBFU0VVSVUyVm5BbW0vT0lF?=
+ =?utf-8?B?RHlsK1hicEFFbER5d1Robml1d1AvcmVhekpQT2U5M25YRW1pQmtGcFE3clJk?=
+ =?utf-8?B?SkRvbVh5SnlHRXRGSEZmd0V0dStZVEkvdWJUNWFNR2VHWWpHMHMxOCtxQVY2?=
+ =?utf-8?B?cG91TkhHT0haMnh0UFBRYzFTNmliRDJ2a3FzeXJ2THMva1h4dzZucUQ1NWtB?=
+ =?utf-8?B?b2VYMEFHdXg3amc1OHE5d0dHSi9DcE5NSlRCWjJodjRLUGc4dUUzcWZmZHlM?=
+ =?utf-8?B?d3NLakkyNVFBbVJzVFFnazNuemJMVDJZRTBBQ3VsVzNSL1dxR3B6czR5T1dZ?=
+ =?utf-8?B?eVdpZzhBN3pLVEUrOFlzcWRtMUxlNDJIckdEalpzaGRvR2dTQUVMelF3dytS?=
+ =?utf-8?B?Um03U3c5T3ZXV0Z5SVhMTUtsMWN5d1lQSzFuY091VDhOY3h5OHRmOVBLR205?=
+ =?utf-8?B?Z2JVZVRWdkpLVWJsdC8rQUsrTXFXS0cyYzlTemNUZDNoS2lCMWV0SVp0OEdB?=
+ =?utf-8?B?NjlvQm9SbHBBLzlkTlVBNFAyNkVGM08ySk80VlNzUTZSYTRIaFc5UU15bGUr?=
+ =?utf-8?B?R3ZvTlRYOTdSbTBZYlF5eWJLTy9jYi8xVUxrUFl0MXloZ0gvWFhLMno0eFFx?=
+ =?utf-8?B?SS9XdVJ4M0lDbk9QQmVJOURTeDhBNHJSWStvbWlqRjhKSDliUUE2R3ZjWDhF?=
+ =?utf-8?B?NWZDNHZMdHA5NWRWeVY4ZmJhVkJ3MERKaEorZWRUOE5LL3R5OWsyVm5aMC9S?=
+ =?utf-8?B?T0x6RXJXYzhvZXl1WTRVQ2lyTDVwSytOQUEzY3BvTitiK2VFcmxZQklwUWpV?=
+ =?utf-8?B?SGg1RmxvU3UwWndmK0F6djVnaUtFM1l5Zzlmc05jV2c2SUpzU1JjN1RVMFkw?=
+ =?utf-8?B?WG8vUXNvN2pOcDRVM2c1RnhWOTZud0RKRWREbjNaLy9oYWpEdU4zanJjVE9T?=
+ =?utf-8?B?aG5jejBKOE1yeFdOQnVONVpwZVFoOGRVVU1MVUkwNUdpTjJwWm10RXB1b3pp?=
+ =?utf-8?B?WkFPR2tMblEvNFlac1NVd0pYR1YyVStxOWRzL1ZSeE9NdjhLV1hhK3FyR1dr?=
+ =?utf-8?B?NDg1OGpIdGxsb3pSTi9JQzY2TmpHY3VZK0tjcjU2cWR3TjRtSU8relBldjVN?=
+ =?utf-8?B?Z3pGeGRFSEQ0TDQwMHNtSm40a0tWTm1wbUxDdUJ3V3RWcExUa0sxb1BXdm1H?=
+ =?utf-8?B?MWtJN0JrdGpIckwrbWkwYWxXczF3WEp1UEtaNTlnYm9EbzhMWFAzYjFkSmhW?=
+ =?utf-8?B?TFBSTTFndFF2UXlBeS9HcGhZSEQ1US9ObTNQQXU3TFcyUFIxTGpsYXNNWHFu?=
+ =?utf-8?B?STJ3YlpTUUExNDRSYmdpa05xdm5Sa2RNb3pCZ2Rqd3hmVDJJWXl5UTNaR044?=
+ =?utf-8?B?YUpReEppa3YxRkVEK2srQjhpcElaVmx2dWxFZHQrcGRuV2ZpRHFxWlJpUTVV?=
+ =?utf-8?B?ZjNJMU5yUStIdlcvZ1VZZFVvTzVSSGt2YmZxejZ1Q0V3NTdtaldoRnk0YjQ3?=
+ =?utf-8?B?dUJkV1FjTGhyU0R6U25NTGNYaDFQTDBiR2xEM3VteTM1VmQ4SE9SNUpPVk40?=
+ =?utf-8?B?L2hpaUlaK3FyNDB2MStYZUl6WkJMY2hINTdmMVBDdzJhaXY5bGRQZWJ0ak9I?=
+ =?utf-8?B?YXhXak56bzg0QmhSOEZMU25yRHpHaWN3VjBNNE92R3RiVU5wcEFCRDZRbFhF?=
+ =?utf-8?B?elZiWlhHMTlUcVRlYlppT0pUOG1lcTlXVVhRMm1MaGhLWkdyekxBczNHay96?=
+ =?utf-8?B?c3pmMzZ0UEZBRFZWYnVUWDFQM2QvQkNsNEM3S0s0NG5kcW1MWStMRzVxc3hR?=
+ =?utf-8?B?STNBaEpGRTNvY3VNQ1FzamZkb2RzSFZBZW9rbUFqU2pBZG80TTh6UVhvbDJQ?=
+ =?utf-8?B?UGYyKzU2MGNIeGdzYk9jWHdhRUhyTldQYjNWV2JUT3VxeUs3amUzbU9WQUM3?=
+ =?utf-8?B?Vlc4SEtUQ2dIREhsMElselhGNHpESHV3Rk1kalVFeS9Vczc3K1FKaEpxREM5?=
+ =?utf-8?B?d1hhOWVPdmI1N21TeHlKVitRMjlxQ0ZQYWw4OWg2VWNPKzU4c2VJcUpXS3dD?=
+ =?utf-8?Q?ev7g?=
+MIME-Version: 1.0
+
+From: Fan Ni <nifan@outlook.com>
+
+Not all dpa range in the dc regions is valid to access until an extent
+covering the range has been added. Add a bitmap for each region to
+record whether a dc block in the region has been backed by dc extent.
+For the bitmap, a bit in the bitmap represents a dc block. When a dc
+extent is added, all the bits of the blocks in the extent will be set,
+which will be cleared when the extent is released.
+
+Signed-off-by: Fan Ni <fan.ni@samsung.com>
+Link: https://lore.kernel.org/r/20230725183939.2741025-10-fan.ni@samsung.com
+
+--
+JC changes:
+- Rebase on what will be next gitlab.com/jic23/qemu CXL staging tree.
+- Drop unnecessary handling of failed bitmap allocations. In common with
+  most QEMU allocations they fail hard anyway.
+- Use previously factored out cxl_find_region() helper
+- Minor editorial stuff in comments such as spec version references
+  according to the standard form I'm trying to push through the code.
+Picked up Jørgen's fix:
+https://lore.kernel.org/qemu-devel/d0d7ca1d-81bc-19b3-4904-d60046ded844@wdc.com/T/#u
+---
+ hw/mem/cxl_type3.c          | 104 ++++++++++++++++++++++++++++++++++++
+ include/hw/cxl/cxl_device.h |   1 +
+ 2 files changed, 105 insertions(+)
+
+diff --git a/hw/mem/cxl_type3.c b/hw/mem/cxl_type3.c
+index a3a5abc545..9d75881a32 100644
+--- a/hw/mem/cxl_type3.c
++++ b/hw/mem/cxl_type3.c
+@@ -810,6 +810,7 @@ static int cxl_create_dc_regions(CXLType3Dev *ct3d)
+         /* dsmad_handle is set when creating cdat table entries */
+         region->flags = 0;
+ 
++        region->blk_bitmap = bitmap_new(region->len / region->block_size);
+         region_base += region->len;
+     }
+     QTAILQ_INIT(&ct3d->dc.extents);
+@@ -817,6 +818,17 @@ static int cxl_create_dc_regions(CXLType3Dev *ct3d)
+     return 0;
+ }
+ 
++static void cxl_destroy_dc_regions(CXLType3Dev *ct3d)
++{
++    int i;
++    struct CXLDCDRegion *region;
++
++    for (i = 0; i < ct3d->dc.num_regions; i++) {
++        region = &ct3d->dc.regions[i];
++        g_free(region->blk_bitmap);
++    }
++}
++
+ static bool cxl_setup_memory(CXLType3Dev *ct3d, Error **errp)
+ {
+     DeviceState *ds = DEVICE(ct3d);
+@@ -1045,6 +1057,7 @@ err_free_special_ops:
+     g_free(regs->special_ops);
+ err_address_space_free:
+     if (ct3d->dc.host_dc) {
++        cxl_destroy_dc_regions(ct3d);
+         address_space_destroy(&ct3d->dc.host_dc_as);
+     }
+     if (ct3d->hostpmem) {
+@@ -1067,6 +1080,7 @@ static void ct3_exit(PCIDevice *pci_dev)
+     spdm_sock_fini(ct3d->doe_spdm.socket);
+     g_free(regs->special_ops);
+     if (ct3d->dc.host_dc) {
++        cxl_destroy_dc_regions(ct3d);
+         address_space_destroy(&ct3d->dc.host_dc_as);
+     }
+     if (ct3d->hostpmem) {
+@@ -1077,6 +1091,66 @@ static void ct3_exit(PCIDevice *pci_dev)
+     }
+ }
+ 
++/*
++ * Mark the DPA range [dpa, dap + len) to be backed and accessible. This
++ * happens when a DC extent is added and accepted by the host.
++ */
++static void ct3_set_region_block_backed(CXLType3Dev *ct3d, uint64_t dpa,
++                                         uint64_t len)
++{
++    CXLDCDRegion *region;
++
++    region = cxl_find_dc_region(ct3d, dpa, len);
++    if (!region) {
++        return;
++    }
++
++    bitmap_set(region->blk_bitmap, (dpa - region->base) / region->block_size,
++               len / region->block_size);
++}
++
++/*
++ * Check whether a DPA range [dpa, dpa + len) has been backed with DC extents.
++ * Used when validating read/write to dc regions
++ */
++static bool ct3_test_region_block_backed(CXLType3Dev *ct3d, uint64_t dpa,
++                                         uint64_t len)
++{
++    CXLDCDRegion *region;
++    uint64_t nbits;
++    long nr;
++
++    region = cxl_find_dc_region(ct3d, dpa, len);
++    if (!region) {
++        return false;
++    }
++
++    nr = (dpa - region->base) / region->block_size;
++    nbits = DIV_ROUND_UP(len, region->block_size);
++    return find_next_zero_bit(region->blk_bitmap, nr + nbits, nr) == nr + nbits;
++}
++
++/*
++ * Mark the DPA range [dpa, dap + len) to be unbacked and inaccessible. This
++ * happens when a dc extent is return by the host.
++ */
++static void ct3_clear_region_block_backed(CXLType3Dev *ct3d, uint64_t dpa,
++                                          uint64_t len)
++{
++    CXLDCDRegion *region;
++    uint64_t nbits;
++    long nr;
++
++    region = cxl_find_dc_region(ct3d, dpa, len);
++    if (!region) {
++        return;
++    }
++
++    nr = (dpa - region->base) / region->block_size;
++    nbits = len / region->block_size;
++    bitmap_clear(region->blk_bitmap, nr, nbits);
++}
++
+ static bool cxl_type3_dpa(CXLType3Dev *ct3d, hwaddr host_addr, uint64_t *dpa)
+ {
+     int hdm_inc = R_CXL_HDM_DECODER1_BASE_LO - R_CXL_HDM_DECODER0_BASE_LO;
+@@ -1178,6 +1252,10 @@ static int cxl_type3_hpa_to_as_and_dpa(CXLType3Dev *ct3d,
+         *as = &ct3d->hostpmem_as;
+         *dpa_offset -= vmr_size;
+     } else {
++        if (!ct3_test_region_block_backed(ct3d, *dpa_offset, size)) {
++            return -ENODEV;
++        }
++
+         *as = &ct3d->dc.host_dc_as;
+         *dpa_offset -= (vmr_size + pmr_size);
+     }
+@@ -1992,6 +2070,32 @@ static void qmp_cxl_process_dynamic_capacity(const char *path, CxlEventLog log,
+             cxl_event_irq_assert(dcd);
+         }
+     }
++
++    /*
++     * TODO: Should only update the bitmaps after host has accepted the
++     * change (except for forced removal). It will be necessary to
++     * track offered but not accepted changes. Perhaps a shadow bitmap
++     * will be needed for this.
++     */
++    list = records;
++    while (list) {
++        dpa = list->value->dpa * MiB;
++        len = list->value->len * MiB;
++        rid = list->value->region_id;
++
++        switch (type) {
++        case DC_EVENT_ADD_CAPACITY:
++            ct3_set_region_block_backed(dcd, dpa, len);
++            break;
++        case DC_EVENT_RELEASE_CAPACITY:
++            ct3_clear_region_block_backed(dcd, dpa, len);
++            break;
++        default:
++            error_setg(errp, "DC event type not handled yet");
++            break;
++        }
++        list = list->next;
++    }
+ }
+ 
+ void qmp_cxl_add_dynamic_capacity(const char *path,
+diff --git a/include/hw/cxl/cxl_device.h b/include/hw/cxl/cxl_device.h
+index eb84e3ff38..fd94e9b59a 100644
+--- a/include/hw/cxl/cxl_device.h
++++ b/include/hw/cxl/cxl_device.h
+@@ -447,6 +447,7 @@ typedef struct CXLDCDRegion {
+     uint64_t block_size;
+     uint32_t dsmadhandle;
+     uint8_t flags;
++    unsigned long *blk_bitmap;
+ } CXLDCDRegion;
+ 
+ struct CXLType3Dev {
+-- 
+2.42.0
+

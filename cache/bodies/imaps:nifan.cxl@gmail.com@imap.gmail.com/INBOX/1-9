@@ -1,0 +1,31 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from localhost.localdomain ([50.205.20.42])
+        by smtp.gmail.com with ESMTPSA id s6-20020a817706000000b005a0f9718a5fsm225373ywc.78.2023.10.12.14.19.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Oct 2023 14:19:24 -0700 (PDT)
+From: nifan.cxl@gmail.com
+To: fan.ni@samsung.com,
+	nifan@outlook.com
+Cc: Fan Ni <nifan.cxl@gmail.com>
+Subject: [PATCH 0/1] test
+Date: Thu, 12 Oct 2023 14:18:20 -0700
+Message-ID: <20231012211850.17833-1-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <nifan.cxl@gmail.com>
+
+*** BLURB HERE ***
+
+Fan Ni (1):
+  hw/mem/cxl_type3: Add dpa range validation for accesses to dc regions
+
+ hw/mem/cxl_type3.c          | 104 ++++++++++++++++++++++++++++++++++++
+ include/hw/cxl/cxl_device.h |   1 +
+ 2 files changed, 105 insertions(+)
+
+-- 
+2.42.0
+

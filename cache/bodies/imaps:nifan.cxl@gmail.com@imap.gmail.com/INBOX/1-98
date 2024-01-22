@@ -1,0 +1,160 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from debian (c-71-202-158-162.hsd1.ca.comcast.net. [71.202.158.162])
+        by smtp.gmail.com with ESMTPSA id c12-20020a170902c1cc00b001cfb573674fsm6925397plc.30.2023.12.11.10.27.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Dec 2023 10:27:17 -0800 (PST)
+From: fan <nifan.cxl@gmail.com>
+X-Google-Original-From: fan <fan@debian>
+Date: Mon, 11 Dec 2023 10:27:00 -0800
+To: Dave Jiang <dave.jiang@intel.com>
+Cc: fan <nifan.cxl@gmail.com>, linux-cxl@vger.kernel.org,
+	dan.j.williams@intel.com, ira.weiny@intel.com,
+	vishal.l.verma@intel.com, alison.schofield@intel.com,
+	jonathan.cameron@huawei.com, dave@stgolabs.net
+Subject: Re: [PATCH 2/3] cxl/region: Add sysfs attribute for locality
+ attributes of CXL regions
+Message-ID: <ZXdUdMaziZi4vOMQ@debian>
+References: <170199184936.3543815.17537965163543815359.stgit@djiang5-mobl3>
+ <170199191618.3543815.17768111410214136858.stgit@djiang5-mobl3>
+ <ZXdPBMbWau0dePxv@debian>
+ <567d1abe-906d-4ace-aad7-7fc22f9e97e8@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <567d1abe-906d-4ace-aad7-7fc22f9e97e8@intel.com>
+
+On Mon, Dec 11, 2023 at 11:13:42AM -0700, Dave Jiang wrote:
+> 
+> 
+> On 12/11/23 11:03, fan wrote:
+> > On Thu, Dec 07, 2023 at 04:31:56PM -0700, Dave Jiang wrote:
+> >> Add read/write latencies and bandwidth sysfs attributes for the enabled CXL
+> >> region. The bandwidth is the aggregated bandwidth of all devices that
+> >> contributes to the CXL region. The latency is the worst latency of the
+s/contributes/contribute/
+> >> device amongst all the devices that contributes to the CXL region.
+s/contributes/contribute/
+> >> device amongst all the devices that contributes to the CXL region.
+> >>
+> >> Signed-off-by: Dave Jiang <dave.jiang@intel.com>
+> >> ---
+> >>  Documentation/ABI/testing/sysfs-bus-cxl |   40 +++++++++++++++++++++++++++++++
+> >>  drivers/cxl/core/region.c               |   24 +++++++++++++++++++
+> >>  2 files changed, 64 insertions(+)
+> >>
+> >> diff --git a/Documentation/ABI/testing/sysfs-bus-cxl b/Documentation/ABI/testing/sysfs-bus-cxl
+> >> index fff2581b8033..e96f172eb6a6 100644
+> >> --- a/Documentation/ABI/testing/sysfs-bus-cxl
+> >> +++ b/Documentation/ABI/testing/sysfs-bus-cxl
+> >> @@ -552,3 +552,43 @@ Description:
+> >>  		attribute is only visible for devices supporting the
+> >>  		capability. The retrieved errors are logged as kernel
+> >>  		events when cxl_poison event tracing is enabled.
+> >> +
+> >> +
+> >> +What:		/sys/bus/cxl/devices/regionZ/read_bandwidth
+> >> +Date:		Apr, 2023
+> >> +KernelVersion:	v6.8
+> >> +Contact:	linux-cxl@vger.kernel.org
+> >> +Description:
+> >> +		(RO) The aggregated read bandwidth of the region. The number is
+> >> +		the accumulated read bandwidth of all CXL memory devices that
+> >> +		contributes to the region.
+> >> +
+> >> +
+> >> +What:		/sys/bus/cxl/devices/regionZ/write_bandwidth
+> >> +Date:		Apr, 2023
+> >> +KernelVersion:	v6.8
+> >> +Contact:	linux-cxl@vger.kernel.org
+> >> +Description:
+> >> +		(RO) The aggregated write bandwidth of the region. The number is
+> >> +		the accumulated write bandwidth of all CXL memory devices that
+> >> +		contributes to the region.
+> >> +
+> >> +
+> >> +What:		/sys/bus/cxl/devices/regionZ/read_latency
+> >> +Date:		Apr, 2023
+> >> +KernelVersion:	v6.8
+> >> +Contact:	linux-cxl@vger.kernel.org
+> >> +Description:
+> >> +		(RO) The read latency of the region. The number is
+> >> +		the worst read latency of all CXL memory devices that
+> >> +		contributes to the region.
+> >> +
+> >> +
+> >> +What:		/sys/bus/cxl/devices/regionZ/write_latency
+> >> +Date:		Apr, 2023
+> >> +KernelVersion:	v6.8
+> >> +Contact:	linux-cxl@vger.kernel.org
+> >> +Description:
+> >> +		(RO) The write latency of the region. The number is
+> >> +		the worst write latency of all CXL memory devices that
+> >> +		contributes to the region.
+> >> diff --git a/drivers/cxl/core/region.c b/drivers/cxl/core/region.c
+> >> index d879f5702cf2..72c47f624d63 100644
+> >> --- a/drivers/cxl/core/region.c
+> >> +++ b/drivers/cxl/core/region.c
+> >> @@ -645,6 +645,26 @@ static ssize_t size_show(struct device *dev, struct device_attribute *attr,
+> >>  }
+> >>  static DEVICE_ATTR_RW(size);
+> >>  
+> >> +#define ACCESS_ATTR(attrib)					\
+> >> +static ssize_t attrib##_show(struct device *dev,		\
+> >> +			   struct device_attribute *attr,	\
+> >> +			   char *buf)				\
+> >> +{								\
+> >> +	struct cxl_region *cxlr = to_cxl_region(dev);		\
+> >> +								\
+> >> +	if (!cxlr->coord)					\
+> >> +		return 0;					\
+> >> +								\
+> >> +	return sysfs_emit(buf, "%u\n",				\
+> >> +			  cxlr->coord->attrib);			\
+> >> +}								\
+> >> +static DEVICE_ATTR_RO(attrib)
+> >> +
+> >> +ACCESS_ATTR(read_bandwidth);
+> >> +ACCESS_ATTR(read_latency);
+> >> +ACCESS_ATTR(write_bandwidth);
+> >> +ACCESS_ATTR(write_latency);
+> >> +
+> >>  static struct attribute *cxl_region_attrs[] = {
+> >>  	&dev_attr_uuid.attr,
+> >>  	&dev_attr_commit.attr,
+> >> @@ -653,6 +673,10 @@ static struct attribute *cxl_region_attrs[] = {
+> >>  	&dev_attr_resource.attr,
+> >>  	&dev_attr_size.attr,
+> >>  	&dev_attr_mode.attr,
+> >> +	&dev_attr_read_bandwidth.attr,
+> >> +	&dev_attr_write_bandwidth.attr,
+> >> +	&dev_attr_read_latency.attr,
+> >> +	&dev_attr_write_latency.attr,
+> >>  	NULL,
+> >>  };
+> >>  
+> > This way latency and bandwidth ABI are defined seems not to be consistent
+> > with what we have now.
+> > 
+> > For example, for other attributes like interleave_ways, we only define
+> > one attribute "interleave_ways", and use two separate functions
+> > interleave_ways_show and interleave_ways_store for read/write operation.
+> > for ABI interface, only one is provided
+> > "/sys/bus/cxl/devices/regionZ/interleave_granularity"
+> > 
+> > for latency and bandwidth, should we provide two interfaces like below
+> > instead?
+> > /sys/bus/cxl/devices/regionZ/bandwidth --rw
+> > /sys/bus/cxl/devices/regionZ/latency --rw
+> 
+> Hi Fan. I think there's a misunderstanding here. This is not reading and writing of bandwidth and latency. This is read latency and write latency and read bandwidth and write bandwidth. They are separate and unique properties of the path. i.e. upstream and downstream direction traffic performances. 
+> 
+Oh. I totally misunderstood, thanks for clarification. Then the patch
+looks good to me expect for a minor typo in the commit comments as shown
+above.
+
+Fan
+> 
+> > 
+> > Fan
+> >>
+> >>

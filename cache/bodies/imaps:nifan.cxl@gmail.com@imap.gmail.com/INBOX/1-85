@@ -1,0 +1,116 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from localhost.localdomain ([50.205.20.42])
+        by smtp.gmail.com with ESMTPSA id o67-20020a257346000000b00d7497467d36sm3334435ybc.45.2023.11.27.14.43.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 14:43:19 -0800 (PST)
+From: nifan.cxl@gmail.com
+To: nifan.cxl@gmail.com
+Cc: Fan Ni <fan.ni@samsung.com>
+Subject: [PATCH 2/4] CXL: Add a new topology to support DCD emulation
+Date: Mon, 27 Nov 2023 14:27:25 -0800
+Message-ID: <20231127224238.313755-3-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231127224238.313755-1-nifan.cxl@gmail.com>
+References: <20231127224238.313755-1-nifan.cxl@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <fan.ni@samsung.com>
+
+The change adds a new cxl topology to enable dynamic capacity device
+emulation in Qemu. The device includes no static volatile/non-volatile
+capacity but 2 dynamic capacity regions where dynamic capacity extents
+can be added. Also, increase the fix memory window size and host backend size
+which gives more room for testing as the dc extents needs to be a least one
+memory block (256MB).
+
+Signed-off-by: Fan Ni <fan.ni@samsung.com>
+---
+ playbooks/roles/gen_nodes/defaults/main.yml        |  1 +
+ playbooks/roles/gen_nodes/templates/Vagrantfile.j2 | 11 ++++++++---
+ scripts/gen-nodes.Makefile                         |  3 +++
+ vagrant/Kconfig                                    |  9 +++++++++
+ 4 files changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/playbooks/roles/gen_nodes/defaults/main.yml b/playbooks/roles/gen_nodes/defaults/main.yml
+index 3a16d861..ef5e0c26 100644
+--- a/playbooks/roles/gen_nodes/defaults/main.yml
++++ b/playbooks/roles/gen_nodes/defaults/main.yml
+@@ -54,6 +54,7 @@ libvirt_qemu_qmp_wait: False
+ libvirt_enable_cxl_demo_topo1: False
+ libvirt_enable_cxl_demo_topo2: False
+ libvirt_enable_cxl_switch_topo1: False
++libvirt_enable_cxl_dcd_topo1: False
+ libvirt_extra_drive_id_prefix: 'drv'
+ libvirt_extra_storage_drive_nvme: True
+ libvirt_extra_storage_drive_virtio: False
+diff --git a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2 b/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
+index 0dafe2c2..20cdd592 100644
+--- a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
++++ b/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
+@@ -292,7 +292,7 @@ Vagrant.configure("2") do |config|
+ 
+         cxl_mem1_path = cxl_path + "/cxl-mem1.raw"
+         libvirt.qemuargs :value => "-object"
+-        libvirt.qemuargs :value => "memory-backend-file,id=kdevops-cxl-mem1,share=on,mem-path=#{cxl_mem1_path},size=256M"
++        libvirt.qemuargs :value => "memory-backend-file,id=kdevops-cxl-mem1,share=on,mem-path=#{cxl_mem1_path},size=4G"
+ 
+ 	# Label Storage Area, used to store CXL namespace labels and region labels
+         cxl_lsa1_path = cxl_path + "/cxl-lsa1.raw"
+@@ -319,12 +319,17 @@ Vagrant.configure("2") do |config|
+ 	libvirt.qemuargs :value => "cxl-downstream,port=1,bus=kdevops_cxl_us0,id=kdevops_cxl_swport1,chassis=0,slot=5"
+ 	libvirt.qemuargs :value => "-device"
+ 	libvirt.qemuargs :value => "cxl-type3,bus=kdevops_cxl_swport0,memdev=kdevops-cxl-mem1,lsa=kdevops-cxl-lsa1,id=kdevops-cxl-pmem0"
+-{% else %} # switch topo1
++{% else %} # !switch topo1
++	{% if not libvirt_enable_cxl_dcd_topo1 %}
+         libvirt.qemuargs :value => "-device"
+         libvirt.qemuargs :value => "cxl-type3,bus=kdevops_cxl_root_port0,memdev=kdevops-cxl-mem1,lsa=kdevops-cxl-lsa1,id=kdevops-cxl-pmem0"
++	{% else %} # dcd_topo1
++        libvirt.qemuargs :value => "-device"
++        libvirt.qemuargs :value => "cxl-type3,bus=kdevops_cxl_root_port0,nonvolatile-dc-memdev=kdevops-cxl-mem1,lsa=kdevops-cxl-lsa1,id=kdevops-cxl-dcd0,num-dc-regions=2"
++	{% endif %} # dcd topo1
+ {% endif %} # !switch topo1
+         libvirt.qemuargs :value => "-M"
+-        libvirt.qemuargs :value => "cxl-fmw.0.targets.0=cxl.0,cxl-fmw.0.size=512M"
++        libvirt.qemuargs :value => "cxl-fmw.0.targets.0=cxl.0,cxl-fmw.0.size=8G"
+ {% if libvirt_enable_qmp %}
+         libvirt.qemuargs :value => "-qmp"
+ {% if libvirt_qemu_qmp_wait %}
+diff --git a/scripts/gen-nodes.Makefile b/scripts/gen-nodes.Makefile
+index 59771a6c..8906b49f 100644
+--- a/scripts/gen-nodes.Makefile
++++ b/scripts/gen-nodes.Makefile
+@@ -208,6 +208,9 @@ endif # QEMU_ENABLE_CXL_DEMO_TOPOLOGY_2
+ ifeq (y,$(CONFIG_QEMU_ENABLE_CXL_SWITCH_TOPOLOGY_1))
+ GEN_NODES_EXTRA_ARGS += libvirt_enable_cxl_switch_topo1='True'
+ endif # QEMU_ENABLE_CXL_SWITCH_TOPOLOGY_1
++ifeq (y,$(CONFIG_QEMU_ENABLE_CXL_DEMO_DCD_TOPOLOGY_1))
++GEN_NODES_EXTRA_ARGS += libvirt_enable_cxl_dcd_topo1='True'
++endif # QEMU_ENABLE_CXL_DEMO_DCD_TOPOLOGY_1
+ endif # CONFIG_QEMU_ENABLE_CXL
+ 
+ endif # CONFIG_LIBVIRT_MACHINE_TYPE_Q35
+diff --git a/vagrant/Kconfig b/vagrant/Kconfig
+index 177e1ee0..c2783935 100644
+--- a/vagrant/Kconfig
++++ b/vagrant/Kconfig
+@@ -1681,6 +1681,15 @@ config QEMU_ENABLE_CXL_SWITCH_TOPOLOGY_1
+ 	  is connected to one of the down stream ports. The upstream port
+ 	  is connected to a root port on the host bridge.
+ 
++config QEMU_ENABLE_CXL_DEMO_DCD_TOPOLOGY_1
++	bool "CXL DCD demo directly attached to a single-port HB"
++	help
++	  This topology adds a DCD device in the topology, directly attached to
++	  a Host bridge with only one root port.
++	  The device has zero (volatile or non-volatile) static capacity
++	  and 2 dynamic capacity regions which host dynamic extents  to be
++	  added.
++
+ endchoice
+ 
+ endif # QEMU_ENABLE_CXL
+-- 
+2.42.0
+

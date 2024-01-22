@@ -1,0 +1,236 @@
+Return-Path: <fan.ni@gmx.us>
+Authentication-Results:  gmx.net; dkim=pass header.i=fan.ni@gmx.us
+Received: from mout.gmx.net ([212.227.15.18]) by mx-ha.gmx.net (mxgmx009
+ [212.227.15.10]) with ESMTPS (Nemesis) id 1N0pOB-1pnuwm1agX-00vpMX for
+ <fan.ni@gmx.us>; Tue, 29 Aug 2023 22:17:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.us;
+ s=s31663417; t=1693340269; x=1693945069; i=fan.ni@gmx.us;
+ bh=2Bgyd7It+JkDqXFHchOD5QcZYdmg4hdnlpYmFrtC0Hg=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=OeuACEbHJhwxLbvkK8J3TgYjfbi1t71c1M5vfz0jBETWgcn+T5KtspaLb4bqjaUSrDHnwko
+ pqXY8gr4WM0Q8PO+l8vjSZU2FAHzSJner9JhvhhaI6OVs66SUfIPhbf2ISyruYOztfAG78XeM
+ YvBYyl20G425mmqTb6z8ZBhCB6FalaFg93LAqY5crUHfDOkxxEnWsEv/5LTuSKH7Iym0Z651V
+ GGw/d5fruqJo7W6dMnX4C5yzc4tR6sI766WIFdlKGcsqAoilj3ldD6SCNScql+jqr4Df4ScHk
+ TmBue5el+JHWSh2dbqnoQ5bJC3bisMx6h/LhVjMSTcJUKUkuKrUQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from localhost.localdomain ([50.205.20.42]) by mail.gmx.net
+ (mrgmx005 [212.227.17.184]) with ESMTPSA (Nemesis) id
+ 1MAfYw-1qQ7r21lUm-00B20d; Tue, 29 Aug 2023 22:17:49 +0200
+From: fan.ni@gmx.us
+To: fan.ni@gmx.us
+Cc: Fan Ni <fan.ni@samsung.com>
+Subject: [PATCH 1/3] CXL: Add a new topology to support DCD emulation
+Date: Tue, 29 Aug 2023 13:17:23 -0700
+Message-Id: <20230829201725.29241-2-fan.ni@gmx.us>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230829201725.29241-1-fan.ni@gmx.us>
+References: <20230829201725.29241-1-fan.ni@gmx.us>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:p/+fKHMI+NYBb09z6T9xlea3CuLXi0Nb1aGYz1OrWjalasGqMvb
+ dFjKIkQC+gIRACTcflM/+1N+SeXbqF1wB/rdz4hxzZri4nUj5AVjLPONRbi6+hBpFrJPkes
+ a99PfFwqL5XET1ZdPgyYZ3fFQSVQVAHezUc8NSWZ53b+Srx3lIffsUyCNd+isgcoNoJ+iRR
+ 0QvyFoL2dHIzwa/tPKY7Q==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:cc+mRBw5xIw=;w46uPrS41E0BTr2itGLDjX5jUyf
+ Cdd3N4SGj5kbLgDPw261CXPpndr6iKdioIxSE3QhTLN0Js+xEL/VjxEx7rKR75T8RH1yo9xyW
+ 3TOfc11ylBE5GGu5RPYcDht1PsKy+XSoZ4spIHKoU5yVfp6mAamVLF7pY5VGWY5XKqth29TQm
+ +a8U6Pc+PrRwpoFbrLtLUDVZJeav6B0PfcPI0KKe8Shn+DX39FY1a/QbnP4RQQfZAtfigescM
+ I6Mv1uMARZkhciDuCeR1Kf3mk/h1ud9Y1mmmPaPRPJPQQvEYL2RuFuWTm/tX/X3za6JYK9IRp
+ kiaSQkynxKily3t8I2pXTIsD2UFTBd6oWVbcPXvBazfhtsQDVXp+THJTdJp2aPCMRVLhswUkE
+ NMmoGkDrnl6X3IxAcE1Qq/MaG0/vMxLObjW83j7mCNPOkcK9/AuRt7GriJFayFrW9+rGxttGW
+ uK7HyvscJg/NbYKxQUpRQTYOYi+FdHU4tBmOEwHlw0jlexQvBI18qjQ3tKpAsIt5uZ+ZrD81t
+ AbPD+KJqI8wwGGgyDwTEeIfFZpdHW4Nmh/OFmPlfxmS3cRMvy3Ox5mUNF36N02Rt9zOB0PLAk
+ Do+/ImHmd8Fyr8LLNUsIaImrYAVp2w6Cyj+oFlcKupgr6DOobW6x6rHZdj2IurM2b/UzhZXC9
+ z53ml4AQsn/6ooukgAv2oKwE6awD4s3nwZGX/KG4YvUZVGj/YcK1MzViAn0U0G/I+FQvnd+f6
+ f5/Rj5sCYCjoHjHn2Dbt38irqotJ/xfhU6RFLuok2bQSuVCpvaze4hTDDBgBB+yHLBA8MXpad
+ i5BF1dpXnfgRNe2ElQ5Y5uN9Qjdiok7LRaZxA0U1/2zskm2GrMCoHIlSBEojb3Lhj9mpa35gQ
+ TvrMtA/VeL0kEQWc7Jds9G/Ls5SDO6Zt8nwAlyqrHkvCxMFCRaqJjEA1orhEElMHMG2gaSdvA
+ MhkApA==
+Envelope-To: <fan.ni@gmx.us>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+UI-InboundReport: notjunk:1;M01:P0:V0qWNWQ/+rg=;FtfE0/H/YSe65GlLCC5elGPDqjye
+ sddKvboi2Zpw53x6Dhpl3LneekmeL05D8RxsdLs2diBoVxZkSEjj1wftBUiH7s9tEaPTwnnWg
+ EhZfBGWh6/+RtwTQ7Xc2wtVTYr2RbWlDu9QYtcKkMzEbYSQbS2OHNO1f3yK+ADu2QN8JSOHzT
+ zKS9baqzjbgrD0shJkuaFyh4ZYZreY0DTkDvq+kPXoIEGL1l3n1ZzWOmtWDntcsBC8Paauc/T
+ VioxxaPUyKFqH07ZKYytFc5lRSIcvKB8dn2Xpk9qOcz++5cdPaUni8vtgL3mzeKayMXeUVoDD
+ VdPBVBoU4p+/Dv5oScSNpJbj7Lo4nX47q4bjBOXI/oHfnRaVXAaEFCLYdvlTEDxnZeK4Bre3b
+ +G7Q/9iYPCTEP3dk3fCdGdexTY3ELlJxvuiNlucNQrF419Az0sAjQkY44cfkeiREbluqD3QaX
+ bC9q5ZkASIwYQDplM9x0PcyZqGwrCL5n8ZYEDe5aYJxbdFjYwb8ocIQ4OSgIis+7E4Sltyyh9
+ ygl8O9e4EyGzYuzfGY9QDYw3zksoWHLQJl/Ygssi3pSMzyFNTa643x5wWsoD95yGVuJ3qccjc
+ wRMUWPapI+u1q86cDaRxyaF9u/bf46v76fuvQEi0CyHaEPVNHgJ/T8Hm6vJamWfiY7d2ZkMkJ
+ Kqs63wDOF7UMFKhDMcAhkqK2uailgPRglDCGvbU8PXo9eCDx6OgVN1TPCWxeBDYF+qLAvTFzN
+ Xkv6IYZPoaWVn0I9lcHG2pml+O67s+bDUUGHHak1yK/lY/MJ/RtTfzfgxt8OeejFWHhMjMTh3
+ C77XGAJhcaQlr8R+KNZYCatu/1/BIBXM5plv2gRyb6bRop9OuzXRY4k8aieDN8iaP5eezcp5c
+ +pTUsZVAvWcmaOCT1VmWTJXS4Lyv4Leg2RppHIOr5kElD4DqraKZ3mVjjW2+sBBmN4cK4BpFp
+ pJFOCq26MWwz5LjiH9GyAKWyXzbVipgLZSrfgUGtRgdVha4DIRE0GlKKv9brb2ejpXgw1jB7t
+ i4P3WcAuogfvql3+2dE1RYUDQKp0povw4LJLXQza9S0PVSIh8gx90RPtJE9VCiLfu0pePPT3T
+ u9HZsbrq7LudInqiY8Uo+V9Q9+yR6a645WqbxgDw6VR+wlzaQSunFvluVOqohGMzFBRTdsLc1
+ ICRbkbqTGn6azMqsK0UuMbcSERH5S5bECSJyYWBg9sq1puztHE1II7MBNPSOv4YlxZGsRAJTo
+ kLEXEN+iWWEMSosaJuZYUVFwEE2zo3Yh8PhArdZlJYwrm+iE5TWjP1SIB6PJN3tEVd3JQA+Yv
+ HDY9k90Wx2UB2ef+P2I4Yv4bkmd1ZhcN6KvzxU1FRIPCpAs6pGRZNGaaUugfrY5RQ0AkBH36A
+ vkIhWp5Aj6NYiAEZzjeDoSYHDIcP/S4qS3xxUzKJnRUS2XezzVYxoe+3ht++f0kXaXRRxgV6C
+ fD9zALEVIGMLM2JNokCFD2JBMuhxKDjASXk9SvaD0J/JCZPVCmjTxAtYK+ygshWkAP0m25kbn
+ LE8snCOmR85JBUfcGbEYS+4PMlXjmUsIMZQnvi5MDId3AEWsavcrPBoeFso88aUjojGH3bzQh
+ NVHmn9meElLW94WL7lXIYPar4Ku//LWOkbLvKa/NEHspWR4GtAVWoCN7ikL2JFhiY/z0ThOBi
+ GBZ8WJ3f5/lppzojFgRCK00y4MpP4HgjemGaqWR9znHsYfHXSmu3DbDq+IEttpHorOpQ5DZJ/
+ b76gllQdgbEkrPI2JopB3avVOJlIHopTrlvt3KB4NBh/bB7a825UjZa/6K9pLK902sdMHk5bc
+ 78A9pKiH9AHTxAmf8YJ6afUCJQ1/RzRveSgBZzKBxbESpAZvllHib/iw/OGBZm3pWQPoFLzBI
+ ETYT1LXOpjFYbye+m71BUFx4PtCLqjDh7MlobD+uq4pZmsybvrwrz3Ok6oCMAUfcmy+OoQ0nI
+ EB+36VOih4ekpWmFBwas+4jmqO825GsIyETpZOckkY/vtvMaGQUMhgdZFX789I5RyVuTNzCrf
+ LljrW/lHU2maxIqcWIai1VhgzPzQcqe7aCLHsq7nyzGk37bZOmVHwnaaRYjFSzf11XkgM8ciW
+ NATX0cHLdVq+GTwtuN3IieTbSYHW3rt6kKlcMS9C7cBkBRzL4SJW5RS/cbhimCPx6NW8Huo7W
+ P/VWp+p26q/++GMWXkkinAlVPcY349kJAZHUtjWca0UaZRLMWUIoGljsU+dMgImPMb/2H6lvH
+ uzcCxHAxH7pBf9F7e2CK+VAyR8en3MrPlAimQwYFbohVKaqJ+ijODuMDEtJx/IgOKe58VKokL
+ XbTlarwe3feuX10p5YzT+g71Jh6fWgoSkORorYdXLM2ZWElG6y4P1vufwRv+SOafsZf2V0413
+ ykk9G/voBCvdtXkOZH2DqjH1pWrkFWRQzNMQpH+cS3MVZl8+zZkaaX7525eJ+Wfl7UtL8SgBz
+ p8Nk44gqdfKUmGR+h3OKiDffLpNGYXw9Dv6fbaeQdRrUeFIRQxtms79Lt1f4h6eaV4m4nZWcB
+ Rpq9M10SG3Q1H1B5whfB2hAVwfB4OOdwHyIvxiJaNOFOlOgh8mxKyWR+D/mMN+RGr9/IVeJRf
+ g6SfpUpu+LZyjXTSxBOohfknVGZ9MUQtJBHvs/e+L2Y1OOCXyG9lzjI35a2QrRUBsSmpRAZTt
+ D2AIoXTLIZRb70iEmT3Af+t5YZLAFJ4sIInKi7p8cz2smTGPpD2E1YwkFPx5/9qDMIAN2pK/b
+ KYiWBBJHBAVKd2r0CPSOlG+wTUKn2wKbEXLee74vZxrU8zMhxRkdyPgGanE0rzepQb+aXYNA+
+ OY2D722RDNf4NeFTIpnleo3Be680oArNC3/QMYSb1gn+7QQdfSTBAwmackmvf05go42vgH/lK
+ n1/x7QtP8p43t+VpcuvtTxy95dY5CYEY2xCbvSgCLK6dGX3n1sUD1zZoD4CdzcFeTpTz7+HWm
+ m3bkE5JX/mWnlmsrGZ9KrChxPTNv0l0PgyPg/xjktsodnLc/03+qjAlnVgmFqEUCNMIbcO5OE
+ o0S7eSG3m+Q3PV5A9dUWU4CKJVUm8/pL93izDkG60+d33kndmHntzDnFvJlp2BzQv4BCPuEDT
+ VlFPsVWbmGPi78ER/d7D4+VjjKMGURA1BVjK7rKCbKnWqnETtdcHFpDR5o2SWV4opHv24UVaA
+ pr9SHsCcu0zn+qlW6Gb7C2NKpBp63aPB7paEnt8+52HqM0V+Qe04zYZIBWREvv4Xh1P6YAOU/
+ RzaZ92e2eqgFhThj7iqHk3IIoq0qsHJLw7vSjnIcErP8wAO/D6CBECs7HU9r0w4NIDqeNG0Df
+ AZSS/ixPj6KQxk9+PDHFa68m5UtnTiRfjKWeQvUaBqUA0sOp/p2ocUPCFnuNtS7Rb7YF+3eJL
+ rQtUEp1V5l0rN+8mdYy9KWpcYgHckbmboRB8oaCnlkHgI9xnJh/gq+4A6jMRK7Die7j9+u0xh
+ oEhsCM2pqZrQKX3CUZRoJu7Cc9Y9paAILj5WM0/FMN7qe9fSCQsc7JTaWUfSaiTCMYVsThbN3
+ hUC/qWp0Ynw7ftExla1aVUakN+S4iYYrRlC9epLC8gR3r4i37YAXhC88JhVEOufSJs2BTvzAy
+ zKCDsKVW2152mOIUQM54vWJ00JsKiyautRsFFjGAKEKP9xXhwO1OqbUvPOB5agz7L5rb8Ukj/
+ 7RFnK3jgbh+na2PTrtQ+8KAZS7tDwnsLwqhCNGHK25u+UMxO/76XIX4UATSboloKNjCHsDrPq
+ SeSSq7QzDig87a1zHZpzJ5thjoWoS7UQnZcrmZHJHLHUvdnbM8np3VVNVVxu/TI/3M4Oj2+ql
+ BgICYP8OkVi4sPjx19oUVANiLYOaAosNSN9K3yIgTGzHO/e20ws0ZoxvFD0BsYoqqAeKeW3De
+ vupfi3RTkowo094TV8RLanxlYJrps1zlPsWexBKrAE64uvPmz7luGF+qTmUrzA7ExCJ0+rdna
+ qCCaxkOU9vcOTItQQZSlSPsx1BTwRWNc2hX+Zvs9dJbLaQ+Bs6+G4Dr02sw8Joe0ejWsjD+Oh
+ 1xvVKNtvkfz+Jwoq2R3I9AP6MNsRFXcJanu08qUEr8/wQ6R93s8nZt1LtXmZGTPhs/lmYEynd
+ C+EUuOk1BZ2pMXCt9hRNT8ttcvgxUlCIufophKvRYq1Lj+8IIfdYjDbZliLfI/h4lU2qjsDWL
+ cdpv2psGdXtV1KI4GkwEQwNV15wR6GHvBmFO8tgzaTYduxxWsHxC9DHh+YZgsOspN35qw5xaK
+ LhSnRf0FlEMWYX+LwRGZG8gdvHuU66AdgyQV7En3lXA2WZ5e8NJ0A37pD7FeCEEqjnOIrxrhW
+ QRXnO4cNN3HzBNbFcmxzZ9WC8gWURJdAJ8xeQdQSXWnYPmLwexE/nCDTsaiWNBEDlsiv7M0N7
+ 2vGZ2uovefmzelQUF2mLCvSleUHDId8l1+fdeg8IDq55+8le/fAJzOJ5kKbCCIYnui2fkgftO
+ CphJMcLn0G1XoanwLM0L6agDNNLyIJCBtcvhPfBqa40tq+eSOejVwYLc+Zqb5beJDhPXmIyuN
+ jbxIytaN+bTeEcJLutfq9CinjN/SGBKeUcJbM8PWFs8KiUulFLhKai8g5Vtg8mMuTRxYy3E3Z
+ /ccldfIZHv31HxIBwNRtEyQfXqohtpjSgffWZQ/qBeLh9gIhWVwP9UFKQkAeGNh737zzZkahK
+ KLlpDZWRBedR0kISzDgpbgokAohob1F5rTwMSU+AoD4QTXAlcNdo0z+hLY+4wtTZ6+Mat3AgV
+ c+y8Yi2EklGzJlH0bWAJKewYK82/NMoc7DxsP9FvLgi9iZ3go4j7ZwVu8fuiQz6QSNmgtBf6m
+ IPfBBLXXKyKEGw8wwCwhEdOKMNonq2w==
+
+From: Fan Ni <fan.ni@gmx.us>
+
+The change adds a new cxl topology to enable dynamic capacity device
+emulation in Qemu. The device includes no static volatile/non-volatile
+capacity but 2 dynamic capacity regions where dynamic capacity extents
+can be added. Also, increase the fix memory window size and host backend s=
+ize
+which gives more room for testing as the dc extents needs to be a least on=
+e
+memory block (256MB).
+
+Signed-off-by: Fan Ni <fan.ni@samsung.com>
+=2D--
+ playbooks/roles/gen_nodes/defaults/main.yml        |  1 +
+ playbooks/roles/gen_nodes/templates/Vagrantfile.j2 | 11 ++++++++---
+ scripts/gen-nodes.Makefile                         |  3 +++
+ vagrant/Kconfig                                    |  9 +++++++++
+ 4 files changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/playbooks/roles/gen_nodes/defaults/main.yml b/playbooks/roles=
+/gen_nodes/defaults/main.yml
+index c57effe7..55827e5b 100644
+=2D-- a/playbooks/roles/gen_nodes/defaults/main.yml
++++ b/playbooks/roles/gen_nodes/defaults/main.yml
+@@ -51,6 +51,7 @@ libvirt_enable_cxl: False
+ libvirt_enable_cxl_demo_topo1: False
+ libvirt_enable_cxl_demo_topo2: False
+ libvirt_enable_cxl_switch_topo1: False
++libvirt_enable_cxl_dcd_topo1: False
+ libvirt_extra_drive_id_prefix: 'drv'
+ libvirt_extra_storage_drive_nvme: True
+ libvirt_extra_storage_drive_virtio: False
+diff --git a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2 b/playbook=
+s/roles/gen_nodes/templates/Vagrantfile.j2
+index 7ed59ff7..124cabd6 100644
+=2D-- a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
++++ b/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
+@@ -292,7 +292,7 @@ Vagrant.configure("2") do |config|
+
+         cxl_mem1_path =3D cxl_path + "/cxl-mem1.raw"
+         libvirt.qemuargs :value =3D> "-object"
+-        libvirt.qemuargs :value =3D> "memory-backend-file,id=3Dkdevops-cx=
+l-mem1,share=3Don,mem-path=3D#{cxl_mem1_path},size=3D256M"
++        libvirt.qemuargs :value =3D> "memory-backend-file,id=3Dkdevops-cx=
+l-mem1,share=3Don,mem-path=3D#{cxl_mem1_path},size=3D4G"
+
+ 	# Label Storage Area, used to store CXL namespace labels and region labe=
+ls
+         cxl_lsa1_path =3D cxl_path + "/cxl-lsa1.raw"
+@@ -319,12 +319,17 @@ Vagrant.configure("2") do |config|
+ 	libvirt.qemuargs :value =3D> "cxl-downstream,port=3D1,bus=3Dkdevops_cxl_=
+us0,id=3Dkdevops_cxl_swport1,chassis=3D0,slot=3D5"
+ 	libvirt.qemuargs :value =3D> "-device"
+ 	libvirt.qemuargs :value =3D> "cxl-type3,bus=3Dkdevops_cxl_swport0,memdev=
+=3Dkdevops-cxl-mem1,lsa=3Dkdevops-cxl-lsa1,id=3Dkdevops-cxl-pmem0"
+-{% else %} # switch topo1
++{% else %} # !switch topo1
++	{% if not libvirt_enable_cxl_dcd_topo1 %}
+         libvirt.qemuargs :value =3D> "-device"
+         libvirt.qemuargs :value =3D> "cxl-type3,bus=3Dkdevops_cxl_root_po=
+rt0,memdev=3Dkdevops-cxl-mem1,lsa=3Dkdevops-cxl-lsa1,id=3Dkdevops-cxl-pmem=
+0"
++	{% else %} # dcd_topo1
++        libvirt.qemuargs :value =3D> "-device"
++        libvirt.qemuargs :value =3D> "cxl-type3,bus=3Dkdevops_cxl_root_po=
+rt0,nonvolatile-dc-memdev=3Dkdevops-cxl-mem1,lsa=3Dkdevops-cxl-lsa1,id=3Dk=
+devops-cxl-dcd0,num-dc-regions=3D2"
++	{% endif %} # dcd topo1
+ {% endif %} # !switch topo1
+         libvirt.qemuargs :value =3D> "-M"
+-        libvirt.qemuargs :value =3D> "cxl-fmw.0.targets.0=3Dcxl.0,cxl-fmw=
+.0.size=3D512M"
++        libvirt.qemuargs :value =3D> "cxl-fmw.0.targets.0=3Dcxl.0,cxl-fmw=
+.0.size=3D8G"
+ {% endif %} # CXL
+ {% endif %}
+
+diff --git a/scripts/gen-nodes.Makefile b/scripts/gen-nodes.Makefile
+index 533b19db..eebd0b2b 100644
+=2D-- a/scripts/gen-nodes.Makefile
++++ b/scripts/gen-nodes.Makefile
+@@ -199,6 +199,9 @@ endif # QEMU_ENABLE_CXL_DEMO_TOPOLOGY_2
+ ifeq (y,$(CONFIG_QEMU_ENABLE_CXL_SWITCH_TOPOLOGY_1))
+ GEN_NODES_EXTRA_ARGS +=3D libvirt_enable_cxl_switch_topo1=3D'True'
+ endif # QEMU_ENABLE_CXL_SWITCH_TOPOLOGY_1
++ifeq (y,$(CONFIG_QEMU_ENABLE_CXL_DEMO_DCD_TOPOLOGY_1))
++GEN_NODES_EXTRA_ARGS +=3D libvirt_enable_cxl_dcd_topo1=3D'True'
++endif # QEMU_ENABLE_CXL_DEMO_DCD_TOPOLOGY_1
+ endif # CONFIG_QEMU_ENABLE_CXL
+
+ endif # CONFIG_LIBVIRT_MACHINE_TYPE_Q35
+diff --git a/vagrant/Kconfig b/vagrant/Kconfig
+index 3bf096fc..4e382264 100644
+=2D-- a/vagrant/Kconfig
++++ b/vagrant/Kconfig
+@@ -1666,6 +1666,15 @@ config QEMU_ENABLE_CXL_SWITCH_TOPOLOGY_1
+ 	  is connected to one of the down stream ports. The upstream port
+ 	  is connected to a root port on the host bridge.
+
++config QEMU_ENABLE_CXL_DEMO_DCD_TOPOLOGY_1
++	bool "CXL DCD demo directly attached to a single-port HB"
++	help
++	  This topology adds a DCD device in the topology, directly attached to
++	  a Host bridge with only one root port.
++	  The device has zero (volatile or non-volatile) static capacity
++	  and 2 dynamic capacity regions which host dynamic extents  to be
++	  added.
++
+ endchoice
+
+ endif # QEMU_ENABLE_CXL
+=2D-
+2.40.1
+

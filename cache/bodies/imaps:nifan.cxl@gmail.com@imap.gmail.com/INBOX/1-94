@@ -1,0 +1,103 @@
+Delivered-To: nifan.cxl@gmail.com
+Received: by 2002:a0c:a809:0:b0:67a:4709:3451 with SMTP id w9csp2434268qva;
+        Mon, 4 Dec 2023 22:21:28 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGV6gpmJDfKCPoJWjEbELjd96yp6fBLM5+mKUj/O2ESthfMxK8oE91xF8bYgK1IbqjGwIcF
+X-Received: by 2002:a05:6830:18ec:b0:6d8:4d56:59cc with SMTP id d12-20020a05683018ec00b006d84d5659ccmr5265439otf.21.1701757288409;
+        Mon, 04 Dec 2023 22:21:28 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701757288; cv=none;
+        d=google.com; s=arc-20160816;
+        b=P/UCFCVPoapbkLdo7nUo+iJMXuecSFWWokdpgdzmKRhRIRMFm6qBxcuyqNjjOBTtUt
+         1kjyY03KTm5q+SJKiYVVbwUHF2M9OgGUYFMa0+DS63wDyDYZ0y1lhb8l1GxQhLoFjMch
+         c0mVySLIYBs7CAHXX8/2hL6iCLRW28Exc1M97pMIn36ZJf390wFYSztwcOdNGktBH4a9
+         DS4PQbqp2F5CB+7EywVukezu2ojMWdwuI1M+tEOLAVLr14JgeIerDfaKU0qR3kDKFMt4
+         vZoMm0Z72ah63lsGZqRovEreuEcnb2raVUuF4nXMCfQ/8piuZJxCQs6xYFoUCZo5ep3k
+         QYFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=sender:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:dkim-signature;
+        bh=ZJwIas6UJ0r2DvAIx4RA3NlDLglE46vcHWfkVAIfJmc=;
+        fh=n42RD6a/x5Wn8F9vQe6ZrUHmQ3/vdvlTSwuBk1eDpS0=;
+        b=ouwY8G4SNqzOoC4F8R5elXK2h78lwA+DddksmBDU1pkPOujMfuxGNA+9EnImms2UoO
+         ha2UrrDfL3rKjbLfA02/kNg5nFCkFRHWkhikKoeNWEu5SKnQzc02qQ8WYdlmqwAvRsGI
+         dEp6qRTYQ72vhAhvPChBiXWWnXP0mrui/b3lt/6r2pPaiCZKYGIdKocSfTR9QPEhR7Lq
+         OGlP1I+t4BPWwf9EQfwXLuqvPB5upafLunHwYoXS5vaFdh1ZAhzmJ3oOinBlUQjFRnN5
+         Smm1IaNaZsugwYVTZuFOtsRh2RmpGDViFSxBlsxPoqUoO8nvAy6fmVsJsXEbkJTj5vn9
+         ecMg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=IC7u20O+;
+       spf=none (google.com: infradead.org does not designate permitted sender hosts) smtp.mailfrom=mcgrof@infradead.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+Return-Path: <mcgrof@infradead.org>
+Received: from bombadil.infradead.org (bombadil.infradead.org. [2607:7c80:54:3::133])
+        by mx.google.com with ESMTPS id h187-20020a636cc4000000b005c688ff3462si3082850pgc.585.2023.12.04.22.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Dec 2023 22:21:28 -0800 (PST)
+Received-SPF: none (google.com: infradead.org does not designate permitted sender hosts) client-ip=2607:7c80:54:3::133;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@infradead.org header.s=bombadil.20210309 header.b=IC7u20O+;
+       spf=none (google.com: infradead.org does not designate permitted sender hosts) smtp.mailfrom=mcgrof@infradead.org;
+       dmarc=fail (p=NONE sp=NONE dis=NONE) header.from=kernel.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=ZJwIas6UJ0r2DvAIx4RA3NlDLglE46vcHWfkVAIfJmc=; b=IC7u20O+nPF3/9H2WAMLgd+wwq
+	lnkKr0ROpdOv1hFo8p/DEYJbvyFU8hjsosj+gODU3bo7KWxCFFfn5OrYiLu+cuNIhCnG2VOkBZOeN
+	gn9b90DGslWeCcw4OIjHUXQpPr7ie1y4cZPPetLYOHqFUFcaLNFtZqtcpaod8v0Mla/pBFmb0dwMV
+	ORShhYs38dW1/4mZqmsXOC3HAdoJYb1jrp8frkPNjk3Jhjyo7IUpAEsKtTqT2yjgiewcr15H9+AEU
+	D1L7I3O5WuKq4s09of9rBYYaXdq7B/e82NNpuDSo/FTKsCATUtVRFuP2QbZJ3iRrvD4eoxDq56Xco
+	fz4vgr5A==;
+Received: from mcgrof by bombadil.infradead.org with local (Exim 4.96 #2 (Red Hat Linux))
+	id 1rAOo6-006O0B-0J;
+	Tue, 05 Dec 2023 06:21:27 +0000
+Date: Mon, 4 Dec 2023 22:21:22 -0800
+From: Luis Chamberlain <mcgrof@kernel.org>
+To: nifan.cxl@gmail.com
+Cc: nmtadam.samsung@gmail.com, kdevops@lists.linux.dev, jlayton@kernel.org,
+	a.manzanares@samsung.com
+Subject: Re: [PATCH 0/4] CXL: add test workflow for dynamic capacity device
+Message-ID: <ZW7BYg5C5Ze5zfo5@bombadil.infradead.org>
+References: <20231128224331.324500-1-nifan.cxl@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231128224331.324500-1-nifan.cxl@gmail.com>
+Sender: Luis Chamberlain <mcgrof@infradead.org>
+
+On Tue, Nov 28, 2023 at 02:42:00PM -0800, nifan.cxl@gmail.com wrote:
+> From: Fan Ni <nifan.cxl@gmail.com>
+> 
+> The patch series add test workflow for CXL dynamic capacity
+> device (DCD) in Qemu.
+> 
+> Patch 1: add new options in kconfig to enable qmp interface for qemu so qemu
+> can be launched with qmp interface enabled, which is needed for CXL test like
+> error injection, dynamic capacity extent add/release.
+> Patch 2: add a new cxl topology where a DCD device is directly attached to the
+> root port of a host bridge.  For the device itself, it has no static volatile
+> or non-volatile capacity but only dynamic regions with no DC extents added yet.
+> Path 3: add a new make command "cxl-create-dc-region" to create DC
+> region for dynamic capacity, which is needed before dc extents can be
+> added. We also fixed "make cxl" command as the regular cxl-mem-setup
+> worklfow does not work for dcd device.
+> Patch 4: add a new make command "cxl-dcd-setup" to add dc extents, and
+> convert dynamic capacity to system ram and online it.
+> 
+> With the patch series, we can play with DCD device in two ways,
+> First workflow:
+> After system bringup, run "make cxl"  which will create DC region, create dax
+> device and convert it to system ram.
+> 
+> The other workflow:
+> After system bringup, and if ndctl is already available in the guest,
+> perform the following two steps:
+> 1) make cxl-create-dc-region: create a DC region;
+> 2) make cxl-dcd-setup: add dc extents, create dax device and convert it to
+> system ram.
+
+Applied and pushed. I made some minor changes after this to clean this
+a tiny bit up.
+
+Thanks!
+
+  Luis

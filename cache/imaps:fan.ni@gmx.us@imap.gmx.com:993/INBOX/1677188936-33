@@ -1,0 +1,224 @@
+Return-Path: <fan.ni@gmx.us>
+Authentication-Results:  gmx.net; dkim=pass header.i=fan.ni@gmx.us
+Received: from mout.gmx.net ([212.227.15.19]) by mx-ha.gmx.net (mxgmx009
+ [212.227.15.10]) with ESMTPS (Nemesis) id 1MCHzM-1qRlU52fEg-00AJMm for
+ <fan.ni@gmx.us>; Tue, 29 Aug 2023 22:17:51 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.us;
+ s=s31663417; t=1693340271; x=1693945071; i=fan.ni@gmx.us;
+ bh=ylbhO5ppbMVgCN5CBBpmjSGUrZBuSG6ZaEm/q96WKQ0=;
+ h=X-UI-Sender-Class:From:To:Subject:Date:In-Reply-To:References;
+ b=KncVh6+Axolx0UyjoxUUwFmGdnxodmht/+XvTVnJWvkVEOYPjD/3zzI4xBrmIoAeqJ91PPl
+ fj1nHKYGrH+pkJmT0FSCvjWUgOss5p5WGoiXxMGPUmbHFtK4lTPGeul8EwbSaKrODf1SVQuu2
+ +yvcXKmSZBWAReR9IwxIHS3tb3fP8XjiMl1Nn1g7LS0y/uT8RDU+hVzgN3KfSsPin9Cm1R/hx
+ eu/CZnlSkgq0Kt+OwUHA5OeYou5E74nAkMZEMPw+Ka+oEsw9XDiV5C+q06kWKOKiU082NpsWb
+ 5inWdxuUrARG9ZxoFe5NfaMIXsSmWz2fJBF2EcoZdI9h8EggOpdg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from localhost.localdomain ([50.205.20.42]) by mail.gmx.net
+ (mrgmx005 [212.227.17.184]) with ESMTPSA (Nemesis) id
+ 1N8GQs-1pfyKE3PyS-014CvX for <fan.ni@gmx.us>; Tue, 29 Aug 2023 22:17:51 +0200
+From: fan.ni@gmx.us
+To: fan.ni@gmx.us
+Subject: [PATCH 3/3] CXL: Add support to create a DC region for DCD
+Date: Tue, 29 Aug 2023 13:17:25 -0700
+Message-Id: <20230829201725.29241-4-fan.ni@gmx.us>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230829201725.29241-1-fan.ni@gmx.us>
+References: <20230829201725.29241-1-fan.ni@gmx.us>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:n/+NlPuYxMBgvOKNDtoJYw2DVxsPdUG0SeIZljzuU74m+c/wypa
+ hWmDKpISclSrCXrFKgS6uPhJD3/yDdCJ7oV8k1rg9tjwqyDm5QawSbeO/nkn+H4+09NzZPe
+ p91crwQARjX8xTRkS5P5KCA/k5PXHWK7FA3h7C0sqeyKZeSXA7+DDIuiJrwAyEV7XwH5GPI
+ afVtmsScSEqfCGBvH3jAQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:gx59xWoQ/EE=;Gm9b2MnANGBRQklbr2xm2RVM1CD
+ cJOLwoZ1ycEJQgPZp+bCGFmALhvQzcaxaSyaAOoPVy0dxgVEAgOMHHsbUAijVKKtQYAoHn4pF
+ v4bnbQTV07lGzLQIDUOziGWl+QOqotCzKKSvqwaQeIeB8o6TEZ9f+kmdP8auLCfV6SbYnWK7v
+ YmPSjDT+fLWJwA/0CG6YZvnDqMki2cOAHjQQN6zq10yBIa9atgZobZADZhjPBWImOi4pNlR1T
+ LEVceEakaImmrxOhfCZX+iap+0+iWvrhEeckhZ9Cbfy7hEdh3welx3LeOVOUykz0MJCdlPn2f
+ Knsta9llk84rahZ4FKBcWuRpfTXqc5dlLp33sALRlE7plV1abgOz2/tkY9vKWUGSleTZY8yDY
+ 6Ci3F8zuAmAGAA0FNhd9+ajMUnPqwcTGZ0cnYj2kymosiBH5+GodNqEk3f2dQ1O25y+AW13BL
+ dkL8+1l5a3CoiirWozjaHTQVmQdphzN2LdikzBDdCSQ9uXqpk1+oFYu1yqCKJMsbITgtv+lBl
+ /kUB7GJHkz2NqjIBpyQj/3DXppRUF337eRc/Ei+yiwCCXAAPo/QO+h7SJ6+ezKj8+E3w/yFm5
+ T/0RoA7EEHevzaoz20duZGd2yKd4lx6NgulXtJ5RBFkgboNBhf+7tLtMNeYU91y0QaR0FS43E
+ mYczHDGNAfpEV68TlGRop6jMihZGgM+KVcDErLVfCsb4xU3bYGaIcZkwRHk6vxXuvacmXq24f
+ EZrRAaPHclmipKj9oRpVKI19wlinaYZAXj7mnueT5P5eOJvCic9QTLXMOX+FgxqxTzo0kAmRi
+ +BarSYBNM2CP0Cx6D4oHDcAXnwnN94sA8r2eyOX1sXgv/5uR5h+VdrRMhZDArCQ7jgRYc863V
+ 5HmIXYCcl/Rt/Nsui5xl2q5Lm1vejFAp2T2esBrQGSI0gVMAZTxnpgWkVnjeBzFuiALrrU4M5
+ vTA5JQ==
+Envelope-To: <fan.ni@gmx.us>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+UI-InboundReport: notjunk:1;M01:P0:ZrnF6YCfhbs=;6fqH5EsZH8ulFhT5ELwtNRI9mFFD
+ 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
+ LrcBl2zPc
+
+From: Fan Ni <fan.ni@gmx.us>
+
+For a dynamic capacity device (DCD), before a dynamic capacity (dc) extent
+can be added and used by the system, a dc region needs to be created to co=
+ver
+the dc address range.
+
+This change add support to a new make command "cxl-create-dc-region" for
+creating a dc region.
+
+Signed-off-by: Fan Ni <fan.ni@gmx.us>
+=2D--
+ .../cxl/tasks/cxl-create-dc-region/main.yml   | 27 +++++++++++++++++++
+ playbooks/roles/cxl/tasks/main.yml            |  4 +++
+ workflows/cxl/Makefile                        |  6 +++++
+ 3 files changed, 37 insertions(+)
+ create mode 100644 playbooks/roles/cxl/tasks/cxl-create-dc-region/main.ym=
+l
+
+diff --git a/playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml b/pla=
+ybooks/roles/cxl/tasks/cxl-create-dc-region/main.yml
+new file mode 100644
+index 00000000..daed8fa5
+=2D-- /dev/null
++++ b/playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml
+@@ -0,0 +1,27 @@
++---
++
++- name: Create a DC region before DC extents can be added
++  become: yes
++  become_method: sudo
++  shell: "rid=3D0; \
++          region=3D$(cat /sys/bus/cxl/devices/decoder0.0/create_dc_region=
+); \
++          echo $region > /sys/bus/cxl/devices/decoder0.0/create_dc_region=
+; \
++          echo 256 > /sys/bus/cxl/devices/$region/interleave_granularity;=
+ \
++          echo 1 > /sys/bus/cxl/devices/$region/interleave_ways; \
++          echo dc$rid >/sys/bus/cxl/devices/decoder2.0/mode; \
++          echo 0x40000000 >/sys/bus/cxl/devices/decoder2.0/dpa_size; \
++          echo 0x40000000 > /sys/bus/cxl/devices/$region/size; \
++          echo  decoder2.0 > /sys/bus/cxl/devices/$region/target0; \
++          echo 1 > /sys/bus/cxl/devices/$region/commit; \
++          echo $region > /sys/bus/cxl/drivers/cxl_region/bind"
++  tags: [ 'cxl-create-dc-region' ]
++
++- name: Show the DC region created
++  become: no
++  shell: "cxl list -uR"
++  register: command_output
++  tags: [ 'cxl-create-dc-region' ]
++
++- debug:
++      var: command_output.stdout_lines
++  tags: [ 'cxl-create-dc-region' ]
+diff --git a/playbooks/roles/cxl/tasks/main.yml b/playbooks/roles/cxl/task=
+s/main.yml
+index a75c20a9..164bc2ad 100644
+=2D-- a/playbooks/roles/cxl/tasks/main.yml
++++ b/playbooks/roles/cxl/tasks/main.yml
+@@ -57,6 +57,10 @@
+   include_tasks: cxl-mem-setup/main.yml
+   tags: [ 'cxl-mem-setup' ]
+
++- name: Create a dynamic capacity region for further dc extent add operat=
+ions
++  include_tasks: cxl-create-dc-region/main.yml
++  tags: [ 'cxl-create-dc-region' ]
++
+ - name: Set the path to cxl workflow
+   set_fact:
+     cxl_workflow_target: "../workflows/cxl/"
+diff --git a/workflows/cxl/Makefile b/workflows/cxl/Makefile
+index 476ecc5e..c71e7a86 100644
+=2D-- a/workflows/cxl/Makefile
++++ b/workflows/cxl/Makefile
+@@ -43,6 +43,11 @@ cxl-mem-setup:
+ 		-f 30 -i hosts playbooks/cxl.yml \
+ 		--tags cxl-mem-setup $(LIMIT_HOSTS)
+
++cxl-create-dc-region:
++	$(Q)ansible-playbook $(ANSIBLE_VERBOSE) \
++		-f 30 -i hosts playbooks/cxl.yml \
++		--tags cxl-create-dc-region $(LIMIT_HOSTS)
++
+ cxl-help-menu:
+ 	@echo "cxl development:"
+ 	@echo "cxl                 - Git clones ncdtl to compile and install the=
+ /usr/bin/cxl binary"
+@@ -50,6 +55,7 @@ cxl-help-menu:
+ 	@echo "cxl-test-meson      - Runs the ndctl meson unit tests for the CXL=
+ test suite"
+ 	@echo "cxl-results         - Get results for all tests runs"
+ 	@echo "cxl-mem-setup	   - Convert cxl memory to cpu-less numa node"
++	@echo "cxl-create-dc-region	   - Create a dc region so dc extents can be=
+ added further"
+
+ cxl-help-end:
+ 	@echo ""
+=2D-
+2.40.1
+

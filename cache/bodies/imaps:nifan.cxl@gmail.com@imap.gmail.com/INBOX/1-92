@@ -1,0 +1,141 @@
+Delivered-To: nifan.cxl@gmail.com
+Received: by 2002:a0c:fecf:0:b0:67a:4709:3451 with SMTP id z15csp2713359qvs;
+        Wed, 29 Nov 2023 17:33:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFXwsbkGYEKOvzpYy+Q/jwHNIsRh+EAHMhfFhgh2e/40Q8ty16KHs6dKnuAgCAzhuAsisNq
+X-Received: by 2002:a0c:f608:0:b0:67a:33a3:76e5 with SMTP id r8-20020a0cf608000000b0067a33a376e5mr14792004qvm.34.1701307987641;
+        Wed, 29 Nov 2023 17:33:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701307987; cv=none;
+        d=google.com; s=arc-20160816;
+        b=VVPWDqSknej43jbSZoAoTwyXjFXE7N6ySJ7732TpoXjWBbe6DAingbCyS4xa90WOOP
+         ttVjHbKKKQj4Kv+O9IdsSbRnaekH4bINzBeFZtgcLK+PJBJdIOXCtT91xtjY5L7ezqFL
+         Ae5t/t14w2iTn04v0qRxqo2CiIAA/cMx4Dy0OADW3ui5ySZi/BQvYc22wnM9mA6SFbCr
+         ZlHJek5SzJXE6sKtSEXANAaKmVLGPRIlQelu23/WGiTBIhGRa7IA2a0A5BysUGKmOhIa
+         7C73V8Ujm4zFAlsO9OrT+l6AAuHVj4UyP6V7DMC9l3eoobhuD75m4Is1gkjKrNRaNEPC
+         kmRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:dkim-signature;
+        bh=/hCquaQm0D7Abv30MkV0mf5sTm+ffVk07U/CHRoWEq0=;
+        fh=GZbsnpAEnp+pJCwMMV4zhLpa3Ei2NcTeFazlN5YjFhY=;
+        b=QrKh19wY5uUe4VxvDBEKAITsyw1nWG8CgzsYNcfAHJ3euQ8rkhnQ4qS6cQWkyhzIKF
+         HSWyb5poHF5p69go4NKHc+oGDnV9Pc3rXcjhnYQn8p6+W6XpSdpMkk1I12OoBc8aLHqT
+         lRxKC6c0PD1K2m96y7ljjVX3CCds+Q3U8ZxkMHX7QaXswuACKVOMuhoxwXCSW8KIyCrt
+         S4z/IQVicJLe9Dl+mLE0VpQkwEEpq+NPHKO9qufePaYw8t1qDVWIcj0r2fvznbxHTqcY
+         Pwqnocoggby6zGnZjZ0SPuLfuf6QF+fxfgQohD7FjfxNvmGxdgEDX0xBVIKiUovhdULw
+         fhVg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@intel.com header.s=Intel header.b=ljP6y29Z;
+       spf=pass (google.com: domain of ira.weiny@intel.com designates 198.175.65.11 as permitted sender) smtp.mailfrom=ira.weiny@intel.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
+Return-Path: <ira.weiny@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com. [198.175.65.11])
+        by mx.google.com with ESMTPS id kb5-20020a05622a448500b004236e4bcc81si60253qtb.543.2023.11.29.17.33.07
+        for <nifan.cxl@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 29 Nov 2023 17:33:07 -0800 (PST)
+Received-SPF: pass (google.com: domain of ira.weiny@intel.com designates 198.175.65.11 as permitted sender) client-ip=198.175.65.11;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@intel.com header.s=Intel header.b=ljP6y29Z;
+       spf=pass (google.com: domain of ira.weiny@intel.com designates 198.175.65.11 as permitted sender) smtp.mailfrom=ira.weiny@intel.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701307987; x=1732843987;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:references:in-reply-to:to:cc;
+  bh=biVFyY2ZTRVvjAGgkWkvryJWLterO+Gec8l2ksefpWo=;
+  b=ljP6y29ZjVVjuSSKA9MqbfXcK5nxCI+PUk26ZDpIBb/Gt/vKPE3hz0N2
+   Fx12GonHAhjyoKEgo/PaJM901quIRsGRXNsZAkD6+lM/6/5IMqMYyjQ0U
+   +0cwjQj7egt9Tj2ZmnKf9pdzZlql73lhudowySkxGLX4VWbB5YErp3BwA
+   9u2sVnvhimUaf+7ZDnbIZHazaIhoGlDzjPvRFbn71Z2X5GDUhc7WHT+/3
+   Y9pNYF2hoxvrC7YxTpPcYTJDPDxoXr8/uK4rpaJRJ4wsFiQptjCsIU6WD
+   v6huLyRUWW1XmhWDYDXjK+xw/c/0o93qrkKQThfRn4F99floihpran9sE
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="131557"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
+   d="scan'208";a="131557"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2023 17:33:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="1016467458"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
+   d="scan'208";a="1016467458"
+Received: from iweiny-mobl.amr.corp.intel.com (HELO localhost) ([10.213.173.40])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2023 17:33:05 -0800
+From: Ira Weiny <ira.weiny@intel.com>
+Date: Wed, 29 Nov 2023 17:33:04 -0800
+Subject: [PATCH v2 2/2] cxl/cdat: Fix header sum value in CDAT checksum
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231117-fix-cdat-cs-v2-2-715399976d4d@intel.com>
+References: <20231117-fix-cdat-cs-v2-0-715399976d4d@intel.com>
+In-Reply-To: <20231117-fix-cdat-cs-v2-0-715399976d4d@intel.com>
+To: Jonathan Cameron <jonathan.cameron@huawei.com>, 
+ Fan Ni <nifan.cxl@gmail.com>
+Cc: Dave Jiang <dave.jiang@intel.com>, linux-cxl@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ira Weiny <ira.weiny@intel.com>, 
+ Huai-Cheng Kuo <hchkuo@avery-design.com.tw>
+X-Mailer: b4 0.13-dev-c6835
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701307983; l=1857;
+ i=ira.weiny@intel.com; s=20221211; h=from:subject:message-id;
+ bh=biVFyY2ZTRVvjAGgkWkvryJWLterO+Gec8l2ksefpWo=;
+ b=/VUqKgmQlOysVLm7W9CszCTDQGTWnKoKE2hLzoFNsDwL6Ui9sFi8wmrQKCuaP/Zzmgw28CCvv
+ X5foAbf+1CgD9LRkoGboAgxq43glhLTWP9LZBr0bI6cd6qxPS+2TPcd
+X-Developer-Key: i=ira.weiny@intel.com; a=ed25519;
+ pk=noldbkG+Wp1qXRrrkfY1QJpDf7QsOEthbOT7vm0PqsE=
+
+The addition of the DCD support for CXL type-3 devices extended the CDAT
+table large enough that the checksum being returned was incorrect.[1]
+
+This was because the checksum value was using the header length field
+rather than each of the 4 bytes of the length field.  This was
+previously not seen because the length of the CDAT data was less than
+256 thus resulting in an equivalent checksum value.
+
+Properly calculate the checksum for the CDAT header.
+
+[1] https://lore.kernel.org/all/20231116-fix-cdat-devm-free-v1-1-b148b40707d7@intel.com/
+
+Fixes: aba578bdace5 ("hw/cxl/cdat: CXL CDAT Data Object Exchange implementation")
+Cc: Huai-Cheng Kuo <hchkuo@avery-design.com.tw>
+Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+
+---
+Changes from V1:
+[djiang: Remove do {} while (0);]
+---
+ hw/cxl/cxl-cdat.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/hw/cxl/cxl-cdat.c b/hw/cxl/cxl-cdat.c
+index 24829cf2428d..67e44a4f992a 100644
+--- a/hw/cxl/cxl-cdat.c
++++ b/hw/cxl/cxl-cdat.c
+@@ -49,6 +49,7 @@ static void ct3_build_cdat(CDATObject *cdat, Error **errp)
+     g_autofree CDATTableHeader *cdat_header = NULL;
+     g_autofree CDATEntry *cdat_st = NULL;
+     uint8_t sum = 0;
++    uint8_t *buf;
+     int ent, i;
+ 
+     /* Use default table if fopen == NULL */
+@@ -95,8 +96,12 @@ static void ct3_build_cdat(CDATObject *cdat, Error **errp)
+     /* For now, no runtime updates */
+     cdat_header->sequence = 0;
+     cdat_header->length += sizeof(CDATTableHeader);
+-    sum += cdat_header->revision + cdat_header->sequence +
+-        cdat_header->length;
++
++    buf = (uint8_t *)cdat_header;
++    for (i = 0; i < sizeof(*cdat_header); i++) {
++        sum += buf[i];
++    }
++
+     /* Sum of all bytes including checksum must be 0 */
+     cdat_header->checksum = ~sum + 1;
+ 
+
+-- 
+2.42.0
+

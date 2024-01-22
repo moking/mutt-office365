@@ -1,0 +1,126 @@
+Delivered-To: nifan.cxl@gmail.com
+Received: by 2002:a0c:e10e:0:b0:66b:410:b873 with SMTP id w14csp949459qvk;
+        Fri, 20 Oct 2023 05:33:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHtW7ucSG7eQz5ms7zKi1I6rs/W6Wn1Qs8T869hYrUBPsztrmtjR0yvNrukzOEiP9Yi5iBK
+X-Received: by 2002:a05:6830:2693:b0:6c4:9852:a498 with SMTP id l19-20020a056830269300b006c49852a498mr1875164otu.4.1697805224956;
+        Fri, 20 Oct 2023 05:33:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1697805224; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CrQJ2C6CJeLEYO1kaVB/ZFMsRLdOHy1YWFVJVCkmLGX11HgKis1Wu+/7uJsvWRQjXn
+         FE0sjafOL9o2Muj3zdm5U6iGn5jAfc6/EpNZyNyv3aC1wmOdQDRfJ7Y97EAgy9lo2b+a
+         ZSrV3vKV406l/PqcfM3xR8Z67uJxClatsqO+3Vyus8ZLM3JH06WN+FeL63BtqvW1bcY/
+         jaNxIBl3vZGMnRKLIy9/adEzI59FwulmzzXN47UESUf0kaUnArlbKJd7r+77wsXSWXI8
+         zNrXhVm+3hVhd/LtMWlVTk9lq8A1SGfbWXh9ZsrWJ80orTqjwnLQfPgrWNzPN+XFLu+i
+         iIgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:organization:references
+         :in-reply-to:message-id:subject:cc:to:from:date;
+        bh=rSwG68jNPUkIXPwoH8achVvwR0QXabnC7QxBm3IJX6k=;
+        fh=voDLyL/dFM2hFJZTk+GcOVDa4svluqCQC0ABbAkUvFs=;
+        b=i4Fb/QQel2G7njKZBJAdQ1VEE1VQrLNcXbZtsZYaeH96ily+CVS6NFR+Kri7w17SMq
+         p7J1W1cfwH2Wi2MqiYDU2DbguUE8LWkPvwICAT+056n0udCyT+ISCHWDOe60dVlbNyLr
+         1eYGMjLUjYNFDlgxCUycp1zv3/QmYdpwgfMy1EFAigSRJEkS4rV0NhJY4mp7u685cZxl
+         mrxp6uvWcA2pqdsqrN6BgxTyKuNVXsZ3mrBKNvjXqeNGTqylUKFgNIY35TTXPQu56C+d
+         Lg9KcCofBSMwyZXsMN78hCPsL4pgY+efeK35Wy7aZenDrU6iaUCVQ89ctP7dXacjo4D6
+         RyFQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of jonathan.cameron@huawei.com designates 119.8.89.135 as permitted sender) smtp.mailfrom=jonathan.cameron@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Return-Path: <jonathan.cameron@huawei.com>
+Received: from bramsgout01.huawei.com (bramsgout01.huawei.com. [119.8.89.135])
+        by mx.google.com with ESMTPS id cj24-20020a056830641800b006c4d6b9baccsi568549otb.202.2023.10.20.05.33.44
+        for <nifan.cxl@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Oct 2023 05:33:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of jonathan.cameron@huawei.com designates 119.8.89.135 as permitted sender) client-ip=119.8.89.135;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of jonathan.cameron@huawei.com designates 119.8.89.135 as permitted sender) smtp.mailfrom=jonathan.cameron@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Received: from saopeml500001.china.huawei.com (unknown [172.18.53.135])
+	by bramsgout01.huawei.com (SkyGuard) with ESMTP id 4SBkJp3w8Cz9xGPG
+	for <nifan.cxl@gmail.com>; Fri, 20 Oct 2023 20:23:38 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ saopeml500001.china.huawei.com (7.184.65.104) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.31; Fri, 20 Oct 2023 09:33:39 -0300
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Fri, 20 Oct
+ 2023 13:33:34 +0100
+Date: Fri, 20 Oct 2023 13:33:33 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Fan Ni <nifan.cxl@gmail.com>
+CC: <fan.ni@samsung.com>
+Subject: Re: Question about the bitmap usage in dcd emulation patch
+Message-ID: <20231020133333.00000ec6@Huawei.com>
+In-Reply-To: <ZTGe3TtFdC-q6L3P@debian>
+References: <ZTGe3TtFdC-q6L3P@debian>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+
+On Thu, 19 Oct 2023 14:25:49 -0700
+Fan Ni <nifan.cxl@gmail.com> wrote:
+
+> Hi Jonathan,
+> 
+> While reworking on the DCD emulation patches, I try to understand some
+> comments you added in the code in your tree.
+> https://gitlab.com/jic23/qemu/-/blob/cxl-2023-09-26/hw/mem/cxl_type3.c?ref_type=heads#L2095
+> /*
+>  * TODO: Should only update the bitmaps after host has accepted the
+>  * change (except for forced removal). It will be necessary to
+>  * track offered but not accepted changes. Perhaps a shadow bitmap
+>  * will be needed for this.
+>  */
+> 
+> Currently, the bitmap update (set/clear) is done when processing qmp
+> operation, also you mentioned we may need separate bitmaps to track offered
+>     and accepted changes. I have two questions about this.
+> 1. Why we need bitmap to track the offered changes? (FYI. In my latest change,
+> I added extent list to track pending add and pending release extents.)
+
+Couple of reasons.
+1) Don't allow a guest to accept extents it wasn't offered.
+2) Don't allow them to be reallocated to someone else or offered again until release issued.
+3) Reporting available extents (which is total - offered) (could use a count for this)
+
+
+
+> 2. If we only maintain a bitmap to track, we should track only accepted
+> extents, right? If so, we should update it in the add/release response command.
+The one we use to return the extents list etc needs to be the one updated on
+acceptance, and release response. But we need the other to ensure that
+the action those commands indicate is a valid one.
+> 
+> btw, I almost finished the rework and it is based on your cxl-2023-09-26
+> branch and is here:
+> https://github.com/moking/qemu-jic-clone/tree/dcd-dev
+
+Great -  Assuming I find time I want to add the FM-API side of things to
+allow us to prove that bit out as well before plumbers.  Life / work gotten
+a bit crazy recently so it might be on the Sunday in a hotel room ;)
+
+Also we should talk about the Plumbers session.  I'm thinking we want to
+focus only on in flight stuff + future directions.  A big part of that will
+be DCD which I'm hoping you don't mind covering.  The future directions
+side of things needs some brainstorming so we have some bullet points to kick
+the discussion off around!   There is a session later on (mainly Ira + navneet
+though I'm  down to introduce it) on the software stack on top.   We might
+well lean on the fact we already introduced it in the QEMU session to save
+time in that one!  (they have a long list of questions!)
+
+Jonathan
+
+> 
+> Thanks,
+> Fan
+> 
+> 
+

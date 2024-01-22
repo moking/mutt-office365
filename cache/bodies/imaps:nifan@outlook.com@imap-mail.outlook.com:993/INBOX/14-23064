@@ -1,0 +1,1414 @@
+Received: from SEYPR06MB6538.apcprd06.prod.outlook.com (2603:1096:101:177::8)
+ by SG2PR06MB3397.apcprd06.prod.outlook.com with HTTPS; Thu, 12 Oct 2023
+ 05:52:19 +0000
+Received: from CH0P220CA0015.NAMP220.PROD.OUTLOOK.COM (2603:10b6:610:ef::35)
+ by SEYPR06MB6538.apcprd06.prod.outlook.com (2603:1096:101:177::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.45; Thu, 12 Oct
+ 2023 05:52:15 +0000
+Received: from DS1PEPF0001709C.namprd05.prod.outlook.com
+ (2603:10b6:610:ef:cafe::98) by CH0P220CA0015.outlook.office365.com
+ (2603:10b6:610:ef::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.27 via Frontend
+ Transport; Thu, 12 Oct 2023 05:52:15 +0000
+Authentication-Results: spf=pass (sender IP is 167.89.10.128)
+ smtp.mailfrom=em9538.customer.temuemail.com; dkim=pass (signature was
+ verified) header.d=customer.temuemail.com;dmarc=pass action=none
+ header.from=customer.temuemail.com;compauth=pass reason=100
+Received-SPF: Pass (protection.outlook.com: domain of
+ em9538.customer.temuemail.com designates 167.89.10.128 as permitted sender)
+ receiver=protection.outlook.com; client-ip=167.89.10.128;
+ helo=xtrwhxvh.outbound-mail.sendgrid.net; pr=C
+Received: from xtrwhxvh.outbound-mail.sendgrid.net (167.89.10.128) by
+ DS1PEPF0001709C.mail.protection.outlook.com (10.167.18.106) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6838.22 via Frontend Transport; Thu, 12 Oct 2023 05:52:15 +0000
+X-IncomingTopHeaderMarker:
+ OriginalChecksum:A9B82F4F73AB4845CA7B947AB7C8AAC4AB5A2C1CED7E23559BC283F5756AF7A2;UpperCasedChecksum:FE1AFCCB5227311AC66DE997FC97AFADAC0DC8A8EBB7E4C1807DAA2B87C773D0;SizeAsReceived:2524;Count:13
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=customer.temuemail.com;
+	h=content-type:from:mime-version:subject:to:cc:content-type:from:
+	subject:to;
+	s=s1; bh=ROe4iBBwA+BntMdrCgTQm/1xjdJeOO2pV4q/CjX2oQc=;
+	b=TXD7TRYS54dKXuFkczylkXFlbQ5IJLr03Z+20033uTD1HiergrVgsLy3w2OJhwtOCuqz
+	AZRSIgk+vmQ2hSu6AeyBWI6rGRvql/z9yxSneSSujhFAhT2XYhE73gEymCYRPdFbRrZKgG
+	egfNyH3O/svyXEWn1JyGsDYZJ+UESUtmy18Sd+kt4PeySFNd/iRA1V9Z+G9rqFWwyege1D
+	0cYzhnpQIkZaCMD5A3OJLxsMtAOeuyI+Jv9feXig5X6FsGLlE0+jrD3S2GFAaQDEQAAjs3
+	rUgKPH7nxaDaf2eIv0hoJONI/Fh0OxF4GPWZzbMoiehdUYt8dYoELgpNt/efPsKQ==
+Received: by filterdrecv-7d656855bf-4mz2k with SMTP id filterdrecv-7d656855bf-4mz2k-1-6527898E-1E
+        2023-10-12 05:52:14.315051071 +0000 UTC m=+120545.431752093
+Received: from Mjg0MTA1NzI (unknown)
+	by geopod-ismtpd-39 (SG) with HTTP
+	id pgdW5i-vSGuY7JcUleK62w
+	Thu, 12 Oct 2023 05:52:14.190 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=30e8b3ef0af35f5b13c37da76e121161c34697d0d663c180f474629274b0
+Date: Thu, 12 Oct 2023 05:52:14 +0000 (UTC)
+From: Temu <temu@customer.temuemail.com>
+Message-ID: <pgdW5i-vSGuY7JcUleK62w@geopod-ismtpd-39>
+Subject: Your Temu order (#PO-211-18150111089273449) is waiting for your
+ review!
+X-SG-EID:
+ =?us-ascii?Q?TZKmjSHRAnnUE0vteezZ2qqf4sa0qWg6ySANY+4VsWv9SurCSI0u36Utbqq3PQ?=
+ =?us-ascii?Q?e6moP2rhMf=2F=2FDNaZR7CqLt7j+b0ehxIOZxEEURH?=
+ =?us-ascii?Q?=2FhPS8rgUDu+YLRX6DKrhSavSJadW2FRqP86Y+Lx?=
+ =?us-ascii?Q?whu0j+obZawwo8gdwE1uIsyz40=2F7NAINDNvcNWZ?=
+ =?us-ascii?Q?QFREHYJvHE3SXkwDKH9yLXY=2FKMSzm96U9efVT70?=
+ =?us-ascii?Q?Pias=2FwSBErWd1LJIVZnv8Q3Jw2VQiGqiVQxHe5?=
+X-SG-ID:
+ =?us-ascii?Q?N2C25iY2uzGMFz6rgvQsb8raWjw0ZPf1VmjsCkspi=2FJzCHGGTL4TbO2oeKZJym?=
+ =?us-ascii?Q?5lx4UeIZPdyDkQc3TlZF3Rsvx3xRjA=2FnrVq1yoM?=
+ =?us-ascii?Q?AOm5bnusU2i6z4QijvSKguX81Vqrh3hguwwyXdK?=
+ =?us-ascii?Q?5LDLN5a7sF+h5TulAdFrV42QeP90uw=2FmFw0nFPl?=
+ =?us-ascii?Q?=2FGFErZ04ENTjS2KkPZTUjT8cHiMfoBbUkz6xu=2FE?=
+ =?us-ascii?Q?Pl3OOt0XsSbmmVS=2FwD2gYcCD9K=2FY0DerHTu08mB?=
+ =?us-ascii?Q?zLNALSaLtQcA4L9dxjf5PpRjBS5nqchTNO2A7Qr?=
+ =?us-ascii?Q?LcJ2BDd2r3x5ZGQuqKHNB3CM9uh6i3kBZB1dQLN?=
+ =?us-ascii?Q?TAxWsyFWLRHsghSrZciEI3KBvAYLhQ=2FBMaPhMjt?=
+ =?us-ascii?Q?ElIu3fXaJikZBnNYCgI50OrsMhYJd6vgzFRWL36?=
+ =?us-ascii?Q?2gNjcgIz1yPPw+DLHGuLVoRfCAhYwLVerxV+BOJ?=
+ =?us-ascii?Q?qYR1g=2FJQUaLPo3B+Qn=2Fb0RZU8QtFAvp2LoOfZBU?=
+ =?us-ascii?Q?3vhpmV0KC0lQLWn5sdzo8VXGHCBJjjoQXcP4Opc?=
+ =?us-ascii?Q?Bdcg=3D=3D?=
+To: nifan@outlook.com
+X-Entity-ID: 8O9fgD4vyzSoRyyicz1Q+A==
+X-IncomingHeaderCount: 13
+Return-Path:
+ bounces+28410572-e7f2-nifan=outlook.com@em9538.customer.temuemail.com
+X-MS-Exchange-Organization-ExpirationStartTime: 12 Oct 2023 05:52:15.2241
+ (UTC)
+X-MS-Exchange-Organization-ExpirationStartTimeReason: OriginalSubmit
+X-MS-Exchange-Organization-ExpirationInterval: 1:00:00:00.0000000
+X-MS-Exchange-Organization-ExpirationIntervalReason: OriginalSubmit
+X-MS-Exchange-Organization-Network-Message-Id:
+ 33185222-0c73-4bfd-4489-08dbcae7631e
+X-EOPAttributedMessage: 0
+X-EOPTenantAttributedMessage: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa:0
+X-MS-Exchange-Organization-MessageDirectionality: Incoming
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic:
+ DS1PEPF0001709C:EE_|SEYPR06MB6538:EE_|SG2PR06MB3397:EE_
+X-MS-Exchange-Organization-AuthSource:
+ DS1PEPF0001709C.namprd05.prod.outlook.com
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-UserLastLogonTime: 10/12/2023 5:50:07 AM
+X-MS-Office365-Filtering-Correlation-Id: 33185222-0c73-4bfd-4489-08dbcae7631e
+X-MS-Exchange-EOPDirect: true
+X-Sender-IP: 167.89.10.128
+X-SID-PRA: TEMU@CUSTOMER.TEMUEMAIL.COM
+X-SID-Result: PASS
+X-MS-Exchange-Organization-PCL: 2
+X-MS-Exchange-Organization-SCL: 1
+X-Microsoft-Antispam: BCL:3;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 05:52:15.0210
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33185222-0c73-4bfd-4489-08dbcae7631e
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-AuthSource:
+ DS1PEPF0001709C.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+ 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB6538
+X-MS-Exchange-Transport-EndToEndLatency: 00:00:04.7076013
+X-MS-Exchange-Processed-By-BccFoldering: 15.20.6863.043
+X-Microsoft-Antispam-Mailbox-Delivery:
+	ucf:0;jmr:0;ex:0;auth:1;dest:I;ENG:(5062000305)(920221119095)(90000117)(920221120095)(90010023)(91010020)(91040095)(9050020)(9100341)(944500132)(4810010)(4910033)(9575002)(10195002)(9320005)(120001);
+X-Message-Info:
+	qZelhIiYnPkx84CNH6AeQsXrl1garOPt6qK1ezZflFqjNJtFAv/FqJw8YXggxkbBxBdB+HNc4MdqH8BYJjz2sUWDZtVEMMcrX/1IKaKGBYoO0jiaWdAcIQJfJWkr9LOW4adBxxPZy6xyF0In1rYG/uGXqeJC5Jxmuq3D5SaWyLihBVrMTXFMUCXnQv5karvVCwssI/jFmXSXSUqqaUjn7g==
+X-Message-Delivery: Vj0xLjE7dXM9MDtsPTA7YT0xO0Q9MTtHRD0xO1NDTD0z
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Wkx0UFIzMUMrVkloeXV4QVd2UXI3RU9kYy9PWXRJdXhGZzd2TWNKT0pzeksv?=
+ =?utf-8?B?OTNwRWVqOXprT1Y1dURpVllOMGxtclA5Z0xlbkk0S1cyclhZYXZKOXVJOXl6?=
+ =?utf-8?B?eGdId2dMZENlRVFJNXZuUzVnS2Mzd3Z6NDB0bUtSNWxpWjRMS1FyTEVkZmI3?=
+ =?utf-8?B?S2xkOWgzTTh1TWpCakY4bHNTZnpwVW9rakMreWlQL25QMkpGTWRXMjhCTnhs?=
+ =?utf-8?B?K3FEa09hNjJzK08yZHlqTEJlYmhZMUU2Qnlvd0hWMTBCZXJZUFVGaVZ2NE1o?=
+ =?utf-8?B?eFBSaTBXMXlrQWN6RmY4TkNUeFo2SHFCaDB5TnlZL29DOGgzM0pvRjVLWXJE?=
+ =?utf-8?B?TTdtR0dlZFlhRGNRZ09ZNFltMytHV1BqVFV5OHUzU0YzeHlRZjZiazgzd3pN?=
+ =?utf-8?B?WGJtMnl5ZjNZRUM1cW1PMUMyYVZ5OTJxV0pEYVdvQ2I5U0lHMG0zRkdQSnVP?=
+ =?utf-8?B?YS9zOWVvM1Jqd3JkbmFsMmw1Vm1UdlNJT3VjQ1MxS2ZqU012ZlFwZGxoSmJ4?=
+ =?utf-8?B?SkxERkhUcjN3aTNibXVwdWgyUk1aQ1JUZkN1YkVESklyUmJOTGNidHN4MnJn?=
+ =?utf-8?B?ci85TmhxMFVsNEh3NEwwWTlzRmhONHJ6WW1OR01iQU5WaE1zT0paL1pHM0p5?=
+ =?utf-8?B?NnBnd2dYdlk0U2IvbjlxRjBFZU43R01LRWhQNkhVNTJvZTRRMjRyZVhEUkI3?=
+ =?utf-8?B?dFhCejB3MGxvclFvaHQvNjk0TUYyeFBzR1VFdkErRnpXZjludk5VSEo4Z3ZG?=
+ =?utf-8?B?V214SWx0S3R4UmloNGtGdjJIdlZHZVdGKzlySlUyY1MzM0FhWlB5bjQvT3Na?=
+ =?utf-8?B?TEZwOUd0TWtwczM0eWJ2TFJSaC9Fd3lCVzVrenJyWGtremRIeDVnQ2VLN0xU?=
+ =?utf-8?B?NjhsUXBwNHRxRDJHSHVZL29sNkNPeG5IVjEwRVp3K29OQWpIWVFPKzd0Z3pQ?=
+ =?utf-8?B?RFJmVXpiOUZzeUpxMElOd3ZCVGhJeGxzUkVYUnNyN2xwTGFXcVZvTkptV0pE?=
+ =?utf-8?B?a094eEdiblNXSWlSbWROeFNRajJMMG4vSGVjOG5xK2swMENIMzFMM0xIQzBI?=
+ =?utf-8?B?aDJLbFErYzc5N0RLM1RXeXdyUExDMGpQZkYyZCtYZXRDYzRWbEgyKzJlcmdv?=
+ =?utf-8?B?ZU1QUTFQREhWMFpxMWxTNWJNMHc3Vm96MWNHRWhaUnJjd3B3R1ZzcVp2cWEv?=
+ =?utf-8?B?WTZXdy85VC83M0pteTRXOGVlanRoU2R2NzVxTWNwTGJDRHVJRlBLMHM5OThV?=
+ =?utf-8?B?cDVsWEJDYXJObGZ3bWdqdHlIeVlLNXUwRFdPRUg4WnB5RGM0LzVFbE9UR1N4?=
+ =?utf-8?B?T1FFUmpMZW9zTE81Nlk2UTBFeUxVUHJ4bi84Ti90SVVjMzNlOEQ0STV4L0NF?=
+ =?utf-8?B?WFA4eEIwRXorc3Vrc29iRWZFWHdSaWgxSk1ZeSs0U1dBdGhUd29LallTbkVP?=
+ =?utf-8?B?Z3kxU2JiTTd5Z1BpMUc0ZWtTYVdQWkRDeFpheGplUFRtUS90UUU1VDBlc2JM?=
+ =?utf-8?B?U3RQNUQzbWN6ZHkrUExGNHZuZnNLS212c1VDbithYTJzV3I4ZVdLNzFXV04w?=
+ =?utf-8?B?Zm9oa2VtRWRETG1ycS9zcVNkWmlBMHk2b1EwMDU1bzdiK0JSVmJUUTdzRDNi?=
+ =?utf-8?B?MFZIV1hxTEUvK3QwcUYvUllIeGFpNGs1MkxhelRGZU83NUlxbGlrUnlsOHNG?=
+ =?utf-8?B?ckg1V0tQUy94WkRRUi9JcnFmN3FhR3U5anNRdjg1MHpRS0RIcW1Eb2ZGMURE?=
+ =?utf-8?B?MUIwMEJaT25lYlovM3drYmxPSG4zclhwNFJ6dXh4bDVBYURGNUJtUi95YjFx?=
+ =?utf-8?B?R01qK2srSDlXdUYyVzhEazhHVXFkaThFNUVjQVNLVkEyT28yWXhMOTJGQVVX?=
+ =?utf-8?B?VG9iVGRGK3RxMWlnbXlCOTh2S2Q2UkVIWkM2dVc2Y0Z3V0lneTk5RnpXVU5D?=
+ =?utf-8?B?eHkreDdiWktzMXdlNkVUVGNSVEZ4N2FCM3dUSmx2TytGT1RnMWxyS0t6TmJl?=
+ =?utf-8?B?dFBwaEZlZ2hiYWtveXdxTnN4QnZTOUYwYW1HWFN5YmdaR1lSb0hFcnJJWSsy?=
+ =?utf-8?B?T3FNS05rblV5ODdFOCtVTkJXOWlqOExmVDcwN0xnd0UzM3pSTzRpYzVqdnN6?=
+ =?utf-8?B?ckFkbTY0dGFJVHR5cDk5QUFvVnl2TlNOV1pBTGE4ZWRreXZVSEtHOFpMYXRP?=
+ =?utf-8?B?SklaS2dpajViY1JtZzQwM1MvVmE5cHZockZmU29oNjhiM3VNMjZZSFdUZmg5?=
+ =?utf-8?B?Y1FMaldnaXhSK0VQOENhekg4WEY5U1hQa1pRSGpybzREdXc3dkorSGo3Z0Q1?=
+ =?utf-8?Q?c/7RiN10PGGlMzR9ol?=
+MIME-Version: 1.0
+
+--30e8b3ef0af35f5b13c37da76e121161c34697d0d663c180f474629274b0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+
+-----------------------------------------------------------------------
+Temu
+-----------------------------------------------------------------------
+
+To properly view the full message content, please open this email in a high=
+ version mail client or browser.
+
+Visit this website to see our recommended products: https://app.temu.com/mb=
+s_landing_goods.html?_bg_fs=3D1&_x_cid=3Dtextmail&_p_landing=3D1&_x_src=3Dm=
+ail&msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv
+
+-----------------------------------------------------------------------
+
+Unsubscribe
+https://www.temu.com/bgms_unsubscribe_email.html?_p_landing=3D1&_x_src=3Dma=
+il1&_x_cid=3Dtextmail&_x_sid=3Dunsubscribe&msgid=3D211-20231012-13-B-654561=
+127825874944-506-klTkkDpv
+
+Terms & Conditions
+https://www.temu.com/terms-of-use.html?_p_landing=3D1&_x_src=3Dmail&_x_cid=
+=3Dtextmail&msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv
+
+Privacy & Cookie Policy
+https://www.temu.com/bgp_private_policy.html?_p_landing=3D1&_x_src=3Dmail&_=
+x_cid=3Dtextmail&msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv
+
+-----------------------------------------------------------------------Dear=
+ 510***2939, please take a moment to review your items. =C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=
+=C2=A0=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=80=8C=C2=A0=E2=
+=80=8C=C2=A0=E2=80=8C=C2=A0 =E2=80=8A Dear 510***2939, thanks greatly for y=
+our purchase. We would be extremely grateful if you could leave us an hones=
+t review detailing our product quality and your overall experience. Your re=
+view of our product also helps other temu shoppers feel confident in their =
+purchase. =E2=80=8A 77.6% are =E2=89=A4 10 days.Get a $5 credit within 48 h=
+ours if delivered after Oct 13 4728 Granado Ave, FREMONT, CA 94536-5509 Ord=
+er ID: PO-211-18150111089273449 =E2=80=8A =E2=80=8A =E2=80=8A =E2=80=8A Fin=
+d us on NOTE: This is an automatically generated email, please do not reply=
+. Office address: Suite 355, 31 St. James Avenue Boston, Massachusetts -021=
+16, USA Return address: Click to view our return addresses. If you want to =
+return items, please request a return and use Temu=E2=80=99s label. Click t=
+o view more details. Please contact customer service if you have any questi=
+ons. Privacy & Cookie Policy =C2=A0|=C2=A0 Terms & Conditions =C2=A0|=C2=A0=
+ Unsubscribe
+--30e8b3ef0af35f5b13c37da76e121161c34697d0d663c180f474629274b0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+
+<!doctype html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:=
+schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:offi=
+ce"><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"><t=
+itle></title><!--[if !mso]><!--><meta http-equiv=3D"X-UA-Compatible" conten=
+t=3D"IE=3Dedge"><!--<![endif]--><meta name=3D"viewport" content=3D"width=3D=
+device-width,initial-scale=3D1"><style type=3D"text/css">#outlook a{padding=
+:0}body{margin:0;padding:0;-webkit-text-size-adjust:100%;-ms-text-size-adju=
+st:100%}table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspa=
+ce:0}img{border:0;height:auto;line-height:100%;outline:0;text-decoration:no=
+ne;-ms-interpolation-mode:bicubic}p{display:block;margin:13px 0}</style><!-=
+-[if mso]>
+    <noscript>
+    <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    </noscript>
+    <![endif]--><!--[if lte mso 11]>
+    <style type=3D"text/css">
+      .mj-outlook-group-fix { width:100% !important; }
+    </style>
+    <![endif]--><!--[if !mso]><!--><link href=3D"https://fonts.googleapis.c=
+om/css?family=3DDroid+Sans:300,400,500,700" rel=3D"stylesheet" type=3D"text=
+/css"><link href=3D"https://fonts.googleapis.com/css?family=3DRoboto:300,40=
+0,500,700" rel=3D"stylesheet" type=3D"text/css"><link href=3D"https://fonts=
+.googleapis.com/css?family=3DUbuntu:300,400,500,700" rel=3D"stylesheet" typ=
+e=3D"text/css"><style type=3D"text/css">@import url(https://fonts.googleapi=
+s.com/css?family=3DDroid+Sans:300,400,500,700);@import url(https://fonts.go=
+ogleapis.com/css?family=3DRoboto:300,400,500,700);@import url(https://fonts=
+.googleapis.com/css?family=3DUbuntu:300,400,500,700);</style><!--<![endif]-=
+-><style type=3D"text/css">@media only screen and (min-width:480px){.mj-col=
+umn-per-100{width:100%!important;max-width:100%}.mj-column-per-49{width:49%=
+!important;max-width:49%}.mj-column-per-50{width:50%!important;max-width:50=
+%}.mj-column-per-24{width:24%!important;max-width:24%}}</style><style media=
+=3D"screen and (min-width:480px)">.moz-text-html .mj-column-per-100{width:1=
+00%!important;max-width:100%}.moz-text-html .mj-column-per-49{width:49%!imp=
+ortant;max-width:49%}.moz-text-html .mj-column-per-50{width:50%!important;m=
+ax-width:50%}.moz-text-html .mj-column-per-24{width:24%!important;max-width=
+:24%}</style><style type=3D"text/css">@media only screen and (max-width:480=
+px){table.mj-full-width-mobile{width:100%!important}td.mj-full-width-mobile=
+{width:auto!important}}</style><style type=3D"text/css"></style></head><bod=
+y style=3D"word-spacing:normal;background-color:#fff"><div class=3D"body-cl=
+ass" style=3D"margin:0 auto;background-color:#fff;width:100%"><!--[if mso |=
+ IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" class=3D"wrapper-class-outlook" role=3D"presentation" style=3D"width:600=
+px;" width=3D"600" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line=
+-height-rule:exactly;"><![endif]--><div class=3D"wrapper-class" style=3D"wi=
+dth:600px;margin:0 auto;max-width:100%"><table align=3D"center" border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:=
+100%"><tbody><tr><td style=3D"direction:ltr;font-size:0;padding:0 12.6px 0 =
+12.6px;text-align:center"><!--[if mso | IE]><table role=3D"presentation" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0"><![endif]--> <!--@@mail_sub_=
+title begin@@--><div style=3D"opacity: 0;text-align: right;display: none;vi=
+sibility: none; color: #000; font-size: 12px;">Dear 510***2939, please take=
+ a moment to review your items.</div><!--@@mail_sub_title end@@--> <!--[if =
+mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0"><![endif]--><!-- =E5=A4=B4=E9=83=A8 =E5=90=88=E5=9B=BE=E7=89=
+=88 --><!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" rol=
+e=3D"presentation" style=3D"width:600px;" width=3D"600" ><tr><td style=3D"l=
+ine-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><di=
+v style=3D"margin:0 auto;max-width:600px"><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"widt=
+h:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-size:0;paddi=
+ng:0;text-align:center"><!--[if mso | IE]><table role=3D"presentation" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><![endif]--><div style=3D"=
+opacity:0;text-align:right;display:none;visibility:none;width:0;height:0;fo=
+nt-size:0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; &nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nb=
+sp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=
+=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;=E2=80=8C&nbsp;</div><!--[if mso | I=
+E]><td class=3D"" style=3D"vertical-align:top;width:600px;" ><![endif]--><d=
+iv class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-size:0;te=
+xt-align:left;direction:ltr;display:inline-block;vertical-align:top;width:1=
+00%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" width=3D"100%"><tbody><tr><td style=3D"border:none;vertical-align:t=
+op;padding:0"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"" width=3D"100%"><tbody><!-- @@header_img begin@=
+@ --><tr><td align=3D"center" style=3D"font-size:0;padding:0;word-break:bre=
+ak-word"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pr=
+esentation" style=3D"border-collapse:collapse;border-spacing:0"><tbody><tr>=
+<td style=3D"width:600px"><a href=3D"https://www.temu.com?msgid=3D211-20231=
+012-13-B-654561127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dma=
+il" target=3D"_blank"><img height=3D"auto" src=3D"https://mktimg-us.kwcdn.c=
+om/auto-image/f511c6e40f1e4712abcd94eebc387994.png?imageMogr2/cut/686x130x0=
+x0" style=3D"border:0;display:block;outline:0;text-decoration:none;height:a=
+uto;width:100%;font-size:13px" width=3D"600"></a></td></tr></tbody></table>=
+</td></tr><!-- @@header_img end@@ --> <!--@@tracking_point begin@@--><tr><t=
+d align=3D"left" class=3D"hiddenImg" style=3D"font-size:0px;padding:0;word-=
+break:break-word;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+role=3D"presentation" style=3D"border-collapse:collapse;border-spacing:0px;=
+"><tbody><tr><td style=3D"width:1px;"><img height=3D"1" src=3D"https://api-=
+us.temu.com/callback/doha/open/track?tracking_point=3D1&amp;msgid=3D211-202=
+31012-13-B-654561127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3D=
+mail&amp;sign=3D874EA7D65927A2F200E5E1BD8A4BDDCB71AAB6E208923269A9B437C6F04=
+06F578414A9E058B4879FD0DC17BE9809F7451026C706619C30CF3C03AF463A3EA19ABF5E6D=
+A0C93E1784C9469128E05A2D5C5F44C9B872F81C8F98704D6ABBDED52669E1F789941E07F34=
+83A59F2997CFD2B294BFB4F58D9BE3CB730E84BB913BD5FF0DC517474F9AC1148D1CEAD4A00=
+E86203BE161A27CB78C4F440E8A860D56644" style=3D"visibility: hidden; opacity:=
+ 0; border: 0; display: block; outline: none; text-decoration: none; height=
+: 1px; width: 100%; font-size: 13px;" width=3D"1"></td></tr></tbody></table=
+></td></tr><!--@@tracking_point end@@--></tbody></table></td></tr></tbody><=
+/table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tb=
+ody></table></div><!--[if mso | IE]></td></tr></table></td></tr><tr><td cla=
+ss=3D"" width=3D"600px" ><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:60=
+0px;" width=3D"600" ><tr><td style=3D"line-height:0px;font-size:0px;mso-lin=
+e-height-rule:exactly;"><![endif]--><div style=3D"margin:0 auto;max-width:6=
+00px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td style=3D"bord=
+er:none;direction:ltr;font-size:0;padding:0;text-align:left"><!--[if mso | =
+IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;width:600px;" ><![end=
+if]--><div class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-s=
+ize:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top=
+;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"border:none;vertic=
+al-align:top;padding:0"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"" width=3D"100%"><tbody><tr><td align=
+=3D"center" style=3D"font-size:0;padding:0;word-break:break-word"><p style=
+=3D"border-top:solid 1px #ececec;font-size:1px;margin:0 auto;width:100%"></=
+p><!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" style=3D"border-top:solid 1px #ECECEC;font-size:1px;margi=
+n:0px auto;width:600px;" role=3D"presentation" width=3D"600px" ><tr><td sty=
+le=3D"height:0;line-height:0;"> &nbsp;</td></tr></table><![endif]--></td></=
+tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></td><=
+/tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]><=
+/td></tr></table></td></tr><![endif]--><!-- =E5=A4=B4=E9=83=A8 =E5=90=88=E5=
+=9B=BE=E7=89=88 --><!--[if mso | IE]></table><![endif]--><!--[if mso | IE]>=
+<tr><td class=3D"" width=3D"600px" ><![endif]--><div style=3D"height:19.2px=
+;line-height:19.2px">=E2=80=8A</div><!--[if mso | IE]></td></tr><![endif]--=
+> <!--[if mso | IE]><tr><td class=3D"" width=3D"576px" ><table align=3D"cen=
+ter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"pr=
+esentation" style=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-hei=
+ght:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=
+=3D"margin:0 auto;max-width:576px"><table align=3D"center" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%"=
+><tbody><tr><td style=3D"border:none;direction:ltr;font-size:0;padding:12.8=
+px 0 0;text-align:center"><!--[if mso | IE]><table role=3D"presentation" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"=
+vertical-align:top;width:576px;" ><![endif]--><div class=3D"mj-column-per-1=
+00 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;direction:ltr=
+;display:inline-block;vertical-align:top;width:100%"><table border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbo=
+dy><tr><td style=3D"border:none;vertical-align:top;padding:0"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D""=
+ width=3D"100%"><tbody><tr><td align=3D"left" style=3D"font-size:0;padding:=
+0;word-break:break-word"><div style=3D"font-family:Roboto,-apple-system,Bli=
+nkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid San=
+s,Helvetica Neue,sans-serif;font-size:22.4px;font-weight:medium;line-height=
+:35.84px;text-align:left;color:#000"><!-- @@text_with_color begin@@ --> <sp=
+an style=3D"color:#000000;">Dear 510***2939, thanks greatly for your purcha=
+se. We would be extremely grateful if you could leave us an honest review d=
+etailing our product quality and your overall experience. Your review of ou=
+r product also helps other temu shoppers feel confident in their purchase.<=
+/span><!-- @@text_with_color end@@ --></div></td></tr></tbody></table></td>=
+</tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]-->=
+</td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table></td></=
+tr><![endif]--><!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><![end=
+if]--><div style=3D"height:25.6px;line-height:25.6px">=E2=80=8A</div><!--[i=
+f mso | IE]></td></tr><tr><td class=3D"" width=3D"600px" ><table align=3D"c=
+enter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"=
+presentation" style=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-h=
+eight:0px;font-size:0px;mso-line-height-rule:exactly;"><v:rect style=3D"wid=
+th:576px;" xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=
+=3D"false"><v:fill origin=3D"0.5, 0" position=3D"0.5, 0" src=3D"https://aim=
+g.kwcdn.com/upload_aimg/temu/email/4086259e-e268-4193-8e91-694a778383c2.png=
+.slim.png" type=3D"tile" size=3D"1,1" aspect=3D"atleast" /><v:textbox style=
+=3D"mso-fit-shape-to-text:true" inset=3D"0,0,0,0"><![endif]--><div style=3D=
+"background:url(https://aimg.kwcdn.com/upload_aimg/temu/email/4086259e-e268=
+-4193-8e91-694a778383c2.png.slim.png) center top/cover repeat;background-po=
+sition:center top;background-repeat:repeat;background-size:cover;margin:0 a=
+uto;border-radius:3.2px;max-width:576px"><div style=3D"line-height:0;font-s=
+ize:0"><table align=3D"center" background=3D"https://aimg.kwcdn.com/upload_=
+aimg/temu/email/4086259e-e268-4193-8e91-694a778383c2.png.slim.png" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"b=
+ackground:url(https://aimg.kwcdn.com/upload_aimg/temu/email/4086259e-e268-4=
+193-8e91-694a778383c2.png.slim.png) center top/cover repeat;background-posi=
+tion:center top;background-repeat:repeat;background-size:cover;width:100%;b=
+order-radius:3.2px"><tbody><tr><td style=3D"direction:ltr;font-size:0;paddi=
+ng:0;text-align:center"><!--[if mso | IE]><table role=3D"presentation" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0"><![endif]--> <!-- @@get_help b=
+egin@@ --><!--[if mso | IE]><tr><td class=3D"" width=3D"576px" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:576px;" width=3D"576" ><tr><td style=3D"=
+line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><d=
+iv style=3D"margin:0 auto;max-width:576px"><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"w=
+idth:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-size:0;pa=
+dding:0;text-align:center"><!--[if mso | IE]><table role=3D"presentation" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D=
+"vertical-align:top;width:576px;" ><![endif]--><div class=3D"mj-column-per-=
+100 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;direction:lt=
+r;display:inline-block;vertical-align:top;width:100%"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tb=
+ody><tr><td style=3D"border:none;vertical-align:top;padding:0"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"=
+" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0;paddi=
+ng:0;word-break:break-word"><table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"0" role=3D"presentation" style=3D"border-collapse:collapse;border-spa=
+cing:0"><tbody><tr><td style=3D"width:576px"><a href=3D"https://app.temu.co=
+m/bgas_help_with_order.html?parent_order_sn=3DPO-211-18150111089273449&amp;=
+from_source=3Dun_first_order_invite_review_mail&amp;s_uin=3DBDJ3AL63HONIPTB=
+QGE26VNFKKRVRWDNTX6QRLIG5RESE6&amp;msgid=3D211-20231012-13-B-65456112782587=
+4944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail" target=3D"_blank"><=
+img height=3D"auto" src=3D"https://commimg-us.kwcdn.com/upload_commimg/temu=
+_customer_service/un_first_order_MAIL_en/a546393a-34b3-429d-ae54-707d419581=
+13.png" style=3D"border:0;display:block;outline:0;text-decoration:none;heig=
+ht:auto;width:100%;font-size:13px" width=3D"576"></a></td></tr></tbody></ta=
+ble></td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso |=
+ IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if =
+mso | IE]></td></tr></table></td></tr><tr><td class=3D"" width=3D"576px" ><=
+table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" cla=
+ss=3D"" role=3D"presentation" style=3D"width:576px;" width=3D"576" ><tr><td=
+ style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![e=
+ndif]--><div style=3D"margin:0 auto;max-width:576px"><table align=3D"center=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" st=
+yle=3D"width:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-s=
+ize:0;padding:0 18.4px;text-align:center"><!--[if mso | IE]><table role=3D"=
+presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td clas=
+s=3D"" style=3D"vertical-align:top;width:540px;" ><![endif]--><div class=3D=
+"mj-column-per-100 mj-outlook-group-fix" style=3D"font-size:0;text-align:le=
+ft;direction:ltr;display:inline-block;vertical-align:top;width:100%"><table=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" wid=
+th=3D"100%"><tbody><tr><td style=3D"border:none;vertical-align:top;padding:=
+0"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presenta=
+tion" style=3D"" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"fo=
+nt-size:0;padding:0;word-break:break-word"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"border-collapse:col=
+lapse;border-spacing:0"><tbody><tr><td style=3D"width:540px"><img height=3D=
+"auto" src=3D"https://aimg.kwcdn.com/upload_aimg/temu/email/782f4001-539e-4=
+64c-840e-3b96aff4ad28.png.slim.png" style=3D"border:0;display:block;outline=
+:0;text-decoration:none;height:auto;width:100%;font-size:13px" width=3D"540=
+"></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></t=
+able></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbod=
+y></table></div><!--[if mso | IE]></td></tr></table></td></tr><![endif]--><=
+!-- @@get_help end@@ --><!--[if mso | IE]><tr><td class=3D"" width=3D"576px=
+" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ class=3D"" role=3D"presentation" style=3D"width:576px;" width=3D"576" ><tr=
+><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;">=
+<![endif]--><div style=3D"margin:0 auto;max-width:576px"><table align=3D"ce=
+nter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation=
+" style=3D"width:100%"><tbody><tr><td style=3D"direction:ltr;font-size:0;pa=
+dding:25.6px 0 26.4px;text-align:center"><!--[if mso | IE]><table role=3D"p=
+resentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><![endif]--> =
+<!--[if mso | IE]><tr><td class=3D"" width=3D"576px" ><table align=3D"cente=
+r" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"pres=
+entation" style=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-heigh=
+t:0px;font-size:0px;mso-line-height-rule:exactly;"><v:rect style=3D"width:5=
+76px;" xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=3D"fa=
+lse"><v:fill origin=3D"0, 0" position=3D"0, 0" src=3D"https://aimg.kwcdn.co=
+m/upload_aimg/temu/a8e3b2f2-de81-4471-a0ff-c956ea6e934d.png.slim.png" type=
+=3D"frame" size=3D"3.2px,75%" /><v:textbox style=3D"mso-fit-shape-to-text:t=
+rue" inset=3D"0,0,0,0"><![endif]--><div style=3D"background:url(https://aim=
+g.kwcdn.com/upload_aimg/temu/a8e3b2f2-de81-4471-a0ff-c956ea6e934d.png.slim.=
+png) center center/3.2px 75% no-repeat;background-position:center center;ba=
+ckground-repeat:no-repeat;background-size:3.2px 75%;margin:0 auto;max-width=
+:576px"><div style=3D"line-height:0;font-size:0"><table align=3D"center" ba=
+ckground=3D"https://aimg.kwcdn.com/upload_aimg/temu/a8e3b2f2-de81-4471-a0ff=
+-c956ea6e934d.png.slim.png" border=3D"0" cellpadding=3D"0" cellspacing=3D"0=
+" role=3D"presentation" style=3D"background:url(https://aimg.kwcdn.com/uplo=
+ad_aimg/temu/a8e3b2f2-de81-4471-a0ff-c956ea6e934d.png.slim.png) center cent=
+er/3.2px 75% no-repeat;background-position:center center;background-repeat:=
+no-repeat;background-size:3.2px 75%;width:100%"><tbody><tr><td style=3D"dir=
+ection:ltr;font-size:0;padding:0;text-align:center"><!--[if mso | IE]><tabl=
+e role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><t=
+r><td class=3D"" width=3D"576px" ><table align=3D"center" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"w=
+idth:576px;" width=3D"576" ><tr><td style=3D"line-height:0px;font-size:0px;=
+mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:0 auto;max-=
+width:576px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td style=
+=3D"border:none;direction:ltr;font-size:0;padding:0;text-align:center"><!--=
+[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0"><tr><td class=3D"" style=3D"width:576px;" ><![endif]--><di=
+v class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-size:0;lin=
+e-height:0;text-align:left;display:inline-block;width:100%;direction:ltr"><=
+!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation" ><tr><td style=3D"vertical-align:top;width:282px;" ><![=
+endif]--><div class=3D"mj-column-per-49 mj-outlook-group-fix" style=3D"font=
+-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:t=
+op;width:49%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"border:none;vertic=
+al-align:top;padding:0 18.4px"><table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" style=3D"" width=3D"100%"><tbody><!-- @@d=
+elivery_block begin@@ --><tr><td align=3D"left" style=3D"font-size:0;paddin=
+g:0;word-break:break-word"><table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" role=3D"presentation" style=3D"border-collapse:collapse;border-spac=
+ing:0"><tbody><tr><td style=3D"width:238px"><img height=3D"auto" src=3D"htt=
+ps://aimg.kwcdn.com/upload_aimg/temu/10e55670-9290-4326-adac-7c7e80972a9d.p=
+ng.slim.png" style=3D"border:0;display:block;outline:0;text-decoration:none=
+;height:auto;width:100%;font-size:13px" width=3D"238"></td></tr></tbody></t=
+able></td></tr><tr><td style=3D"font-size:0;padding:0;word-break:break-word=
+"><!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:246.24px;=
+" width=3D"246" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-he=
+ight-rule:exactly;"><![endif]--><div style=3D"margin:0 auto;max-width:246.2=
+4px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td style=3D"borde=
+r:none;direction:ltr;font-size:0;padding:0;text-align:center"><!--[if mso |=
+ IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;width:246px;" ><![en=
+dif]--><div class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-=
+size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:to=
+p;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"border:none;vertic=
+al-align:top;padding:15.2px 0 0"><table border=3D"0" cellpadding=3D"0" cell=
+spacing=3D"0" role=3D"presentation" style=3D"" width=3D"100%"><tbody><tr><t=
+d align=3D"left" style=3D"font-size:0;padding:0;word-break:break-word"><tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" s=
+tyle=3D"border-collapse:collapse;border-spacing:0"><tbody><tr><td style=3D"=
+width:240px"><img height=3D"auto" src=3D"https://mktimg-us.kwcdn.com/auto-i=
+mage/c790fc5acc624dab838accff85e1a655.png?imageMogr2/cut/300x46x0x0" style=
+=3D"border:0;display:block;outline:0;text-decoration:none;height:auto;width=
+:100%;font-size:13px" width=3D"240"></td></tr></tbody></table></td></tr><tr=
+><td align=3D"left" style=3D"font-size:0;padding:0;word-break:break-word"><=
+div style=3D"font-family:Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,R=
+oboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-seri=
+f;font-size:20.8px;font-weight:medium;line-height:32px;text-align:left;colo=
+r:#777"><span style=3D"color:#fb7701">77.6% are =E2=89=A4 10 days.</span><s=
+pan>Get a $5 credit within 48 hours if delivered after Oct 13</span></div><=
+/td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]>=
+</td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso |=
+ IE]></td></tr></table><![endif]--></td></tr><!-- @@delivery_block end@@ --=
+></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></td><td=
+ style=3D"vertical-align:top;width:282px;" ><![endif]--><div class=3D"mj-co=
+lumn-per-49 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;dire=
+ction:ltr;display:inline-block;vertical-align:top;width:49%"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td style=3D"border:none;vertical-align:top;padding:0 18.4p=
+x 0 24px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"p=
+resentation" style=3D"" width=3D"100%"><tbody><!-- @@shipping_address_block=
+ begin@@ --><tr><td align=3D"left" style=3D"font-size:0;padding:0;word-brea=
+k:break-word"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"border-collapse:collapse;border-spacing:0"><tbod=
+y><tr><td style=3D"width:238px"><img height=3D"auto" src=3D"https://aimg.kw=
+cdn.com/upload_aimg/temu/a1f27fcc-a19b-42eb-b244-a7862f28116d.png.slim.png"=
+ style=3D"border:0;display:block;outline:0;text-decoration:none;height:auto=
+;width:100%;font-size:13px" width=3D"238"></td></tr></tbody></table></td></=
+tr><tr><td style=3D"font-size:0;padding:0;word-break:break-word"><!--[if ms=
+o | IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"" role=3D"presentation" style=3D"width:240.24px;" width=3D"=
+240" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:e=
+xactly;"><![endif]--><div style=3D"margin:0 auto;max-width:240.24px"><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"=
+presentation" style=3D"width:100%"><tbody><tr><td style=3D"border:none;dire=
+ction:ltr;font-size:0;padding:0;text-align:center"><!--[if mso | IE]><table=
+ role=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr=
+><td class=3D"" style=3D"vertical-align:top;width:240px;" ><![endif]--><div=
+ class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-size:0;text=
+-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100=
+%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presenta=
+tion" width=3D"100%"><tbody><tr><td style=3D"border:none;vertical-align:top=
+;padding:0"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D=
+"presentation" style=3D"" width=3D"100%"><tbody><tr><td align=3D"left" styl=
+e=3D"font-size:0;padding:15.2px 0 0;word-break:break-word"><div style=3D"fo=
+nt-family:Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ub=
+untu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;font-size:20.=
+8px;font-weight:medium;line-height:32px;text-align:left;color:#777">4728 Gr=
+anado Ave, FREMONT, CA 94536-5509</div></td></tr></tbody></table></td></tr>=
+</tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></td>=
+</tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]-->=
+</td></tr><!-- @@shipping_address_block end@@ --></tbody></table></td></tr>=
+</tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--></div=
+><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table>=
+</div><!--[if mso | IE]></td></tr></table></td></tr></table><![endif]--></t=
+d></tr></tbody></table></div></div><!--[if mso | IE]></v:textbox></v:rect><=
+/td></tr></table></td></tr><![endif]--><!--[if mso | IE]></table><![endif]-=
+-></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table></td>=
+</tr><tr><td class=3D"" width=3D"576px" ><table align=3D"center" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" sty=
+le=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-height:0px;font-si=
+ze:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:0 au=
+to;max-width:576px"><table align=3D"center" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td=
+ style=3D"border:none;direction:ltr;font-size:0;padding:0 18.4px;text-align=
+:center"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0"><tr><td align=3D"center" class=3D"" style=3D"=
+" ><![endif]--><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"border-collapse:collapse;border-spacing:0"><tbod=
+y><tr><td style=3D"width:540px"><img height=3D"auto" src=3D"https://aimg.kw=
+cdn.com/upload_aimg/temu/email/782f4001-539e-464c-840e-3b96aff4ad28.png.sli=
+m.png" style=3D"border:0;display:block;outline:0;text-decoration:none;heigh=
+t:auto;width:100%;font-size:13px" width=3D"540"></td></tr></tbody></table><=
+!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></=
+div><!--[if mso | IE]></td></tr></table></td></tr><![endif]--> <!-- @@detai=
+l_order_id begin@@ --><!--[if mso | IE]><tr><td class=3D"" width=3D"576px" =
+><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" c=
+lass=3D"" role=3D"presentation" style=3D"width:576px;" width=3D"576" ><tr><=
+td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><!=
+[endif]--><div style=3D"margin:0 auto;max-width:576px"><table align=3D"cent=
+er" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" =
+style=3D"width:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font=
+-size:0;padding:19.2px 0;text-align:center"><!--[if mso | IE]><table role=
+=3D"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td =
+class=3D"" style=3D"vertical-align:top;width:576px;" ><![endif]--><div clas=
+s=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"font-size:0;text-alig=
+n:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ width=3D"100%"><tbody><tr><td style=3D"border:none;vertical-align:top;padd=
+ing:0 18.4px"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"" width=3D"100%"><tbody><tr><td align=3D"left" s=
+tyle=3D"font-size:0;padding:0;word-break:break-word"><div style=3D"font-fam=
+ily:Roboto,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,C=
+antarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;font-size:20.4px;fo=
+nt-weight:medium;line-height:30.4px;text-align:left;color:#777">Order ID: P=
+O-211-18150111089273449</div></td></tr></tbody></table></td></tr></tbody></=
+table></div><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbo=
+dy></table></div><!--[if mso | IE]></td></tr></table></td></tr><tr><td clas=
+s=3D"" width=3D"576px" ><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:576px=
+;" width=3D"576" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-h=
+eight-rule:exactly;"><![endif]--><div style=3D"margin:0 auto;max-width:576p=
+x"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ role=3D"presentation" style=3D"width:100%"><tbody><tr><td style=3D"border:=
+none;direction:ltr;font-size:0;padding:0 18.4px;text-align:center"><!--[if =
+mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0"><tr><td align=3D"center" class=3D"" style=3D"" ><![endif]--><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation"=
+ style=3D"border-collapse:collapse;border-spacing:0"><tbody><tr><td style=
+=3D"width:540px"><img height=3D"1" src=3D"https://aimg.kwcdn.com/upload_aim=
+g/temu/email/782f4001-539e-464c-840e-3b96aff4ad28.png.slim.png" style=3D"bo=
+rder:0;display:block;outline:0;text-decoration:none;width:100%;font-size:13=
+px" width=3D"540"></td></tr></tbody></table><!--[if mso | IE]></td></tr></t=
+able><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></t=
+r></table></td></tr><![endif]--><!-- @@detail_order_id end@@ --><!--[if mso=
+ | IE]><tr><td class=3D"" width=3D"576px" ><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation"=
+ style=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-height:0px;fon=
+t-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:=
+0 auto;max-width:576px"><table align=3D"center" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody><tr=
+><td style=3D"direction:ltr;font-size:0;padding:16px 18.4px 0;text-align:ce=
+nter"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0"><![endif]--> <!-- @@waiting_for_review_title beg=
+in@@ --><!--[if mso | IE]><tr><td class=3D"" width=3D"576px" ><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" rol=
+e=3D"presentation" style=3D"width:540px;" width=3D"540" ><tr><td style=3D"l=
+ine-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><di=
+v style=3D"margin:0 auto;max-width:540px"><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"widt=
+h:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-size:0;paddi=
+ng:0;text-align:center"><!--[if mso | IE]><table role=3D"presentation" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td align=3D"center" class=
+=3D"" style=3D"" ><![endif]--><table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" style=3D"border-collapse:collapse;border-s=
+pacing:0"><tbody><tr><td style=3D"width:510px"><img height=3D"auto" src=3D"=
+https://aimg.kwcdn.com/upload_aimg/temu/52116853-fee4-4705-8aed-abe79186b06=
+9.png.slim.png" style=3D"border:0;display:block;outline:0;text-decoration:n=
+one;height:auto;width:100%;font-size:13px" width=3D"510"></td></tr></tbody>=
+</table><!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody><=
+/table></div><!--[if mso | IE]></td></tr></table></td></tr><![endif]--><!--=
+ @@waiting_for_review_title end@@ --><!--[if mso | IE]></table><![endif]-->=
+</td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table></td></=
+tr><tr><td class=3D"" width=3D"576px" ><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=
+=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-height:0px;font-size=
+:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:0 auto=
+;max-width:576px"><table align=3D"center" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td s=
+tyle=3D"direction:ltr;font-size:0;padding:0 18.4px;text-align:center"><!--[=
+if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0"><![endif]--> <!-- @@waiting_for_review_item begin@@ --><!--=
+[if mso | IE]><tr><td class=3D"" width=3D"576px" ><table align=3D"center" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presenta=
+tion" style=3D"width:540px;" width=3D"540" ><tr><td style=3D"line-height:0p=
+x;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"ma=
+rgin:0 auto;max-width:540px"><table align=3D"center" border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbod=
+y><tr><td style=3D"border:none;direction:ltr;font-size:0;padding:9.6px 0 0;=
+text-align:center"><!--[if mso | IE]><table role=3D"presentation" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td align=3D"center" class=3D""=
+ style=3D"" ><![endif]--><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"border-collapse:collapse;border-spaci=
+ng:0"><tbody><tr><td style=3D"width:540px"><a href=3D"https://app.temu.com/=
+comments.html?parent_order_sn=3DPO-211-18150111089273449&amp;review_source=
+=3D6&amp;order_sn=3D211-18150247404153449&amp;mode=3D1&amp;needs_login=3D1&=
+amp;login_scene=3D902&amp;login_with_s_uin=3DBBFLRW4J57HQOXJQGA4UJ7DGIV3X3B=
+SS6OECIXNJTP6QI&amp;pr_force_native=3D1&amp;msgid=3D211-20231012-13-B-65456=
+1127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail" target=3D"=
+_blank"><img height=3D"auto" src=3D"https://mktimg-us.kwcdn.com/auto-image/=
+de6fe38002c14bd1baab71d21ad85ef9.png?imageMogr2/cut/638x170x0x0" style=3D"b=
+order:0;display:block;outline:0;text-decoration:none;height:auto;width:100%=
+;font-size:13px" width=3D"540"></a></td></tr></tbody></table><!--[if mso | =
+IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if m=
+so | IE]></td></tr></table></td></tr><![endif]--><!-- @@waiting_for_review_=
+item end@@ --><!--[if mso | IE]></table><![endif]--></td></tr></tbody></tab=
+le></div><!--[if mso | IE]></td></tr></table></td></tr><tr><td class=3D"" w=
+idth=3D"576px" ><![endif]--><div style=3D"height:32px;line-height:32px">=E2=
+=80=8A</div><!--[if mso | IE]></td></tr><![endif]--> <!--[if mso | IE]><tr>=
+<td class=3D"" width=3D"576px" ><![endif]--><div style=3D"height:28.8px;lin=
+e-height:28.8px">=E2=80=8A</div><!--[if mso | IE]></td></tr><![endif]-->  <=
+!--[if mso | IE]></table><![endif]--></td></tr></tbody></table></div></div>=
+<!--[if mso | IE]></v:textbox></v:rect></td></tr></table></td></tr><![endif=
+]--> <!-- @@help begin@@ --><!--[if mso | IE]><tr><td class=3D"" width=3D"5=
+76px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"" role=3D"presentation" style=3D"width:576px;" width=3D"576=
+" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line-height-rule:exac=
+tly;"><![endif]--><div style=3D"margin:0 auto;max-width:576px"><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" style=3D"width:100%"><tbody><tr><td style=3D"direction:ltr;font-siz=
+e:0;padding:28px 0 48px;text-align:center"><!--[if mso | IE]><table role=3D=
+"presentation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td cla=
+ss=3D"" width=3D"576px" ><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:57=
+6px;" width=3D"576" ><tr><td style=3D"line-height:0px;font-size:0px;mso-lin=
+e-height-rule:exactly;"><![endif]--><div style=3D"margin:0 auto;max-width:5=
+76px"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><td style=3D"bord=
+er:none;direction:ltr;font-size:0;padding:0 0 20.8px;text-align:center"><!-=
+-[if mso | IE]><table role=3D"presentation" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:top;width:576p=
+x;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fix" styl=
+e=3D"font-size:0;text-align:left;direction:ltr;display:inline-block;vertica=
+l-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"border:=
+none;vertical-align:top;padding:0"><table border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" role=3D"presentation" style=3D"" width=3D"100%"><tbody><tr>=
+<td align=3D"center" style=3D"font-size:0;padding:0;word-break:break-word">=
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentatio=
+n" style=3D"border-collapse:collapse;border-spacing:0"><tbody><tr><td style=
+=3D"width:576px"><img height=3D"auto" src=3D"https://aimg.kwcdn.com/upload_=
+aimg/temu/50bbdff2-133a-4936-b790-396c39bfbc7c.png.slim.png" style=3D"borde=
+r:0;display:block;outline:0;text-decoration:none;height:auto;width:100%;fon=
+t-size:13px" width=3D"576"></td></tr></tbody></table></td></tr></tbody></ta=
+ble></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![=
+endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></tabl=
+e></td></tr><tr><td class=3D"" width=3D"576px" ><table align=3D"center" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentati=
+on" style=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-height:0px;=
+font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"marg=
+in:0 auto;max-width:576px"><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody>=
+<tr><td style=3D"border:none;direction:ltr;font-size:0;padding:0;text-align=
+:center"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"width:576px;" ><!=
+[endif]--><div class=3D"mj-column-per-100 mj-outlook-group-fix" style=3D"fo=
+nt-size:0;line-height:0;text-align:left;display:inline-block;width:100%;dir=
+ection:ltr"><!--[if mso | IE]><table border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" ><tr><td style=3D"vertical-align:top;width=
+:288px;" ><![endif]--><div class=3D"mj-column-per-50 mj-outlook-group-fix" =
+style=3D"font-size:0;text-align:left;direction:ltr;display:inline-block;ver=
+tical-align:top;width:50%"><table border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=3D"border=
+:none;vertical-align:top;padding:0"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" role=3D"presentation" style=3D"" width=3D"100%"><tbody><tr=
+><td align=3D"left" style=3D"font-size:0;padding:0;word-break:break-word"><=
+table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation=
+" style=3D"border-collapse:collapse;border-spacing:0"><tbody><tr><td style=
+=3D"width:280px"><a href=3D"https://app.temu.com/cmsg_transit.html?_cmsg_bi=
+z=3D1001&amp;_cmsg_channel=3Dmail&amp;_cmsg_locale=3D211~en~USD&amp;_order_=
+ticket=3D7e8b976f92020e0fdae916d64148fe07abae8e44434b5cf03e6527898d010010d3=
+d7928e53579067&amp;parent_order_sn=3DPO-211-18150111089273449&amp;page_from=
+=3D100&amp;_bg_fs=3D1&amp;direct_help_with_order=3D1&amp;msgid=3D211-202310=
+12-13-B-654561127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmai=
+l" target=3D"_blank"><img height=3D"60" src=3D"https://aimg.kwcdn.com/uploa=
+d_aimg/temu/dbc33778-d72d-4aaa-b098-176c9416b035.png.slim.png" style=3D"bor=
+der:0;display:block;outline:0;text-decoration:none;height:60.8px;width:100%=
+;font-size:13px" width=3D"280"></a></td></tr></tbody></table></td></tr></tb=
+ody></table></td></tr></tbody></table></div><!--[if mso | IE]></td><td styl=
+e=3D"vertical-align:top;width:288px;" ><![endif]--><div class=3D"mj-column-=
+per-50 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;direction=
+:ltr;display:inline-block;vertical-align:top;width:50%"><table border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><=
+tbody><tr><td style=3D"border:none;vertical-align:top;padding:0"><table bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"" width=3D"100%"><tbody><tr><td align=3D"right" style=3D"font-size:0;pa=
+dding:0;word-break:break-word"><table border=3D"0" cellpadding=3D"0" cellsp=
+acing=3D"0" role=3D"presentation" style=3D"border-collapse:collapse;border-=
+spacing:0"><tbody><tr><td style=3D"width:280px"><a href=3D"https://app.temu=
+.com/cmsg_transit.html?_cmsg_biz=3D5001&amp;_cmsg_channel=3Dmail&amp;_cmsg_=
+locale=3D211~en~USD&amp;suin=3DBBFLRW4J57HQOXJQGA4UJ7DGIV3X3BSS6OECIXNJTP6Q=
+I&amp;msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv&amp;_p_land=
+ing=3D1&amp;_x_src=3Dmail" target=3D"_blank"><img height=3D"60" src=3D"http=
+s://aimg.kwcdn.com/upload_aimg/temu/e8e0432a-29d9-49e1-b444-be2801f4ca5b.pn=
+g.slim.png" style=3D"border:0;display:block;outline:0;text-decoration:none;=
+height:60.8px;width:100%;font-size:13px" width=3D"280"></a></td></tr></tbod=
+y></table></td></tr></tbody></table></td></tr></tbody></table></div><!--[if=
+ mso | IE]></td></tr></table><![endif]--></div><!--[if mso | IE]></td></tr>=
+</table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td>=
+</tr></table></td></tr></table><![endif]--></td></tr></tbody></table></div>=
+<!--[if mso | IE]></td></tr></table></td></tr><![endif]--><!-- @@help end@@=
+ -->    <!--[if mso | IE]><tr><td class=3D"" width=3D"600px" ><![endif]--><=
+div style=3D"height:20px;line-height:20px">=E2=80=8A</div><!--[if mso | IE]=
+></td></tr><tr><td class=3D"" width=3D"600px" ><table align=3D"center" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentatio=
+n" style=3D"width:576px;" width=3D"576" ><tr><td style=3D"line-height:0px;f=
+ont-size:0px;mso-line-height-rule:exactly;"><v:rect style=3D"width:576px;" =
+xmlns:v=3D"urn:schemas-microsoft-com:vml" fill=3D"true" stroke=3D"false"><v=
+:fill origin=3D"0.5, 0" position=3D"0.5, 0" src=3D"https://aimg.kwcdn.com/u=
+pload_aimg/temu/84ef2fc4-2cae-4896-b923-a3bbd2a6c786.png.slim.png" type=3D"=
+tile" size=3D"1,1" aspect=3D"atleast" /><v:textbox style=3D"mso-fit-shape-t=
+o-text:true" inset=3D"0,0,0,0"><![endif]--><div style=3D"background:url(htt=
+ps://aimg.kwcdn.com/upload_aimg/temu/84ef2fc4-2cae-4896-b923-a3bbd2a6c786.p=
+ng.slim.png) center top/cover repeat;background-position:center top;backgro=
+und-repeat:repeat;background-size:cover;margin:0 auto;max-width:576px"><div=
+ style=3D"line-height:0;font-size:0"><table align=3D"center" background=3D"=
+https://aimg.kwcdn.com/upload_aimg/temu/84ef2fc4-2cae-4896-b923-a3bbd2a6c78=
+6.png.slim.png" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pr=
+esentation" style=3D"background:url(https://aimg.kwcdn.com/upload_aimg/temu=
+/84ef2fc4-2cae-4896-b923-a3bbd2a6c786.png.slim.png) center top/cover repeat=
+;background-position:center top;background-repeat:repeat;background-size:co=
+ver;width:100%"><tbody><tr><td style=3D"direction:ltr;font-size:0;padding:0=
+;text-align:center"><!--[if mso | IE]><table role=3D"presentation" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0"><![endif]--> <!-- @@download beg=
+in@@ --><!--[if mso | IE]><tr><td class=3D"section-class-outlook" width=3D"=
+576px" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" class=3D"section-class-outlook" role=3D"presentation" style=3D"width=
+:576px;" width=3D"576" ><tr><td style=3D"line-height:0px;font-size:0px;mso-=
+line-height-rule:exactly;"><![endif]--><div class=3D"section-class" style=
+=3D"margin:0 auto;max-width:576px;width:574.8px;min-width:574.8px"><table a=
+lign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"pr=
+esentation" style=3D"width:574.8px;min-width:574.8px" width=3D"574.8"><tbod=
+y><tr><td style=3D"border:none;direction:ltr;font-size:0;padding:0;text-ali=
+gn:center"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:=
+top;width:576px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-g=
+roup-fix" style=3D"font-size:0;text-align:left;direction:ltr;display:inline=
+-block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td styl=
+e=3D"border:none;vertical-align:top;padding:0"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"" width=3D"100%"=
+><tbody><tr><td align=3D"center" style=3D"font-size:0;padding:0;word-break:=
+break-word"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D=
+"presentation" style=3D"border-collapse:collapse;border-spacing:0"><tbody><=
+tr><td style=3D"width:576px"><a href=3D"https://www.temu.com/cmsg_transit.h=
+tml?_cmsg_biz=3D4001&amp;_cmsg_channel=3Dmail&amp;_cmsg_locale=3D211~en~USD=
+&amp;msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv&amp;_p_landi=
+ng=3D1&amp;_x_src=3Dmail" target=3D"_blank"><img height=3D"auto" src=3D"htt=
+ps://aimg.kwcdn.com/upload_aimg/temu/e305f843-3c5c-407e-8d0e-349aac0413c2.p=
+ng.slim.png" style=3D"border:0;display:block;outline:0;text-decoration:none=
+;height:auto;width:100%;font-size:13px" width=3D"576"></a></td></tr></tbody=
+></table></td></tr></tbody></table></td></tr></tbody></table></div><!--[if =
+mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!-=
+-[if mso | IE]></td></tr></table></td></tr><![endif]--><!-- @@download end@=
+@ --><!--[if mso | IE]><tr><td class=3D"" width=3D"576px" ><![endif]--><div=
+ style=3D"height:32.16px;line-height:32.16px">=E2=80=8A</div><!--[if mso | =
+IE]></td></tr></table><![endif]--></td></tr></tbody></table></div></div><!-=
+-[if mso | IE]></v:textbox></v:rect></td></tr></table></td></tr><![endif]--=
+> <!--[if mso | IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"width:600px !im=
+portant;" width=3D"600" bgcolor=3D"#F9F9F9" ><tr><td style=3D"line-height:0=
+px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"b=
+ackground:#f9f9f9;background-color:#f9f9f9;margin:0 auto;max-width:600px!im=
+portant"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" style=3D"background:#f9f9f9;background-color:#=
+f9f9f9;width:100%"><tbody><tr><td style=3D"direction:ltr;font-size:0;paddin=
+g:24px 16px 38.4px;text-align:center"><!--[if mso | IE]><table role=3D"pres=
+entation" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D=
+"" width=3D"600px !important" ><table align=3D"center" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" style=3D"widt=
+h:568px;" width=3D"568" bgcolor=3D"#F9F9F9" ><tr><td style=3D"line-height:0=
+px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"b=
+ackground:#f9f9f9;background-color:#f9f9f9;margin:0 auto;max-width:568px"><=
+table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" rol=
+e=3D"presentation" style=3D"background:#f9f9f9;background-color:#f9f9f9;wid=
+th:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-size:0;padd=
+ing:0;text-align:center"><!--[if mso | IE]><table role=3D"presentation" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"v=
+ertical-align:top;width:568px;" ><![endif]--><div class=3D"mj-column-per-10=
+0 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;direction:ltr;=
+display:inline-block;vertical-align:top;width:100%"><table border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbod=
+y><tr><td style=3D"border:none;vertical-align:top;padding:0"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D""=
+ width=3D"100%"><tbody><!-- @@page_bottom_title begin@@ --><tr><td align=3D=
+"center" style=3D"font-size:0;padding:0;word-break:break-word"><div style=
+=3D"font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubu=
+ntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;font-size:25.6=
+px;font-weight:500;line-height:1;text-align:center;color:#000">Find us on</=
+div></td></tr><!-- @@page_bottom_title end@@ --><tr><td align=3D"center" st=
+yle=3D"font-size:0;padding:20.8px 0 30.4px;word-break:break-word"><!--[if m=
+so | IE]><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" role=3D"presentation" ><tr><![endif]--> <!-- @@contact_tags begin@@ =
+--><!--[if mso | IE]><td><![endif]--><table align=3D"center" border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"float:non=
+e;display:inline-table"><tbody><tr><td style=3D"padding:0 19.2px;vertical-a=
+lign:middle"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=
+=3D"presentation" style=3D"border-radius:3px;width:43.2px"><tbody><tr><td s=
+tyle=3D"padding:0;font-size:0;height:43.2px;vertical-align:middle;width:43.=
+2px"><a href=3D"https://www.temu.com/cmsg_transit.html?_cmsg_biz=3D9008&amp=
+;_cmsg_channel=3Dmail&amp;_cmsg_locale=3D211~en~USD&amp;msgid=3D211-2023101=
+2-13-B-654561127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail=
+" target=3D"_blank"><img height=3D"43" src=3D"https://aimg.kwcdn.com/upload=
+_aimg/pushwan/duanyan/af10ee3f-1c5e-4a39-97e8-b60ab1ef872a.png.slim.png" st=
+yle=3D"border-radius:3px;display:block" width=3D"43"></a></td></tr></tbody>=
+</table></td></tr></tbody></table><!--[if mso | IE]></td><![endif]--><!-- @=
+@contact_tags end@@ --><!-- @@contact_tags begin@@ --><!--[if mso | IE]><td=
+><![endif]--><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" style=3D"float:none;display:inline-table">=
+<tbody><tr><td style=3D"padding:0 19.2px;vertical-align:middle"><table bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D=
+"border-radius:3px;width:43.2px"><tbody><tr><td style=3D"padding:0;font-siz=
+e:0;height:43.2px;vertical-align:middle;width:43.2px"><a href=3D"https://ww=
+w.temu.com/cmsg_transit.html?_cmsg_biz=3D9009&amp;_cmsg_channel=3Dmail&amp;=
+_cmsg_locale=3D211~en~USD&amp;msgid=3D211-20231012-13-B-654561127825874944-=
+506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail" target=3D"_blank"><img h=
+eight=3D"43" src=3D"https://aimg.kwcdn.com/upload_aimg/pushwan/duanyan/d535=
+4e0c-bb2a-42f3-aac9-0c0894ae82df.png.slim.png" style=3D"border-radius:3px;d=
+isplay:block" width=3D"43"></a></td></tr></tbody></table></td></tr></tbody>=
+</table><!--[if mso | IE]></td><![endif]--><!-- @@contact_tags end@@ --><!-=
+- @@contact_tags begin@@ --><!--[if mso | IE]><td><![endif]--><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presen=
+tation" style=3D"float:none;display:inline-table"><tbody><tr><td style=3D"p=
+adding:0 19.2px;vertical-align:middle"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" role=3D"presentation" style=3D"border-radius:3px;width:=
+43.2px"><tbody><tr><td style=3D"padding:0;font-size:0;height:43.2px;vertica=
+l-align:middle;width:43.2px"><a href=3D"https://www.temu.com/cmsg_transit.h=
+tml?_cmsg_biz=3D9010&amp;_cmsg_channel=3Dmail&amp;_cmsg_locale=3D211~en~USD=
+&amp;msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv&amp;_p_landi=
+ng=3D1&amp;_x_src=3Dmail" target=3D"_blank"><img height=3D"43" src=3D"https=
+://aimg.kwcdn.com/upload_aimg/temu/3eed4222-f7a4-4a61-8d9d-74553d266cb3.png=
+.slim.png" style=3D"border-radius:3px;display:block" width=3D"43"></a></td>=
+</tr></tbody></table></td></tr></tbody></table><!--[if mso | IE]></td><![en=
+dif]--><!-- @@contact_tags end@@ --><!--[if mso | IE]></tr></table><![endif=
+]--></td></tr></tbody></table></td></tr></tbody></table></div><!--[if mso |=
+ IE]></td></tr></table><![endif]--></td></tr></tbody></table></div><!--[if =
+mso | IE]></td></tr></table></td></tr><![endif]--> <!-- @@note_desc begin@@=
+ --><!--[if mso | IE]><tr><td class=3D"" width=3D"600px !important" ><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D=
+"" role=3D"presentation" style=3D"width:568px;" width=3D"568" ><tr><td styl=
+e=3D"line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]=
+--><div style=3D"margin:0 auto;max-width:568px"><table align=3D"center" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"width:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-size=
+:0;padding:0;text-align:center"><!--[if mso | IE]><table role=3D"presentati=
+on" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" sty=
+le=3D"vertical-align:top;width:568px;" ><![endif]--><div class=3D"mj-column=
+-per-100 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;directi=
+on:ltr;display:inline-block;vertical-align:top;width:100%"><table border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%=
+"><tbody><tr><td style=3D"border:none;vertical-align:top;padding:0"><table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" styl=
+e=3D"" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0;=
+padding:0;word-break:break-word"><div style=3D"font-family:-apple-system,Bl=
+inkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sa=
+ns,Helvetica Neue,sans-serif;font-size:16px;font-weight:400;line-height:22.=
+4px;text-align:center;color:rgba(0,0,0,.7)">NOTE: This is an automatically =
+generated email, please do not reply.</div></td></tr></tbody></table></td><=
+/tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![endif]--><=
+/td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table></td></t=
+r><![endif]--><!-- @@note_desc end@@ --> <!-- @@office_address begin@@ --><=
+!--[if mso | IE]><tr><td class=3D"" width=3D"600px !important" ><table alig=
+n=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" ro=
+le=3D"presentation" style=3D"width:568px;" width=3D"568" ><tr><td style=3D"=
+line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><d=
+iv style=3D"margin:0 auto;max-width:568px"><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"w=
+idth:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-size:0;pa=
+dding:0;text-align:center"><!--[if mso | IE]><table role=3D"presentation" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D=
+"vertical-align:top;width:568px;" ><![endif]--><div class=3D"mj-column-per-=
+100 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;direction:lt=
+r;display:inline-block;vertical-align:top;width:100%"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tb=
+ody><tr><td style=3D"border:none;vertical-align:top;padding:0"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"=
+" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size:0;paddi=
+ng:0;word-break:break-word"><div style=3D"font-family:-apple-system,BlinkMa=
+cSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,He=
+lvetica Neue,sans-serif;font-size:16px;font-weight:400;line-height:22.4px;t=
+ext-align:center;color:rgba(0,0,0,.7)">Office address: Suite 355, 31 St. Ja=
+mes Avenue Boston, Massachusetts -02116, USA</div></td></tr></tbody></table=
+></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><![end=
+if]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></table><=
+/td></tr><![endif]--><!-- @@office_address end@@ --><!--[if mso | IE]><tr><=
+td class=3D"" width=3D"600px !important" ><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" role=3D"presentation" st=
+yle=3D"width:568px;" width=3D"568" ><tr><td style=3D"line-height:0px;font-s=
+ize:0px;mso-line-height-rule:exactly;"><![endif]--><div style=3D"margin:0 a=
+uto;max-width:568px"><table align=3D"center" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" style=3D"width:100%"><tbody><tr><t=
+d style=3D"border:none;direction:ltr;font-size:0;padding:19.2px 0 0;text-al=
+ign:center"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align=
+:top;width:526px;" ><![endif]--><div class=3D"mj-column-px-526 mj-outlook-g=
+roup-fix" style=3D"font-size:0;text-align:left;direction:ltr;display:inline=
+-block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td styl=
+e=3D"border:none;vertical-align:top;padding:0"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"" width=3D"100%"=
+><tbody><!-- @@return_address_desc begin@@ --><tr><td align=3D"center" styl=
+e=3D"font-size:0;padding:0;word-break:break-word"><div style=3D"font-family=
+:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,F=
+ira Sans,Droid Sans,Helvetica Neue,sans-serif;font-size:16px;font-weight:me=
+dium;line-height:22.4px;text-align:center;color:rgba(0,0,0,.7)"><span>Retur=
+n address: </span> <a href=3D"https://app.temu.com/cmsg_transit.html?_cmsg_=
+biz=3D3003&amp;_cmsg_channel=3Dmail&amp;region_id=3D211&amp;_cmsg_locale=3D=
+211~en~USD&amp;locale_override=3D211~en~USD&amp;msgid=3D211-20231012-13-B-6=
+54561127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail" style=
+=3D"color:#fb7701!important;text-decoration:underline!important"><span styl=
+e=3D"color:#fb7701!important">Click to view our return addresses.</span></a=
+></div></td></tr><!-- @@return_address_desc end@@ --><!-- @@return_address_=
+desc begin@@ --><tr><td align=3D"center" style=3D"font-size:0;padding:0;wor=
+d-break:break-word"><div style=3D"font-family:-apple-system,BlinkMacSystemF=
+ont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica =
+Neue,sans-serif;font-size:16px;font-weight:medium;line-height:22.4px;text-a=
+lign:center;color:rgba(0,0,0,.7)"><span>If you want to return items, please=
+ request a return and use Temu=E2=80=99s label.</span> <a href=3D"https://a=
+pp.temu.com/cmsg_transit.html?_cmsg_biz=3D9004&amp;_cmsg_channel=3Dmail&amp=
+;region_id=3D211&amp;_cmsg_locale=3D211~en~USD&amp;locale_override=3D211~en=
+~USD&amp;msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv&amp;_p_l=
+anding=3D1&amp;_x_src=3Dmail" style=3D"color:#fb7701!important;text-decorat=
+ion:underline!important"><span style=3D"color:#fb7701!important">Click to v=
+iew more details.</span></a></div></td></tr><!-- @@return_address_desc end@=
+@ --></tbody></table></td></tr></tbody></table></div><!--[if mso | IE]></td=
+></tr></table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]=
+></td></tr></table></td></tr><![endif]--> <!-- @@contact_line begin@@ --><!=
+--[if mso | IE]><tr><td class=3D"" width=3D"600px !important" ><table align=
+=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"" rol=
+e=3D"presentation" style=3D"width:568px;" width=3D"568" ><tr><td style=3D"l=
+ine-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--><di=
+v style=3D"margin:0 auto;max-width:568px"><table align=3D"center" border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"widt=
+h:100%"><tbody><tr><td style=3D"border:none;direction:ltr;font-size:0;paddi=
+ng:19.2px 0 0;text-align:center"><!--[if mso | IE]><table role=3D"presentat=
+ion" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tr><td class=3D"" st=
+yle=3D"vertical-align:top;width:568px;" ><![endif]--><div class=3D"mj-colum=
+n-per-100 mj-outlook-group-fix" style=3D"font-size:0;text-align:left;direct=
+ion:ltr;display:inline-block;vertical-align:top;width:100%"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" width=3D"1=
+00%"><tbody><tr><td style=3D"border:none;vertical-align:top;padding:0"><tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" s=
+tyle=3D"" width=3D"100%"><tbody><tr><td align=3D"center" style=3D"font-size=
+:0;padding:0;word-break:break-word"><div style=3D"font-family:-apple-system=
+,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid=
+ Sans,Helvetica Neue,sans-serif;font-size:16px;font-weight:medium;line-heig=
+ht:22.4px;text-align:center;color:rgba(0,0,0,.7)"><span>Please contact </sp=
+an><a href=3D"https://app.temu.com/cmsg_transit.html?_cmsg_biz=3D5001&amp;_=
+cmsg_channel=3Dmail&amp;_cmsg_locale=3D211~en~USD&amp;locale_override=3D211=
+~en~USD&amp;msgid=3D211-20231012-13-B-654561127825874944-506-klTkkDpv&amp;_=
+p_landing=3D1&amp;_x_src=3Dmail" style=3D"color:rgba(0,0,0,.7);text-decorat=
+ion:underline!important">customer service</a><span> if you have any questio=
+ns.</span></div></td></tr></tbody></table></td></tr></tbody></table></div><=
+!--[if mso | IE]></td></tr></table><![endif]--></td></tr></tbody></table></=
+div><!--[if mso | IE]></td></tr></table></td></tr><![endif]--><!-- @@contac=
+t_line end@@ --><!--[if mso | IE]><tr><td class=3D"" width=3D"600px !import=
+ant" ><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" class=3D"" role=3D"presentation" style=3D"width:568px;" width=3D"568" b=
+gcolor=3D"#F9F9F9" ><tr><td style=3D"line-height:0px;font-size:0px;mso-line=
+-height-rule:exactly;"><![endif]--><div style=3D"background:#f9f9f9;backgro=
+und-color:#f9f9f9;margin:0 auto;max-width:568px"><table align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" style=
+=3D"background:#f9f9f9;background-color:#f9f9f9;width:100%"><tbody><tr><td =
+style=3D"border:none;direction:ltr;font-size:0;padding:19.2px 0 0;text-alig=
+n:center"><!--[if mso | IE]><table role=3D"presentation" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0"><tr><td class=3D"" style=3D"vertical-align:t=
+op;width:568px;" ><![endif]--><div class=3D"mj-column-per-100 mj-outlook-gr=
+oup-fix" style=3D"font-size:0;text-align:left;direction:ltr;display:inline-=
+block;vertical-align:top;width:100%"><table border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" role=3D"presentation" width=3D"100%"><tbody><tr><td style=
+=3D"border:none;vertical-align:top;padding:0"><table border=3D"0" cellpaddi=
+ng=3D"0" cellspacing=3D"0" role=3D"presentation" style=3D"" width=3D"100%">=
+<tbody><tr><td align=3D"left" style=3D"font-size:0;padding:0;word-break:bre=
+ak-word"><table cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" border=
+=3D"0" style=3D"color:#000;font-family:-apple-system,BlinkMacSystemFont,Seg=
+oe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sa=
+ns-serif;font-size:13px;line-height:22px;table-layout:auto;width:100%;borde=
+r:none"><tr style=3D"font-size:16px"><td align=3D"center"><!-- @@first_poli=
+cy begin@@ --> <a href=3D"https://app.temu.com/cmsg_transit.html?_cmsg_biz=
+=3D9005&amp;_cmsg_channel=3Dmail&amp;region_id=3D211&amp;_cmsg_locale=3D211=
+~en~USD&amp;locale_override=3D211~en~USD&amp;msgid=3D211-20231012-13-B-6545=
+61127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail" style=3D"=
+color:rgba(0,0,0,.9)!important;text-decoration:underline!important"><span s=
+tyle=3D"font-size:16px;line-height:16px;color:rgba(0,0,0,.9)!important">Pri=
+vacy &amp; Cookie Policy</span></a><!-- @@first_policy end@@ --> <!-- @@oth=
+er_policy begin@@ --> &nbsp;|&nbsp; <a href=3D"https://app.temu.com/cmsg_tr=
+ansit.html?_cmsg_biz=3D9006&amp;_cmsg_channel=3Dmail&amp;_cmsg_locale=3D211=
+~en~USD&amp;locale_override=3D211~en~USD&amp;msgid=3D211-20231012-13-B-6545=
+61127825874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail" style=3D"=
+color:rgba(0,0,0,.9)!important;text-decoration:underline!important"><span s=
+tyle=3D"font-size:16px;line-height:16px;color:rgba(0,0,0,.9)!important">Ter=
+ms &amp; Conditions</span></a><!-- @@other_policy end@@ --><!-- @@other_pol=
+icy begin@@ --> &nbsp;|&nbsp; <a href=3D"https://app.temu.com/cmsg_transit.=
+html?_cmsg_biz=3D9007&amp;_cmsg_channel=3Dmail&amp;_cmsg_locale=3D211~en~US=
+D&amp;locale_override=3D211~en~USD&amp;msgid=3D211-20231012-13-B-6545611278=
+25874944-506-klTkkDpv&amp;_p_landing=3D1&amp;_x_src=3Dmail" style=3D"color:=
+rgba(0,0,0,.9)!important;text-decoration:underline!important"><span style=
+=3D"font-size:16px;line-height:16px;color:rgba(0,0,0,.9)!important">Unsubsc=
+ribe</span></a><!-- @@other_policy end@@ --></td></tr></table></td></tr></t=
+body></table></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></=
+table><![endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></=
+tr></table></td></tr></table><![endif]--></td></tr></tbody></table></div><!=
+--[if mso | IE]></td></tr></table><![endif]--><!--[if mso | IE]></table><![=
+endif]--></td></tr></tbody></table></div><!--[if mso | IE]></td></tr></tabl=
+e><![endif]--></div><!-- =E2=84=A2 --></body></html>=
+
+--30e8b3ef0af35f5b13c37da76e121161c34697d0d663c180f474629274b0--

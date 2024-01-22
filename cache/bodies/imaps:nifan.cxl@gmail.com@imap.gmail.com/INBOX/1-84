@@ -1,0 +1,117 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from localhost.localdomain ([50.205.20.42])
+        by smtp.gmail.com with ESMTPSA id o67-20020a257346000000b00d7497467d36sm3334435ybc.45.2023.11.27.14.43.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 14:43:18 -0800 (PST)
+From: nifan.cxl@gmail.com
+To: nifan.cxl@gmail.com
+Cc: Fan Ni <fan.ni@samsung.com>
+Subject: [PATCH 1/4] qemu: Add QMP connection option for QMP interface access
+Date: Mon, 27 Nov 2023 14:27:24 -0800
+Message-ID: <20231127224238.313755-2-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231127224238.313755-1-nifan.cxl@gmail.com>
+References: <20231127224238.313755-1-nifan.cxl@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <fan.ni@samsung.com>
+
+In Qemu, QMP interface allows applications to control a QEMU instance.
+Currently, QMP interface has been used to inject poison, add/release dynamic
+capacity extents, etc.
+
+With the change, we add a Qemu configuration option to allow user to use
+the QMP interface. By default, we start QMP on a TCP socket and let Qemu
+instance go through without waiting for QMP connection.
+
+Signed-off-by: Fan Ni <fan.ni@samsung.com>
+---
+ playbooks/roles/gen_nodes/defaults/main.yml       |  3 +++
+ .../roles/gen_nodes/templates/Vagrantfile.j2      |  8 ++++++++
+ scripts/gen-nodes.Makefile                        |  9 +++++++++
+ vagrant/Kconfig                                   | 15 +++++++++++++++
+ 4 files changed, 35 insertions(+)
+
+diff --git a/playbooks/roles/gen_nodes/defaults/main.yml b/playbooks/roles/gen_nodes/defaults/main.yml
+index c57effe7..3a16d861 100644
+--- a/playbooks/roles/gen_nodes/defaults/main.yml
++++ b/playbooks/roles/gen_nodes/defaults/main.yml
+@@ -48,6 +48,9 @@ libvirt_qemu_group: libvirt-qemu
+ libvirt_machine_type: 'pc'
+ libvirt_host_passthrough: False
+ libvirt_enable_cxl: False
++libvirt_enable_qmp: False
++libvirt_qemu_qmp_string: ""
++libvirt_qemu_qmp_wait: False
+ libvirt_enable_cxl_demo_topo1: False
+ libvirt_enable_cxl_demo_topo2: False
+ libvirt_enable_cxl_switch_topo1: False
+diff --git a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2 b/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
+index 7ed59ff7..0dafe2c2 100644
+--- a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
++++ b/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
+@@ -325,6 +325,14 @@ Vagrant.configure("2") do |config|
+ {% endif %} # !switch topo1
+         libvirt.qemuargs :value => "-M"
+         libvirt.qemuargs :value => "cxl-fmw.0.targets.0=cxl.0,cxl-fmw.0.size=512M"
++{% if libvirt_enable_qmp %}
++        libvirt.qemuargs :value => "-qmp"
++{% if libvirt_qemu_qmp_wait %}
++        libvirt.qemuargs :value => "{{ libvirt_qemu_qmp_string }},wait=on"
++{% else %} # !qmp_wait
++        libvirt.qemuargs :value => "{{ libvirt_qemu_qmp_string }},wait=off"
++{% endif %} # libvirt_qemu_qmp_wait
++{% endif %} # libvirt_enable_qmp
+ {% endif %} # CXL
+ {% endif %}
+ 
+diff --git a/scripts/gen-nodes.Makefile b/scripts/gen-nodes.Makefile
+index 533b19db..59771a6c 100644
+--- a/scripts/gen-nodes.Makefile
++++ b/scripts/gen-nodes.Makefile
+@@ -190,6 +190,15 @@ GEN_NODES_EXTRA_ARGS += libvirt_machine_type='q35'
+ 
+ ifeq (y,$(CONFIG_QEMU_ENABLE_CXL))
+ GEN_NODES_EXTRA_ARGS += libvirt_enable_cxl='True'
++ifeq (y,$(CONFIG_QEMU_START_QMP_ON_TCP_SOCKET))
++GEN_NODES_EXTRA_ARGS += libvirt_enable_qmp='True'
++GEN_NODES_EXTRA_ARGS += libvirt_qemu_qmp_string='$(subst ",,$(CONFIG_QEMU_QMP_COMMAND_LINE_STRING))'
++ifeq (y,$(CONFIG_QEMU_QMP_WAIT_ON))
++GEN_NODES_EXTRA_ARGS += libvirt_qemu_qmp_wait='True'
++else
++GEN_NODES_EXTRA_ARGS += libvirt_qemu_qmp_wait='False'
++endif # CONFIG_QEMU_QMP_WAIT_ON
++endif # CONFIG_QEMU_START_QMP_ON_TCP_SOCKET
+ ifeq (y,$(CONFIG_QEMU_ENABLE_CXL_DEMO_TOPOLOGY_1))
+ GEN_NODES_EXTRA_ARGS += libvirt_enable_cxl_demo_topo1='True'
+ endif # QEMU_ENABLE_CXL_DEMO_TOPOLOGY_1
+diff --git a/vagrant/Kconfig b/vagrant/Kconfig
+index 3bf096fc..177e1ee0 100644
+--- a/vagrant/Kconfig
++++ b/vagrant/Kconfig
+@@ -1635,6 +1635,21 @@ config QEMU_ENABLE_CXL
+ 
+ if QEMU_ENABLE_CXL
+ 
++config QEMU_START_QMP_ON_TCP_SOCKET
++	bool "Start QMP on a TCP socket"
++	default n
++	if QEMU_START_QMP_ON_TCP_SOCKET
++	config QEMU_QMP_COMMAND_LINE_STRING
++	string "Qemu command line string for qmp"
++	default "tcp:localhost:4444,server"
++	help
++	  Option for qmp interface (from https://wiki.qemu.org/Documentation/QMP).
++
++	config QEMU_QMP_WAIT_ON
++	bool "Let Qemu instance wait for qmp connection"
++	default n
++	endif # QEMU_START_QMP_ON_TCP_SOCKET
++
+ choice
+ 	prompt "CXL topology to enable"
+ 	default QEMU_ENABLE_CXL_DEMO_TOPOLOGY_1
+-- 
+2.42.0
+

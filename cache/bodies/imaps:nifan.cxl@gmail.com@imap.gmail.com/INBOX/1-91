@@ -1,0 +1,118 @@
+Delivered-To: nifan.cxl@gmail.com
+Received: by 2002:a0c:fecf:0:b0:67a:4709:3451 with SMTP id z15csp2713354qvs;
+        Wed, 29 Nov 2023 17:33:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGTZsfhRePUigLGzjfpxI8HnfE+rV9hxjSQqYXyoNJdpVk873qpamtIWfSlL8y9gk4tnOqf
+X-Received: by 2002:a0c:eb84:0:b0:67a:2106:6e19 with SMTP id x4-20020a0ceb84000000b0067a21066e19mr19241061qvo.65.1701307987353;
+        Wed, 29 Nov 2023 17:33:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1701307987; cv=none;
+        d=google.com; s=arc-20160816;
+        b=PVoRHpQN8EnybFdU2Wt80EEv+KeX51tvhLajjIDHRxQ1DUn6RYEjJ25EW/yC4/Sra7
+         al8SeyHNocz4RGgSwNCsneYEu9D+tQRQPAjA+nOLJlNtfutJ6KvIGg5TvTltJS7aNsUK
+         klPZq9qZ/6WP3urW97XP/mA4cWoD+wqkJsvlwfxrX9xX0sp+09JGPh3zxes+tEdQAh5B
+         T93OpUfAXGqEpIj3ALki3Zv7YS6Lz+1ldIr2PJlUdTptS5E2MoYSmzGlCKNfsTljWZ9V
+         SHcN/AUmqzj7uuWkVV8N7OSQULu9hUd8SeDocadP5T13lUU6I/Xs93qibwjJ9OOrzKK1
+         h7LQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:dkim-signature;
+        bh=qF3sGB6SkoVg0qyY40kKytZDE6Xqtf4QpUkuuerWAGg=;
+        fh=GZbsnpAEnp+pJCwMMV4zhLpa3Ei2NcTeFazlN5YjFhY=;
+        b=i1cn6a42Efn8A6rpWZWeLBM6kE74ltiSyR45PzZlDPPqFYSANrIcuE+p08n3QEWRFv
+         plgdgXh4ZlIfz8zucXI8g2lBsSHqCk2C16lkzbPQsFxwfl87MsaCn95VZbSCIca21eTy
+         GHfRkMigtcj/W/qGXuICg3Uv0/Lba2GyBVH85i3NxoO+BSdchWZiC9eFZtaiThBzFkW5
+         oOPMgb7fdJ9S91Kj6DrpDrJRClpc7Lno/2VCQjtN7eqvT0kFNfwkmvleuuKsZSLtW0ZM
+         QHh1Zc8Ezh3hb1r42uyGuz8TFenUsMH6bIH+QxYCDBNrr7I9rVPoEfXw/qCGYAcLiNAH
+         J+VQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@intel.com header.s=Intel header.b="CVP2IT/9";
+       spf=pass (google.com: domain of ira.weiny@intel.com designates 198.175.65.11 as permitted sender) smtp.mailfrom=ira.weiny@intel.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
+Return-Path: <ira.weiny@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com. [198.175.65.11])
+        by mx.google.com with ESMTPS id cr8-20020ad456e8000000b0067a29c796f4si25303qvb.44.2023.11.29.17.33.07
+        for <nifan.cxl@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 29 Nov 2023 17:33:07 -0800 (PST)
+Received-SPF: pass (google.com: domain of ira.weiny@intel.com designates 198.175.65.11 as permitted sender) client-ip=198.175.65.11;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@intel.com header.s=Intel header.b="CVP2IT/9";
+       spf=pass (google.com: domain of ira.weiny@intel.com designates 198.175.65.11 as permitted sender) smtp.mailfrom=ira.weiny@intel.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1701307987; x=1732843987;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:references:in-reply-to:to:cc;
+  bh=J/LRvfhiMq4LbhQzlNk2y450X4xdxFuUPAYrPIbDPDA=;
+  b=CVP2IT/9HZrGeC2kuAx3DnKCxglKGwAi1UZj4Da014YzzySETD6gEHBM
+   IhD5tOVe+o/c0HulnWO2yjtz34kncjuEakklcSoZ4lQp4HbklaruwoTTG
+   02NdpHa6muFsKqJo5qd6w+nrpM9gDZusYc/Q0kyN+Gf9s8zMuaVrriXgz
+   JyM8nXUCj2LNfnklw9Gsa6XQtRjgDEqpxx9jlQSW0b59RCUxA+kHAZLJV
+   xKHUT0AkXoAnYy2e5u6809lOfMPgb24gpEW26XAasHa9Q4s/12OXJX0BF
+   rDTvZAFAs+tNRbrKMnVWVTFekI0zqQdlVX019ttk8r11ZD+8RmKRuC5CV
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="131552"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
+   d="scan'208";a="131552"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2023 17:33:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="1016467449"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
+   d="scan'208";a="1016467449"
+Received: from iweiny-mobl.amr.corp.intel.com (HELO localhost) ([10.213.173.40])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Nov 2023 17:33:04 -0800
+From: Ira Weiny <ira.weiny@intel.com>
+Date: Wed, 29 Nov 2023 17:33:03 -0800
+Subject: [PATCH v2 1/2] cxl/cdat: Handle cdat table build errors
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20231117-fix-cdat-cs-v2-1-715399976d4d@intel.com>
+References: <20231117-fix-cdat-cs-v2-0-715399976d4d@intel.com>
+In-Reply-To: <20231117-fix-cdat-cs-v2-0-715399976d4d@intel.com>
+To: Jonathan Cameron <jonathan.cameron@huawei.com>, 
+ Fan Ni <nifan.cxl@gmail.com>
+Cc: Dave Jiang <dave.jiang@intel.com>, linux-cxl@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Ira Weiny <ira.weiny@intel.com>, 
+ Huai-Cheng Kuo <hchkuo@avery-design.com.tw>
+X-Mailer: b4 0.13-dev-c6835
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1701307983; l=1103;
+ i=ira.weiny@intel.com; s=20221211; h=from:subject:message-id;
+ bh=J/LRvfhiMq4LbhQzlNk2y450X4xdxFuUPAYrPIbDPDA=;
+ b=LtEnHMx26EnkkJq65L/SvzLr4Hj3z5Mb8duGdIrZoyJdc/S8OJYd3ZNjfyRpQJeyI4uYzVa2Y
+ A4d5IYEL7RMCh9Rap5TLxg+Fbv7sxnJURcHRY/OAiePYzeUivnJLN9l
+X-Developer-Key: i=ira.weiny@intel.com; a=ed25519;
+ pk=noldbkG+Wp1qXRrrkfY1QJpDf7QsOEthbOT7vm0PqsE=
+
+The callback for building CDAT tables may return negative error codes.
+This was previously unhandled and will result in potentially huge
+allocations later on in ct3_build_cdat()
+
+Detect the negative error code and defer cdat building.
+
+Fixes: f5ee7413d592 ("hw/mem/cxl-type3: Add CXL CDAT Data Object Exchange")
+Cc: Huai-Cheng Kuo <hchkuo@avery-design.com.tw>
+Reviewed-by: Dave Jiang <dave.jiang@intel.com>
+Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+---
+ hw/cxl/cxl-cdat.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/hw/cxl/cxl-cdat.c b/hw/cxl/cxl-cdat.c
+index 639a2db3e17b..24829cf2428d 100644
+--- a/hw/cxl/cxl-cdat.c
++++ b/hw/cxl/cxl-cdat.c
+@@ -63,7 +63,7 @@ static void ct3_build_cdat(CDATObject *cdat, Error **errp)
+     cdat->built_buf_len = cdat->build_cdat_table(&cdat->built_buf,
+                                                  cdat->private);
+ 
+-    if (!cdat->built_buf_len) {
++    if (cdat->built_buf_len <= 0) {
+         /* Build later as not all data available yet */
+         cdat->to_update = true;
+         return;
+
+-- 
+2.42.0
+

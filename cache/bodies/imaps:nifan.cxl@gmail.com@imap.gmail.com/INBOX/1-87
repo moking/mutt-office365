@@ -1,0 +1,209 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from localhost.localdomain ([50.205.20.42])
+        by smtp.gmail.com with ESMTPSA id o67-20020a257346000000b00d7497467d36sm3334435ybc.45.2023.11.27.14.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 14:43:20 -0800 (PST)
+From: nifan.cxl@gmail.com
+To: nifan.cxl@gmail.com
+Cc: Fan Ni <fan.ni@samsung.com>
+Subject: [PATCH 4/4] CXL: Setup DCD device as onlined system memory
+Date: Mon, 27 Nov 2023 14:27:27 -0800
+Message-ID: <20231127224238.313755-5-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231127224238.313755-1-nifan.cxl@gmail.com>
+References: <20231127224238.313755-1-nifan.cxl@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <fan.ni@samsung.com>
+
+In order to use dynamic capacity of DCD device as system memory,
+following steps are needed:
+1. Offer DC extents to the host; (Assuming region is already created for
+   the DC region where the extents to be added).
+2. Create DAX device for the region with daxctl.
+3. Convert dax memory to system ram.
+4. Online the memory for use.
+
+The change sets up the dynamic capacity offered to the host as system
+memory and online it. After the above 4 steps, we should see the memory
+onlined with command "lsmem".
+
+Signed-off-by: Fan Ni <fan.ni@samsung.com>
+---
+ playbooks/roles/cxl/defaults/main.yml         |  2 +
+ .../roles/cxl/tasks/cxl-dcd-setup/main.yml    | 79 +++++++++++++++++++
+ playbooks/roles/cxl/tasks/main.yml            | 12 +++
+ workflows/cxl/Makefile                        | 15 +++-
+ 4 files changed, 106 insertions(+), 2 deletions(-)
+ create mode 100644 playbooks/roles/cxl/tasks/cxl-dcd-setup/main.yml
+
+diff --git a/playbooks/roles/cxl/defaults/main.yml b/playbooks/roles/cxl/defaults/main.yml
+index 1d230ebf..8bed9594 100644
+--- a/playbooks/roles/cxl/defaults/main.yml
++++ b/playbooks/roles/cxl/defaults/main.yml
+@@ -5,3 +5,5 @@ ndctl_data: "{{ data_path }}/ndctl"
+ ndctl_version: "pending"
+ ndctl_meson_testlog: "build/meson-logs/testlog.txt"
+ kdevops_run_cxl_tests: False
++kdevops_enable_cxl_dcd: False
++kdevops_qmp_str: "tcp:localhost:4444,server"
+diff --git a/playbooks/roles/cxl/tasks/cxl-dcd-setup/main.yml b/playbooks/roles/cxl/tasks/cxl-dcd-setup/main.yml
+new file mode 100644
+index 00000000..39660efb
+--- /dev/null
++++ b/playbooks/roles/cxl/tasks/cxl-dcd-setup/main.yml
+@@ -0,0 +1,79 @@
++---
++
++- name: Add DC extents to the hosts
++  shell: " \
++          qmp_port_str={{ qmp_port_str }}; \
++          qmp_port=`echo $qmp_port_str | awk -F'[^0-9]+' '{ print $2 }'`;\
++          qmp_str=' \
++          { \"execute\": \"qmp_capabilities\" } \
++          { \"execute\": \"cxl-add-dynamic-capacity\",
++            \"arguments\": {
++              \"path\": \"/machine/peripheral/kdevops-cxl-dcd0\",
++              \"region-id\": 0,
++              \"extents\": [
++                {
++                  \"offset\": 0,
++                  \"len\": 128
++                },
++                {
++                  \"offset\": 128,
++                  \"len\": 256
++                }
++                ]
++            }
++          } '; \
++          echo $qmp_str | ncat localhost $qmp_port"
++  register: command_output
++  tags: [ 'cxl-dcd-setup' ]
++  delegate_to: localhost
++
++- debug: var=command_output.stdout_lines
++  tags: [ 'cxl-dcd-setup' ]
++
++- name: Show DC extents added
++  become: no
++  shell: "ls /sys/bus/cxl/devices/decoder0.0/region0/dax_region0/ -lt"
++  register: command_output
++  tags: [ 'cxl-dcd-setup' ]
++
++- debug: var=command_output.stdout_lines
++  tags: [ 'cxl-dcd-setup' ]
++
++- name: Create dax devices for DC region
++  become: yes
++  become_method: sudo
++  shell: "daxctl create-device region0"
++  register: command_output
++  tags: [ 'cxl-dcd-setup' ]
++
++- debug: var=command_output.stdout_lines
++  tags: [ 'cxl-dcd-setup' ]
++
++- name: Show dax devices added
++  become: no
++  shell: "ls /dev/dax* -lt"
++  register: command_output
++  tags: [ 'cxl-dcd-setup' ]
++
++- debug: var=command_output.stdout_lines
++  tags: [ 'cxl-dcd-setup' ]
++
++- name: Convert dax devices to system RAM and online
++  become: yes
++  become_method: sudo
++  shell: "daxctl reconfigure-device --mode=system-ram --no-online dax0.1; \
++          daxctl online-memory dax0.1;"
++  register: command_output
++  tags: [ 'cxl-dcd-setup' ]
++
++- debug: var=command_output.stdout_lines
++  tags: [ 'cxl-dcd-setup' ]
++
++- name: Show system memory with lsmem
++  become: no
++  shell: "lsmem"
++  register: command_output
++  tags: [ 'cxl-dcd-setup' ]
++
++- debug: var=command_output.stdout_lines
++  tags: [ 'cxl-dcd-setup' ]
+diff --git a/playbooks/roles/cxl/tasks/main.yml b/playbooks/roles/cxl/tasks/main.yml
+index 164bc2ad..9ac95fd9 100644
+--- a/playbooks/roles/cxl/tasks/main.yml
++++ b/playbooks/roles/cxl/tasks/main.yml
+@@ -56,10 +56,22 @@
+ - name: Convert cxl memory to kernel managed memory
+   include_tasks: cxl-mem-setup/main.yml
+   tags: [ 'cxl-mem-setup' ]
++  when:
++    - not kdevops_enable_cxl_dcd|bool
+ 
+ - name: Create a dynamic capacity region for further dc extent add operations
+   include_tasks: cxl-create-dc-region/main.yml
+   tags: [ 'cxl-create-dc-region' ]
++  when:
++    - kdevops_enable_cxl_dcd|bool
++
++- name: Setup CXL DCD device as system ram
++  include_tasks: cxl-dcd-setup/main.yml
++  vars:
++    qmp_port_str: "{{ kdevops_qmp_str }}"
++  tags: [ 'cxl-dcd-setup' ]
++  when:
++    - kdevops_enable_cxl_dcd|bool
+ 
+ - name: Set the path to cxl workflow
+   set_fact:
+diff --git a/workflows/cxl/Makefile b/workflows/cxl/Makefile
+index c71e7a86..4ef7d92c 100644
+--- a/workflows/cxl/Makefile
++++ b/workflows/cxl/Makefile
+@@ -7,6 +7,11 @@ CXL_ARGS += ndctl_git='$(subst ",,$(CONFIG_NDCTL_GIT))'
+ CXL_ARGS += ndctl_data=\"$(subst ",,$(CONFIG_NDCTL_DATA))\"
+ CXL_ARGS += ndctl_version='$(subst ",,$(CONFIG_NDCTL_VERSION))'
+ 
++ifeq (y,$(CONFIG_QEMU_ENABLE_CXL_DEMO_DCD_TOPOLOGY_1))
++	CXL_ARGS += kdevops_enable_cxl_dcd="True"
++	CXL_ARGS += kdevops_qmp_str=$(CONFIG_QEMU_QMP_COMMAND_LINE_STRING)
++endif
++
+ DYNAMIC_RUNTIME_VARS := "kdevops_run_cxl_tests": $(CONFIG_ENABLE_CXL_TEST)
+ WORKFLOW_ARGS += $(CXL_ARGS)
+ BOOTLINUX_CXL_HELP :=
+@@ -41,12 +46,17 @@ cxl-results:
+ cxl-mem-setup:
+ 	$(Q)ansible-playbook $(ANSIBLE_VERBOSE) \
+ 		-f 30 -i hosts playbooks/cxl.yml \
+-		--tags cxl-mem-setup $(LIMIT_HOSTS)
++		--tags vars,extra-vars,cxl-mem-setup $(LIMIT_HOSTS)
+ 
+ cxl-create-dc-region:
+ 	$(Q)ansible-playbook $(ANSIBLE_VERBOSE) \
+ 		-f 30 -i hosts playbooks/cxl.yml \
+-		--tags cxl-create-dc-region $(LIMIT_HOSTS)
++		--tags vars,cxl-create-dc-region $(LIMIT_HOSTS)
++
++cxl-dcd-setup:
++	$(Q)ansible-playbook $(ANSIBLE_VERBOSE) \
++		-f 30 -i hosts playbooks/cxl.yml \
++		--tags vars,cxl-dcd-setup $(LIMIT_HOSTS)
+ 
+ cxl-help-menu:
+ 	@echo "cxl development:"
+@@ -56,6 +66,7 @@ cxl-help-menu:
+ 	@echo "cxl-results         - Get results for all tests runs"
+ 	@echo "cxl-mem-setup	   - Convert cxl memory to cpu-less numa node"
+ 	@echo "cxl-create-dc-region	   - Create a dc region so dc extents can be added further"
++	@echo "cxl-dcd-setup	   - Add dc extents to DC region, create Dax device and convert to system RAM and online"
+ 
+ cxl-help-end:
+ 	@echo ""
+-- 
+2.42.0
+

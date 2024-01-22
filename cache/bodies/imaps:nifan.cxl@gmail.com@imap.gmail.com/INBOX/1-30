@@ -1,0 +1,344 @@
+Delivered-To: nifan.cxl@gmail.com
+Received: by 2002:a0c:b395:0:b0:66b:410:b873 with SMTP id t21csp982193qve;
+        Tue, 24 Oct 2023 22:26:18 -0700 (PDT)
+X-Received: by 2002:a92:c9ce:0:b0:357:983f:107f with SMTP id k14-20020a92c9ce000000b00357983f107fmr14690379ilq.29.1698211578103;
+        Tue, 24 Oct 2023 22:26:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1698211578; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ri5dYfXaF7RCS+6GW2F5g94wCio4h9luK08IlkrbBRT2TLHg94NQ1j8fI6isary7dl
+         l8Mc/56LZh4jbw9IUojE3Kj3fyjO2kClBil6Xsk8TwEN7/Q12TAM3TAlEIrGrmMRCqgE
+         o3RW4RrrfZyI+/Qr2zTQch5sXmO9qA/jtyMoojGQpPToSX1olJ8mxf3Fj8Yk2bsBicTX
+         XBVPO2mxTMT5uV5HQrttQnoszr4UiNRT/VKgcLKpLPo0sKRdFGi3oy4bbkUlbKAH2CRu
+         Gdn6MQnkuSMT9mtsGpqxeeNoecaIq8I1uUQUxZJE1i5VK+lFc0aT7mzGKqiOKCeOLL0z
+         5p8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:references:subject:from:date:message-id:auto-submitted
+         :to:dkim-signature;
+        bh=PH8yK3ciFG0AqshNERBuLfqZQF5Ab99pmuhoIi/9pNQ=;
+        fh=xzt1lEU1EvwZqSDT2XVWg3gNb+dw1VyC7SKME6G6O4o=;
+        b=ZDEjjD+7rh0tatGw/OILZf2DpHiScRfDbRNCHndQeB0Tx8lp7vCNvM5vs/2QiZQ3lS
+         IuVjmzYFAjUuq+ijLsfUQi7VzahE6XYMR7lR58hrEpIpGYcAxrAdsqGlFSEBKmeHHhqT
+         rHbQYPcJmWnXEdtjR8hGRfnatZawWDJg4kFtIfgOoPqOPa8rHpP3iLyUW87GFO5jLN6I
+         M8iX3UM0rRkXrcqReTZmfkxX7zlZ5WBoGd68wOfsB2Ve+RLuvGVzt9LNBCX3ctw3fDgt
+         aBpoLGuopMYh2/XUU7Fj86MeCJ0NfOG+bMVcUzLmdTNLGcCq+YLyzenvnlyWUFGYZE83
+         X1WQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b="G+aMwy/d";
+       spf=none (google.com: mail-sor-f69.google.com does not designate permitted sender hosts) smtp.helo=mail-sor-f69.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com
+Return-Path: <>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id u69-20020a638548000000b005ab86cb95f4sor5085551pgd.9.2023.10.24.22.26.17
+        for <nifan.cxl@gmail.com>
+        (Google Transport Security);
+        Tue, 24 Oct 2023 22:26:18 -0700 (PDT)
+Received-SPF: none (google.com: mail-sor-f69.google.com does not designate permitted sender hosts) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b="G+aMwy/d";
+       spf=none (google.com: mail-sor-f69.google.com does not designate permitted sender hosts) smtp.helo=mail-sor-f69.google.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1698211577; x=1698816377; dara=google.com;
+        h=in-reply-to:references:subject:from:date:message-id:auto-submitted
+         :to:from:to:cc:subject:date:message-id:reply-to;
+        bh=PH8yK3ciFG0AqshNERBuLfqZQF5Ab99pmuhoIi/9pNQ=;
+        b=G+aMwy/dapm1k2vpJNECpfYH7fUQuln/BQbKnRgxWLdF7DnUHzzxqIWlMT27SA18Yr
+         3gVvA3VZkJ+mJnuOROLWwsoIkA24OvFZ2Zk2fsm2/KbyfD7g9ikqGmGKULQwlXimx2ev
+         FqHnR6hMCWItoby8+MDIovjqr6QwhmBr0o60uC3CpFCheh2N+ovDKyBb0H0Fq+Bg2eqo
+         rNjWYTUPbMc4dOqK9Ks7b1BlfX7snCa6jgC/2mqaG6NpFeMk/mkOUu1FrrQ8bjsFtGfO
+         nnMZXaCZIae26U2BXTts4adBBDMC6k+8KA/53WcwNfGwAZPx3Sk04y4lq0kJvTwYtV6V
+         cZ2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698211577; x=1698816377;
+        h=in-reply-to:references:subject:from:date:message-id:auto-submitted
+         :to:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PH8yK3ciFG0AqshNERBuLfqZQF5Ab99pmuhoIi/9pNQ=;
+        b=ePp0O+mHB90icNWJlNFT+r4Kail/BEolG7YJprG7yDKiPPo6HQ+lTk2IbbY2a1Bgzs
+         HdQs2tCIXwAQCImqOR2zzLP1/Dg0TgXBmzDJSRBlwyXyK5RtUC74Vc3lKmQEONVSdzUY
+         ReWRUx18yrebLM0jYk6BbLV9tdjQ3wZA9LKqInfFtEt4Rwt0nyA3hkfUyUOddZZCNvff
+         faWnoaQ1345X2iOdMa+L+yJwQIdbwDb+CVgU8bcN3Jv6USdcEkPT7UVOCmCAOqi2A+YH
+         Pe1GdTIPgbyisNaxxAJmfBOVV0F3IiDZh9UYymMUcADUeSG73PuAeEvgLbxiYtH05a4J
+         U1zA==
+X-Gm-Message-State: AOJu0Ywd+tg4YSKmYWRwKW5k6uSFyFaVF91xpXXane27h29PcT7R2G2/
+	Nw+6XGgsH1PTSqj2VbhmM9sCTdFvWnSlqbdfDJ1OvQ==
+X-Google-Smtp-Source: AGHT+IEqG8M3JPPrp9rx3YYM6bC6HAs6tidOqgLcl+9sYq9rLk3qYyin51WtDg5NiTIprbVHjHp785e3hJZ9oFIHCH2tpSswuoOdxcQ=
+X-Received: by 2002:a17:90b:3c4e:b0:27d:2a92:89b2 with SMTP id pm14-20020a17090b3c4e00b0027d2a9289b2mr12830136pjb.33.1698211577884;
+        Tue, 24 Oct 2023 22:26:17 -0700 (PDT)
+Content-Type: multipart/report; boundary="000000000000da61c9060883b14d"; report-type=delivery-status
+To: nifan.cxl@gmail.com
+Received: by 2002:a17:90b:3c4e:b0:27d:2a92:89b2 with SMTP id
+ pm14-20020a17090b3c4e00b0027d2a9289b2mr13057220pjb.33; Tue, 24 Oct 2023
+ 22:26:17 -0700 (PDT)
+Return-Path: <>
+Auto-Submitted: auto-replied
+Message-ID: <6538a6f9.170a0220.3821d.8af1.GMR@mx.google.com>
+Date: Tue, 24 Oct 2023 22:26:17 -0700 (PDT)
+From: Mail Delivery Subsystem <mailer-daemon@googlemail.com>
+Subject: Delivery Status Notification (Failure)
+References: <650cc29ab3f64_50d07294e7@iweiny-mobl.notmuch> <ZTbN8mAa256JWTFE@debian>
+ <ZTgTQs_HJ9Xlb0Ov@debian> <ZTim4UPbe2C-tC_w@debian>
+In-Reply-To: <ZTim4UPbe2C-tC_w@debian>
+X-Failed-Recipients: naveen.c.singh@intel.com
+
+--000000000000da61c9060883b14d
+Content-Type: multipart/related; boundary="000000000000da6c28060883b14e"
+
+--000000000000da6c28060883b14e
+Content-Type: multipart/alternative; boundary="000000000000da6c31060883b14f"
+
+--000000000000da6c31060883b14f
+Content-Type: text/plain; charset="UTF-8"
+
+
+** Address not found **
+
+Your message wasn't delivered to naveen.c.singh@intel.com because the address couldn't be found, or is unable to receive mail.
+
+
+
+The response from the remote server was:
+550 #5.1.0 Address rejected.
+
+--000000000000da6c31060883b14f
+Content-Type: text/html; charset="UTF-8"
+
+
+<html>
+<head>
+<style>
+* {
+font-family:Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+</style>
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" class="email-wrapper" style="padding-top:32px;background-color:#ffffff;"><tbody>
+<tr><td>
+<table cellpadding=0 cellspacing=0><tbody>
+<tr><td style="max-width:560px;padding:24px 24px 32px;background-color:#fafafa;border:1px solid #e0e0e0;border-radius:2px">
+<img style="padding:0 24px 16px 0;float:left" width=72 height=72 alt="Error Icon" src="cid:icon.png">
+<table style="min-width:272px;padding-top:8px"><tbody>
+<tr><td><h2 style="font-size:20px;color:#212121;font-weight:bold;margin:0">
+Address not found
+</h2></td></tr>
+<tr><td style="padding-top:20px;color:#757575;font-size:16px;font-weight:normal;text-align:left">
+Your message wasn't delivered to <a style='color:#212121;text-decoration:none'><b>naveen.c.singh@intel.com</b></a> because the address couldn't be found, or is unable to receive mail.
+</td></tr>
+</tbody></table>
+</td></tr>
+</tbody></table>
+</td></tr>
+<tr style="border:none;background-color:#fff;font-size:12.8px;width:90%">
+<td align="left" style="padding:48px 10px">
+The response from the remote server was:<br/>
+<p style="font-family:monospace">
+550 #5.1.0 Address rejected.
+</p>
+</td>
+</tr>
+</tbody></table>
+</body>
+</html>
+
+--000000000000da6c31060883b14f--
+--000000000000da6c28060883b14e
+Content-Type: image/png; name="icon.png"
+Content-Disposition: attachment; filename="icon.png"
+Content-Transfer-Encoding: base64
+Content-ID: <icon.png>
+
+iVBORw0KGgoAAAANSUhEUgAAAJAAAACQCAYAAADnRuK4AAAACXBIWXMAABYlAAAWJQFJUiTwAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABTdJREFUeNrsnD9sFEcUh5+PRMqZ
+yA0SPhAUQAQFUkyTgiBASARo6QApqVIkfdxGFJFSgGhJAUIiBaQB0ZIOKVCkwUgURjIg2fxL4kS+
+YDvkbC/388bi8N16Z4/d7J/5PsniuD3fyePP772ZeTsDQRAYQL/UGAJAIEAgQCBAIAAEAgQCBAIE
+AkAgyJT3Mv+Eq7vYK8mTE+MDRCAghQECAeRQA5V2ZOpmg5vDx3NPzRbmGRMEcmTrEbNNB8zWfRD+
+f/Efs2e3zCZvMjaksBg27TfbcuSNPEKP9ZyuAQKtHX2O9ncNgWC57umMPKvRNb0GEKgnLoUyxTQC
+rcns0/6uIRAs8/hGf9cQCJZpTpjdO2f25/03z+mxntM1eLtsZAgiUtX4JcaBCAQIBAgECARQ8CJa
+G5jab4J4pm4WZmO3OALVh802fIwcLkyPkcKAGggAgQCBAIEAgQCBABAIEAjKA/1AnahhbO5FdOOY
+VsrrDbPBYcYKgf5D2wLaV3p+22xh1u17tO3S+DTcvxvagUDeivPgx/a/95J/73w7Sj26Hn4pKo2M
+ehuV/KyBJM6d0f7k6RKx/R63vvL2tmf/ItDdM2ZTP6f7nkp9Y2fDx1v9akmpIU+KSCLVUghUQfSL
+zVKeTklbLxGoctw/nzC5rw8L5KRNbkpnKq6pgSqEClzNnFzY+XnYWrt6VpVk1vbwWvg+RKCKMOUw
+Q1LEOXA+/MX3mpJvGDHb265xtnzmFoUK1HaKQGlMtePYM+q2KKjXuaS1NJYIEKgI8jhEgqHt4cqy
+Ky53j3hyHz2bqSLp2o2LbJ7MxKovkGqXteoWpaOk96O9/yF/dF7NwlS36AuIQIBA5celQK4PIxBE
+4LLzrtoLgaALdSy6CJRkWQCBPGLsTHznomZ9nszUECgJ2ml3WWHe+QVFNPSQx6UdZNtxr9pbEShN
+eTTz8mQXHoHSlke7+Z+c9m6VGoHSkEfs/trLW3wQKApN1V3lGfnGu2Z6BFoLtYCs3GWBPAiUCLVh
+/HoaeRCoT9R873KLM/IgUBfapnCpe5AHgXry4pf412ihEHkQqCdxd5VqrcezhUIESsJMTJ+Pdthp
+Z0WgyNlXXPHc2Mc4IVAELl2Gnh8mhUDvCkfbIVAkcbf/aOoO3fMKhqAD3frTa4quwpn0hUDOkQhI
+YYBAgECAQAAU0QlYObl+5Ug8NcprZkZxjUCxRPVA6zmtEXHCBykskrhjgHXN09PoEcgFl4M4H11j
+nBAoApcj6ZoPGScEAgTKApcDoTw5sgWB+sGlz1n90IBAPdE6j1o21PfcC11jLagL1oFWRyGlKU3p
+OxcSJQ7NZAjkhHp/uG2HFAYIBAgECASAQIBAgECAQAAIBOkxEARBtp9wdVfAMOfIifEBIhCQwgCB
+ABAI0oV2jhxZ+nfBatuPZfgBCy0Eqqo8c01b+uu51XZvzOgDWoHNTGR+pCwpLEd5svuAZXlO2uEr
+PyEQ8hRWHgRCHmqg0sjTnLalv6crJQ8C/U8stqNO0I4+VZOHFIY8COS1PGL2ybd5yUMKK7s8zYmL
+dujyd3n+nESgcsvzZd4/KwIhDwIhT35QA6UyE1qyxZnfvJMHgdKS549JC1qvvJOHFIY8CFR5eV5O
+XimqPAhUdHnmfx+zgxdOFXkoqIGKKs/cswnb/8Oeog8HEai48nxUhiFBIORBIOShBioskkbySCLk
+IQIhDwIhj28p7FApR6b1qlEbHGpkO/rr6215vi/zH1r2x7tApSGFAQIBAgECAQIBIBAgECAQIBBA
+LK8FGADCTxYrr+EVJgAAAABJRU5ErkJggg==
+--000000000000da6c28060883b14e--
+--000000000000da61c9060883b14d
+Content-Type: message/delivery-status
+
+Reporting-MTA: dns; googlemail.com
+Received-From-MTA: dns; nifan.cxl@gmail.com
+Arrival-Date: Tue, 24 Oct 2023 22:26:16 -0700 (PDT)
+X-Original-Message-ID: <ZTim4UPbe2C-tC_w@debian>
+
+Final-Recipient: rfc822; naveen.c.singh@intel.com
+Action: failed
+Status: 4.4.2
+Remote-MTA: dns; mgamail-in.intel.com. (134.134.136.100, the server for the
+ domain intel.com.)
+Diagnostic-Code: smtp; 550 #5.1.0 Address rejected.
+Last-Attempt-Date: Tue, 24 Oct 2023 22:26:17 -0700 (PDT)
+
+--000000000000da61c9060883b14d
+Content-Type: message/rfc822
+
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1698211577; x=1698816377; darn=intel.com;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=TYsvkenkOOHMQG0IFPn1E4GNIOMkOOL4/OODSWrd9Q8=;
+        b=NGVoPkp08m9YOKOx0ZpNqqcYA32e/Gw/iWln8iGSfeWfPVaiLF2OurTo1frZ0NyI7S
+         Z9nxlg3paLLMCREqMHZpQbmBRV4ofoz5F/1wxWWQ2cMMjuYbDWOABJyJGkWrfaAizG2N
+         XpyWvW621QCrBi1RdO5u3rnkZgmugIU/EMRVOeAJkzKYiTVYhu+d8fvoZxNj2CV0cy2Y
+         YG0k7SHnrxPqwIjhw2wdtWUDceW1daoLjzPNIokv+AGo5DxwPE0Xn/iuwC2iSKSswVVO
+         JMhri2sjg9GDxqbtVmEG7o5dlthi4EKGsOBCs4fsLliTZZIFr2vX9xlIDzL6ULob2hHB
+         YviA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1698211577; x=1698816377;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TYsvkenkOOHMQG0IFPn1E4GNIOMkOOL4/OODSWrd9Q8=;
+        b=aXB+Hcnj/TvYOK6wPa+8ZYy6G6wRj6BXwpem7ix1uH4Fjn4ATds2n9b5SamFkRYp+C
+         oQFkAaSFJmztLF3ClquCYuqueEhbM7Fn8hIwWbZ86d9Bk+2GmQBc1uA8E9pKxexzEEkO
+         gf4cDwjN3Q9p3w+U8FplHhB1CRCaH4MEfDFYuS4QxgtSPIUapMBpk5foE6krPnVSW1ht
+         5Or0KYlSNG2lwhHpo+Y5HpyveZGWwMYBYhjUCTJHC573cRuQmd3CxW2PTrl2/oyeCJGz
+         frnepLkMYAIDPXMFvrWOcR+fTIm1D+/Nkw/tnI2s+X1ERzHXWu/V8zuFkqdVWf/Bl0Zl
+         A6tw==
+X-Gm-Message-State: AOJu0YyomSIyWlZCHvURjlDVcX56x+De0HSlayN3aVbX0FOmaMruh9+O
+	N1hGctqVn3kIEvP1RhdUMp4=
+X-Google-Smtp-Source: AGHT+IFoIV4ClLalYdrVGaeDQ1UOYErb2cqcQaFFYaUBEIi21wc7LPQtu+FfnQLKlirseXsQjNixPg==
+X-Received: by 2002:a17:90b:3c4e:b0:27d:2a92:89b2 with SMTP id pm14-20020a17090b3c4e00b0027d2a9289b2mr12830119pjb.33.1698211577146;
+        Tue, 24 Oct 2023 22:26:17 -0700 (PDT)
+Return-Path: <nifan.cxl@gmail.com>
+Received: from debian ([2601:641:380:4e50:5e7c:68d3:5ea1:8eb2])
+        by smtp.gmail.com with ESMTPSA id bb21-20020a17090b009500b0027d0a60b9c9sm9558236pjb.28.2023.10.24.22.26.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Oct 2023 22:26:16 -0700 (PDT)
+From: fan <nifan.cxl@gmail.com>
+X-Google-Original-From: fan <fan@debian>
+Date: Tue, 24 Oct 2023 22:25:53 -0700
+To: fan <nifan.cxl@gmail.com>
+Cc: Ira Weiny <ira.weiny@intel.com>, Fan Ni <fan.ni@samsung.com>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	"Singh, Naveen" <naveen.c.singh@intel.com>,
+	linux-cxl@vger.kernel.org, a.manzanares@samsung.com,
+	dave@stgolabs.net, nmtadam.samsung@gmail.com
+Subject: Re: Questions about the qemu DCD support in cxl-2023-09-13
+Message-ID: <ZTim4UPbe2C-tC_w@debian>
+References: <650cc29ab3f64_50d07294e7@iweiny-mobl.notmuch>
+ <ZTbN8mAa256JWTFE@debian>
+ <ZTgTQs_HJ9Xlb0Ov@debian>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZTgTQs_HJ9Xlb0Ov@debian>
+
+On Tue, Oct 24, 2023 at 11:56:02AM -0700, fan wrote:
+> On Mon, Oct 23, 2023 at 12:48:02PM -0700, fan wrote:
+> > On Thu, Sep 21, 2023 at 03:24:26PM -0700, Ira Weiny wrote:
+> > > Fan,
+> > > 
+> > > I'm working off of Jonathan's latest CXL branch with the DCD patches.[1]
+> > > 
+> > > I've been testing various things and so far I have a couple of questions.
+> > > 
+> > > 1) If the qmp command is used to add extents which overlap other extents
+> > >    shouldn't that throw an error?  I don't see any validation of this and
+> > >    I would think a real device would reject such a request from the FM.
+> > > 
+> > > 2) Where is CXLType3Dev->dc.total_extent_count set?  Attempting to add
+> > >    extents prior to driver load does not seem to work.  And I think this
+> > >    is because total_extent_count is 0 in cmd_dcd_get_dyn_cap_ext_list().
+> > > 
+> > > Ira
+> > > 
+> > > [1] https://gitlab.com/jic23/qemu/-/tree/cxl-2023-09-13
+> > 
+> > Hi Ira,
+> > FYI. I have updated the DCD emulation patch series based on feedbacks on
+> > the previous version.
+> > 
+> > The new version is here:
+> > https://github.com/moking/qemu-jic-clone/tree/dcd-dev
+> > 
+> > The code is based on Jonathan's branch cxl-2023-09-26.
+> > 
+> > The main changes include,
+> > 
+> > 1. Update cxl_find_dc_region to detect the case the range of
+> > the extent cross multiple DC regions.
+> > 2. Add comments to explain the checks performed in function
+> > cxl_detect_malformed_extent_list. (Jonathan)
+> > 3. Minimize the checks in cmd_dcd_add_dyn_cap_rsp.(Jonathan)
+> > 4. Update total_extent_count in add/release dynamic capacity response function.
+> > (Ira and Jorgen Hansen).
+> > 5. Fix the logic issue in test_bits and renamed it to
+> > test_any_bits_set to clear its function.
+> > 6. Add pending extent list for add/release extent event.
+> > 7. When add/release extent response is received, use the pending list to
+> > verify the extents are valid.
+> > 8. Add test_any_bits_set and cxl_insert_extent_to_extent_list declaration to
+> > cxl_device.h so it can be used in different files.
+> > 9. Updated ct3d_qmp_cxl_event_log_enc to include dynamic capacity event log type.
+> > 10. Extract the functionality to delete extent from extent list to a helper
+> > function.
+> > 11. Move the update of the bitmap which reflects which blocks are backed with
+> > dc extents from the moment when a dc extent is offered to the moment when it
+> > is accepted from the host.
+> > 
+> > I was able to test the DCD code you sent previously, let me know if you
+> > find any issues.
+> > 
+> > Fan
+> 
+> FYI. 
+> 
+> Updated the last two commits to drop the extents for pending to
+> release as the host can proactively release dc extents so there can be
+> no pending-to-release extent list on the device side.
+> 
+> Fan
+
+Ira located a bug when testing dc extent adding with his latest DCD kernel
+code.
+The dpa passed in the qmp command is offset relative to the base of the
+region where the extent is offered, we need to convert it to address relative
+to the base address of the base of the region0 so the bit in the bitmap can
+be correctly mapped.
+
+Update the commit (commit 0ad5136: hw/cxl/events: Add qmp interfaces to
+add/release dynamic capacity ext…) with the following changes to fix the issue.
+
+
+diff --git a/hw/mem/cxl_type3.c b/hw/mem/cxl_type3.c
+index ea88b53f41..d51f2ef9f5 100644
+--- a/hw/mem/cxl_type3.c
++++ b/hw/mem/cxl_type3.c
+@@ -1978,7 +1978,7 @@ static void qmp_cxl_process_dynamic_capacity(const char *path, CxlEventLog log,
+		 extents[i].shared_seq = 0;
+
+		 /* No duplicate or overlapped extents are allowed */
+-        dpa -= dcd->dc.regions[0].base;
++        dpa = dpa + dcd->dc.regions[rid].base - dcd->dc.regions[0].base;
+		 if (test_any_bits_set(blk_bitmap, dpa / min_block_size,
+			 len / min_block_size)) {
+			 error_setg(errp, "duplicate or overlapped extents are detected");
+
+
+Fan
+
+--000000000000da61c9060883b14d--

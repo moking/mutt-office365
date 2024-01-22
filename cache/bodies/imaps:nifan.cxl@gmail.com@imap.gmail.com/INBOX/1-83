@@ -1,0 +1,68 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from localhost.localdomain ([50.205.20.42])
+        by smtp.gmail.com with ESMTPSA id o67-20020a257346000000b00d7497467d36sm3334435ybc.45.2023.11.27.14.43.17
+        for <nifan.cxl@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 14:43:17 -0800 (PST)
+From: nifan.cxl@gmail.com
+To: nifan.cxl@gmail.com
+Subject: [PATCH 0/4] Add workflow to test CXL dynamic capacity device
+Date: Mon, 27 Nov 2023 14:27:23 -0800
+Message-ID: <20231127224238.313755-1-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <nifan.cxl@gmail.com>
+
+This patch series add support in kdevops to test cxl dynamic capacity
+device (DCD) workflow.
+
+Patch 1: add a qmp interface argument support so qemu can be launched
+with qmp interface enabled, which is needed for function test like error
+injection, dynamic capacity extent add/release.
+Patch 2: add a new cxl topology to directly attach a DCD device under a
+HB. The device has dynamic only capacity.
+Path 3: add a new make command "cxl-create-dc-region" to create DC
+region for dynamic capacity, which is needed before dc extents can be
+added. We also fixed "make cxl" command as the regular cxl-mem-setup
+worklfow does not work for dcd device.
+Patch 4: add a new make command "cxl-dcd-setup" to add dc extents, and
+convert dynamic capacity to system ram and online.
+
+To sum up, to test DCD device, we have two alternate workflows,
+
+First workflow:
+After system bringup, run "make cxl" will create region, create dax
+device and convert it to system ram. 
+
+The other workflow:
+After system bringup, and if ndctl is already available in the guest,
+perform the following two steps:
+1) make cxl-create-dc-region: create a region;
+2) make cxl-dcd-setup: add dc extents, create dax device and convert it to
+system ram.
+
+
+Fan Ni (4):
+  qemu: Add QMP connection option for QMP interface access
+  CXL: Add a new topology to support DCD emulation
+  CXL: Add support to create a DC region for DCD
+  CXL: Setup DCD device as onlined system memory
+
+ playbooks/roles/cxl/defaults/main.yml         |  2 +
+ .../cxl/tasks/cxl-create-dc-region/main.yml   | 27 +++++++
+ .../roles/cxl/tasks/cxl-dcd-setup/main.yml    | 79 +++++++++++++++++++
+ playbooks/roles/cxl/tasks/main.yml            | 16 ++++
+ playbooks/roles/gen_nodes/defaults/main.yml   |  4 +
+ .../roles/gen_nodes/templates/Vagrantfile.j2  | 19 ++++-
+ scripts/gen-nodes.Makefile                    | 12 +++
+ vagrant/Kconfig                               | 24 ++++++
+ workflows/cxl/Makefile                        | 19 ++++-
+ 9 files changed, 198 insertions(+), 4 deletions(-)
+ create mode 100644 playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml
+ create mode 100644 playbooks/roles/cxl/tasks/cxl-dcd-setup/main.yml
+
+-- 
+2.42.0
+

@@ -1,0 +1,109 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from localhost.localdomain ([50.205.20.42])
+        by smtp.gmail.com with ESMTPSA id o67-20020a257346000000b00d7497467d36sm3334435ybc.45.2023.11.27.14.43.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Nov 2023 14:43:20 -0800 (PST)
+From: nifan.cxl@gmail.com
+To: nifan.cxl@gmail.com
+Cc: Fan Ni <fan.ni@samsung.com>
+Subject: [PATCH 3/4] CXL: Add support to create a DC region for DCD
+Date: Mon, 27 Nov 2023 14:27:26 -0800
+Message-ID: <20231127224238.313755-4-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20231127224238.313755-1-nifan.cxl@gmail.com>
+References: <20231127224238.313755-1-nifan.cxl@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <fan.ni@samsung.com>
+
+For a dynamic capacity device (DCD), before a dynamic capacity (dc) extent
+can be added and used by the system, a dc region needs to be created to cover
+the dc address range.
+
+This change add support to a new make command "cxl-create-dc-region" for
+creating a dc region.
+
+Signed-off-by: Fan Ni <fan.ni@samsung.com>
+---
+ .../cxl/tasks/cxl-create-dc-region/main.yml   | 27 +++++++++++++++++++
+ playbooks/roles/cxl/tasks/main.yml            |  4 +++
+ workflows/cxl/Makefile                        |  6 +++++
+ 3 files changed, 37 insertions(+)
+ create mode 100644 playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml
+
+diff --git a/playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml b/playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml
+new file mode 100644
+index 00000000..daed8fa5
+--- /dev/null
++++ b/playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml
+@@ -0,0 +1,27 @@
++---
++
++- name: Create a DC region before DC extents can be added
++  become: yes
++  become_method: sudo
++  shell: "rid=0; \
++          region=$(cat /sys/bus/cxl/devices/decoder0.0/create_dc_region); \
++          echo $region > /sys/bus/cxl/devices/decoder0.0/create_dc_region; \
++          echo 256 > /sys/bus/cxl/devices/$region/interleave_granularity; \
++          echo 1 > /sys/bus/cxl/devices/$region/interleave_ways; \
++          echo dc$rid >/sys/bus/cxl/devices/decoder2.0/mode; \
++          echo 0x40000000 >/sys/bus/cxl/devices/decoder2.0/dpa_size; \
++          echo 0x40000000 > /sys/bus/cxl/devices/$region/size; \
++          echo  decoder2.0 > /sys/bus/cxl/devices/$region/target0; \
++          echo 1 > /sys/bus/cxl/devices/$region/commit; \
++          echo $region > /sys/bus/cxl/drivers/cxl_region/bind"
++  tags: [ 'cxl-create-dc-region' ]
++
++- name: Show the DC region created
++  become: no
++  shell: "cxl list -uR"
++  register: command_output
++  tags: [ 'cxl-create-dc-region' ]
++
++- debug:
++      var: command_output.stdout_lines
++  tags: [ 'cxl-create-dc-region' ]
+diff --git a/playbooks/roles/cxl/tasks/main.yml b/playbooks/roles/cxl/tasks/main.yml
+index a75c20a9..164bc2ad 100644
+--- a/playbooks/roles/cxl/tasks/main.yml
++++ b/playbooks/roles/cxl/tasks/main.yml
+@@ -57,6 +57,10 @@
+   include_tasks: cxl-mem-setup/main.yml
+   tags: [ 'cxl-mem-setup' ]
+ 
++- name: Create a dynamic capacity region for further dc extent add operations
++  include_tasks: cxl-create-dc-region/main.yml
++  tags: [ 'cxl-create-dc-region' ]
++
+ - name: Set the path to cxl workflow
+   set_fact:
+     cxl_workflow_target: "../workflows/cxl/"
+diff --git a/workflows/cxl/Makefile b/workflows/cxl/Makefile
+index 476ecc5e..c71e7a86 100644
+--- a/workflows/cxl/Makefile
++++ b/workflows/cxl/Makefile
+@@ -43,6 +43,11 @@ cxl-mem-setup:
+ 		-f 30 -i hosts playbooks/cxl.yml \
+ 		--tags cxl-mem-setup $(LIMIT_HOSTS)
+ 
++cxl-create-dc-region:
++	$(Q)ansible-playbook $(ANSIBLE_VERBOSE) \
++		-f 30 -i hosts playbooks/cxl.yml \
++		--tags cxl-create-dc-region $(LIMIT_HOSTS)
++
+ cxl-help-menu:
+ 	@echo "cxl development:"
+ 	@echo "cxl                 - Git clones ncdtl to compile and install the /usr/bin/cxl binary"
+@@ -50,6 +55,7 @@ cxl-help-menu:
+ 	@echo "cxl-test-meson      - Runs the ndctl meson unit tests for the CXL test suite"
+ 	@echo "cxl-results         - Get results for all tests runs"
+ 	@echo "cxl-mem-setup	   - Convert cxl memory to cpu-less numa node"
++	@echo "cxl-create-dc-region	   - Create a dc region so dc extents can be added further"
+ 
+ cxl-help-end:
+ 	@echo ""
+-- 
+2.42.0
+

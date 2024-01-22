@@ -1,0 +1,50 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from DT.hsd1.ca.comcast.net ([2601:641:380:4e50:5e7c:68d3:5ea1:8eb2])
+        by smtp.gmail.com with ESMTPSA id z21-20020aa785d5000000b006979f70fdd5sm9620069pfn.219.2023.10.25.10.48.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Oct 2023 10:48:48 -0700 (PDT)
+From: nifan.cxl@gmail.com
+To: nifan.cxl@gmail.com,
+	nifan.man@gmail.com,
+	nifan@outlook.com
+Subject: [PATCH 0/9] DCD enumeration in QEMU (v3)
+Date: Wed, 25 Oct 2023 10:46:45 -0700
+Message-ID: <20231025174815.72262-1-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <nifan.cxl@gmail.com>
+
+v3, in the next version, we will need to update the pending-to-add list.
+
+Fan Ni (9):
+  hw/cxl/cxl-mailbox-utils: Add dc_event_log_size field to output
+    payload of identify memory device command
+  hw/cxl/cxl-mailbox-utils: Add dynamic capacity region representative
+    and mailbox command support
+  include/hw/cxl/cxl_device: Rename mem_size as static_mem_size for
+    type3 memory devices
+  hw/mem/cxl_type3: Add support to create DC regions to type3 memory
+    devices
+  hw/mem/cxl_type3: Add host backend and address space handling for DC
+    regions
+  hw/mem/cxl_type3: Add DC extent list representative and get DC extent
+    list mailbox support
+  hw/cxl/cxl-mailbox-utils: Add mailbox commands to support add/release
+    dynamic capacity response
+  hw/cxl/events: Add qmp interfaces to add/release dynamic capacity
+    extents
+  hw/mem/cxl_type3: Add dpa range validation for accesses to dc regions
+
+ hw/cxl/cxl-mailbox-utils.c  | 467 ++++++++++++++++++++++++++++++++-
+ hw/mem/cxl_type3.c          | 506 +++++++++++++++++++++++++++++++++---
+ hw/mem/cxl_type3_stubs.c    |  14 +
+ include/hw/cxl/cxl_device.h |  64 ++++-
+ include/hw/cxl/cxl_events.h |  15 ++
+ qapi/cxl.json               |  58 ++++-
+ 6 files changed, 1077 insertions(+), 47 deletions(-)
+
+-- 
+2.42.0
+

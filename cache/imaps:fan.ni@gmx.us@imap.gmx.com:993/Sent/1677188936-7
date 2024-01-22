@@ -1,0 +1,54 @@
+Date: Tue, 29 Aug 2023 13:48:21 -0700
+From: Fan Ni <fan.ni@gmx.us>
+To: mcgrof@kernel.org
+Cc: nmtadam.samsung@gmail.com, fan.ni@samsung.com, kdevops@lists.linux.dev,
+	jlayton@kernel.org
+Subject: Re: [PATCH 0/3] CXL: Add dynamic capacity device test support in
+ kdevops
+Message-ID: <ZO5ZgH8O2VgbdxZL@debian>
+References: <20230829203634.29635-1-fan.ni@gmx.us>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230829203634.29635-1-fan.ni@gmx.us>
+
+On Tue, Aug 29, 2023 at 01:36:31PM -0700, fan.ni@gmx.us wrote:
+> From: Fan Ni <fan.ni@gmx.us>
+> 
+
+FYI. Just noticed a revised patch series for DCD from kernel side has
+been posted for review. That can lead to changes for this patch series
+(PATCH 3), so the review can be postponed. I will update here once I
+reviewed and tested the revised DCD kernel patches.
+
+
+Fan
+
+> This patch series include 3 patches for enabling dynamic capacity device (DCD)
+> test support in kdevops.
+> 
+> Patch 1: Add a DCD device topology for users to select for DCD emulation.
+> Patch 2: Add options to setup QMP interface for Qemu, through which users
+> can send control commands to Qemu instance. Currently, adding and releasing
+> dc extents to dc regions are implemented through QMP interface.
+> Patch 3: Add a new make command "cxl-create-dc-region" to create a dc region
+> so later we can add/release dc extents to the region through QMP interface.
+> 
+> Fan Ni (3):
+>   CXL: Add a new topology to support DCD emulation
+>   qemu: Add QMP connection option for QMP interface access
+>   CXL: Add support to create a DC region for DCD
+> 
+>  .../cxl/tasks/cxl-create-dc-region/main.yml   | 27 +++++++++++++++++++
+>  playbooks/roles/cxl/tasks/main.yml            |  4 +++
+>  playbooks/roles/gen_nodes/defaults/main.yml   |  4 +++
+>  .../roles/gen_nodes/templates/Vagrantfile.j2  | 19 ++++++++++---
+>  scripts/gen-nodes.Makefile                    | 12 +++++++++
+>  vagrant/Kconfig                               | 24 +++++++++++++++++
+>  workflows/cxl/Makefile                        |  6 +++++
+>  7 files changed, 93 insertions(+), 3 deletions(-)
+>  create mode 100644 playbooks/roles/cxl/tasks/cxl-create-dc-region/main.yml
+> 
+> --
+> 2.40.1
+> 

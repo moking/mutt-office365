@@ -1,0 +1,72 @@
+Date: Tue, 29 Aug 2023 14:48:49 -0700
+From: Fan Ni <fan.ni@gmx.us>
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Ira Weiny <ira.weiny@intel.com>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Navneet Singh <navneet.singh@intel.com>,
+	Fan Ni <fan.ni@samsung.com>, Davidlohr Bueso <dave@stgolabs.net>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Alison Schofield <alison.schofield@intel.com>,
+	Vishal Verma <vishal.l.verma@intel.com>, linux-cxl@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC v2 01/18] cxl/hdm: Debug, use decoder name function
+Message-ID: <ZO5nrKyE/snTdE9D@debian>
+References: <20230604-dcd-type2-upstream-v2-0-f740c47e7916@intel.com>
+ <20230604-dcd-type2-upstream-v2-1-f740c47e7916@intel.com>
+ <20230829150320.00007f08@Huawei.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230829150320.00007f08@Huawei.com>
+
+On Tue, Aug 29, 2023 at 03:03:20PM +0100, Jonathan Cameron wrote:
+> On Mon, 28 Aug 2023 22:20:52 -0700
+> Ira Weiny <ira.weiny@intel.com> wrote:
+> 
+> > The decoder enum has a name conversion function defined now.
+> > 
+> > Use that instead of open coding.
+> > 
+> > Suggested-by: Navneet Singh <navneet.singh@intel.com>
+> > Signed-off-by: Ira Weiny <ira.weiny@intel.com>
+> > 
+> 
+> Perhaps pull this one out so it can go upstream before the rest are ready,
+> or could be picked up from here.
+> 
+> Whilst we probably won't see the other decoder modes in here, there
+> is no reason why anyone reading the code should have to figure that out.
+> As such much better to use the more generic function.
+> 
+> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+
+Agreed. This patch can be pulled out and picked up before the rest.
+
+
+Reviewed-by: Fan Ni <fan.ni@samsung.com>
+
+
+> > ---
+> > Changes for v2:
+> > [iweiny: new patch, split out]
+> > ---
+> >  drivers/cxl/core/hdm.c | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/cxl/core/hdm.c b/drivers/cxl/core/hdm.c
+> > index b01a77b67511..a254f79dd4e8 100644
+> > --- a/drivers/cxl/core/hdm.c
+> > +++ b/drivers/cxl/core/hdm.c
+> > @@ -550,8 +550,7 @@ int cxl_dpa_alloc(struct cxl_endpoint_decoder *cxled, unsigned long long size)
+> >  
+> >  	if (size > avail) {
+> >  		dev_dbg(dev, "%pa exceeds available %s capacity: %pa\n", &size,
+> > -			cxled->mode == CXL_DECODER_RAM ? "ram" : "pmem",
+> > -			&avail);
+> > +			cxl_decoder_mode_name(cxled->mode), &avail);
+> >  		rc = -ENOSPC;
+> >  		goto out;
+> >  	}
+> > 
+> 

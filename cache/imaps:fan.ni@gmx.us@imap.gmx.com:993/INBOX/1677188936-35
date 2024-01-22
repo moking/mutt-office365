@@ -1,0 +1,230 @@
+Return-Path: <fan.ni@gmx.us>
+Authentication-Results:  gmx.net; dkim=pass header.i=fan.ni@gmx.us
+Received: from mout.gmx.net ([212.227.15.15]) by mx-ha.gmx.net (mxgmx009
+ [212.227.15.10]) with ESMTPS (Nemesis) id 1M1Khs-1qYL4S224Q-003jjm for
+ <fan.ni@gmx.us>; Tue, 29 Aug 2023 22:17:54 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.us;
+ s=s31663417; t=1693340270; x=1693945070; i=fan.ni@gmx.us;
+ bh=71FwgCJ0Sdv/S/NOOlBI8tE0w32E7x4grv8IkHn2jME=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=KxnBVxbQSmw8GgRFnUJ99NQMRhgvVX6BlN/osrgQWEzDMaW3Qvz11KtINr4SBrEzrI5Uo0M
+ 5jr4dwA5dhY87DFQTKK18HVBBSWC20A+ege6fzeuzSD2/+bOqlJYtHgoTvnv3JTkbp5e+cKm2
+ YbfG952iVtdapsdhFjNGvNOZdIMNo0x9J9OdlhdmOx39agV7oZkLwu+NhoGKehGEy8M9W5hoG
+ uyCKkRR/hmlpeN8EtuumEHVsg7Nb1DH+mivcAFSuQwNAOsFefsPWHtE7lCf5fmymodEZfmW0/
+ J4HY44KfEZzL0HqP61MlXdQv7vawxcObI6+GKibI7jeyQxPWKqew==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from localhost.localdomain ([50.205.20.42]) by mail.gmx.net
+ (mrgmx005 [212.227.17.184]) with ESMTPSA (Nemesis) id
+ 1MjS9I-1pqVvD3J62-00kuiz; Tue, 29 Aug 2023 22:17:50 +0200
+From: fan.ni@gmx.us
+To: fan.ni@gmx.us
+Cc: Fan Ni <fan.ni@samsung.com>
+Subject: [PATCH 2/3] qemu: Add QMP connection option for QMP interface access
+Date: Tue, 29 Aug 2023 13:17:24 -0700
+Message-Id: <20230829201725.29241-3-fan.ni@gmx.us>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230829201725.29241-1-fan.ni@gmx.us>
+References: <20230829201725.29241-1-fan.ni@gmx.us>
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:HKvjsqg2HgQtPCjLQGJ9s/9acyEbEmdgoo/gIbluqBDOZfoyQyX
+ 0iTDHMg/sHGJcqmr5Yu+E4KGyzmSW0IhXB0st7tDLub5MuFklk+7X9e5DdLcyfR8AoHQnMJ
+ vBrx4RUi1Pp/ePXvEXH24VxZVDtrDfuqlfNefv9pCPBsEMKoV9hFaROdAJH2IB7egltzmLm
+ vSVUBcaFYxxQ6ZRL9s58g==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:a1SREcKQeBs=;k02+gku8A2/FWWB8+GUx37ScBYx
+ Fkkhq17IAUEuJfGL90prXBl0iIGHQYCRUfm77Ws46kYjp9NLxNPQ3ok+bCZe5ipboIhRzFbos
+ DOZkt3FEm19ekB33RgGherg+MZZtUnU0777L6iw9TL/NTno1CjtQfhePsQ7L3A/115ttT+CGu
+ FNIGY5BgR5OqYF5mLkFFJuROHwwbmETFmCNqew/dWDaQdTHKYlfwrpLaFNzOFK3nLX0QR/ko4
+ vsTa2rtbQRKs6as1dfBNLJT9Bedqp9XtDO43NTFiu4+hutII5szcjX7pe/KIGYlgvQmkM/RJa
+ L/crRITd/oEivHfQhhcmcmRWoOe7zo9qRVt19YaAVuQeDWX3MUEXstmMZtsFWycCX1qNBinQK
+ /ZlZQAMEQl6R7YAAwQ1i9MQeRLc9OF99UWZg0Zy8o2WUnjtY8JRb44T6ZprbzMGG671OflItk
+ TGKnfqQfpLsCR8Td6oO4uAOIC4Yq8POoUgthnPEX61ZzTOtfys8vqWWviY9uzlJsX4syg4Kvl
+ EA2EeomVh9FMdvHV9q5OBU8xET/huo7qjHun/6bq5vdsNIyUv0m4/sVG97UBQvBcRcR5gvZZA
+ CcQdhbtnBtcVTcEBtJhUJkli0zaqiaElUrcCsMhhKjPpjegJyr7Vy0KyCgpXXLb9njB6K+sDS
+ lGUGG6PI6hDcu06qX1Yie7UxsGzJkTHUsk01PrAik+u57OgZEeWpmMn5pmkltScclBaqHXSpe
+ KyGR7alz1rZbfwFSGECQEc/I2CeDWnhsovezqnzlpvZ/M0BVPheNt4PX/zw8DOzjO9FGPB85Z
+ IKTp7fkEJx5BWpPjByinDr+1snNF5QodfgmxtG6aVYoFIOFouSYpMzr4j/Gmhi/WGwNCs3UP0
+ Y8+FQ3pQmJk4U3qIMQwB1j2VOd0IHm7N0mgsylpnAP742MY4qFSnvF7E7n/TDGbGgyaQeIEhM
+ armEoxdngQrtvIyAXX79DVvKq1c=
+Envelope-To: <fan.ni@gmx.us>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+UI-InboundReport: notjunk:1;M01:P0:Q0RQhC6ocz0=;oiiIotOEyuTzsAMt7AU3yw6D8g4l
+ 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
+ /lERGegGjdIBIAA4vrCoHZoHjBceGpA==
+
+From: Fan Ni <fan.ni@gmx.us>
+
+In Qemu, QMP interface allows applications to control a QEMU instance.
+For CXL emulation, QMP interface has been used to inject poison,
+add/release dynamic capacity extents, etc.
+
+With the change, we add a Qemu configuration option to allow user to use
+the QMP interface. By default, we start QMP on a TCP socket and let Qemu
+instance go through without waiting for QMP connection.
+
+Signed-off-by: Fan Ni <fan.ni@samsung.com>
+=2D--
+ playbooks/roles/gen_nodes/defaults/main.yml       |  3 +++
+ .../roles/gen_nodes/templates/Vagrantfile.j2      |  8 ++++++++
+ scripts/gen-nodes.Makefile                        |  9 +++++++++
+ vagrant/Kconfig                                   | 15 +++++++++++++++
+ 4 files changed, 35 insertions(+)
+
+diff --git a/playbooks/roles/gen_nodes/defaults/main.yml b/playbooks/roles=
+/gen_nodes/defaults/main.yml
+index 55827e5b..ef5e0c26 100644
+=2D-- a/playbooks/roles/gen_nodes/defaults/main.yml
++++ b/playbooks/roles/gen_nodes/defaults/main.yml
+@@ -48,6 +48,9 @@ libvirt_qemu_group: libvirt-qemu
+ libvirt_machine_type: 'pc'
+ libvirt_host_passthrough: False
+ libvirt_enable_cxl: False
++libvirt_enable_qmp: False
++libvirt_qemu_qmp_string: ""
++libvirt_qemu_qmp_wait: False
+ libvirt_enable_cxl_demo_topo1: False
+ libvirt_enable_cxl_demo_topo2: False
+ libvirt_enable_cxl_switch_topo1: False
+diff --git a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2 b/playbook=
+s/roles/gen_nodes/templates/Vagrantfile.j2
+index 124cabd6..20cdd592 100644
+=2D-- a/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
++++ b/playbooks/roles/gen_nodes/templates/Vagrantfile.j2
+@@ -330,6 +330,14 @@ Vagrant.configure("2") do |config|
+ {% endif %} # !switch topo1
+         libvirt.qemuargs :value =3D> "-M"
+         libvirt.qemuargs :value =3D> "cxl-fmw.0.targets.0=3Dcxl.0,cxl-fmw=
+.0.size=3D8G"
++{% if libvirt_enable_qmp %}
++        libvirt.qemuargs :value =3D> "-qmp"
++{% if libvirt_qemu_qmp_wait %}
++        libvirt.qemuargs :value =3D> "{{ libvirt_qemu_qmp_string }},wait=
+=3Don"
++{% else %} # !qmp_wait
++        libvirt.qemuargs :value =3D> "{{ libvirt_qemu_qmp_string }},wait=
+=3Doff"
++{% endif %} # libvirt_qemu_qmp_wait
++{% endif %} # libvirt_enable_qmp
+ {% endif %} # CXL
+ {% endif %}
+
+diff --git a/scripts/gen-nodes.Makefile b/scripts/gen-nodes.Makefile
+index eebd0b2b..8906b49f 100644
+=2D-- a/scripts/gen-nodes.Makefile
++++ b/scripts/gen-nodes.Makefile
+@@ -190,6 +190,15 @@ GEN_NODES_EXTRA_ARGS +=3D libvirt_machine_type=3D'q35=
+'
+
+ ifeq (y,$(CONFIG_QEMU_ENABLE_CXL))
+ GEN_NODES_EXTRA_ARGS +=3D libvirt_enable_cxl=3D'True'
++ifeq (y,$(CONFIG_QEMU_START_QMP_ON_TCP_SOCKET))
++GEN_NODES_EXTRA_ARGS +=3D libvirt_enable_qmp=3D'True'
++GEN_NODES_EXTRA_ARGS +=3D libvirt_qemu_qmp_string=3D'$(subst ",,$(CONFIG_=
+QEMU_QMP_COMMAND_LINE_STRING))'
++ifeq (y,$(CONFIG_QEMU_QMP_WAIT_ON))
++GEN_NODES_EXTRA_ARGS +=3D libvirt_qemu_qmp_wait=3D'True'
++else
++GEN_NODES_EXTRA_ARGS +=3D libvirt_qemu_qmp_wait=3D'False'
++endif # CONFIG_QEMU_QMP_WAIT_ON
++endif # CONFIG_QEMU_START_QMP_ON_TCP_SOCKET
+ ifeq (y,$(CONFIG_QEMU_ENABLE_CXL_DEMO_TOPOLOGY_1))
+ GEN_NODES_EXTRA_ARGS +=3D libvirt_enable_cxl_demo_topo1=3D'True'
+ endif # QEMU_ENABLE_CXL_DEMO_TOPOLOGY_1
+diff --git a/vagrant/Kconfig b/vagrant/Kconfig
+index 4e382264..c2783935 100644
+=2D-- a/vagrant/Kconfig
++++ b/vagrant/Kconfig
+@@ -1635,6 +1635,21 @@ config QEMU_ENABLE_CXL
+
+ if QEMU_ENABLE_CXL
+
++config QEMU_START_QMP_ON_TCP_SOCKET
++	bool "Start QMP on a TCP socket"
++	default n
++	if QEMU_START_QMP_ON_TCP_SOCKET
++	config QEMU_QMP_COMMAND_LINE_STRING
++	string "Qemu command line string for qmp"
++	default "tcp:localhost:4444,server"
++	help
++	  Option for qmp interface (from https://wiki.qemu.org/Documentation/QMP=
+).
++
++	config QEMU_QMP_WAIT_ON
++	bool "Let Qemu instance wait for qmp connection"
++	default n
++	endif # QEMU_START_QMP_ON_TCP_SOCKET
++
+ choice
+ 	prompt "CXL topology to enable"
+ 	default QEMU_ENABLE_CXL_DEMO_TOPOLOGY_1
+=2D-
+2.40.1
+

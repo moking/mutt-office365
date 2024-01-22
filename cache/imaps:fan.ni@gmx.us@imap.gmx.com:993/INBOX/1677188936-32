@@ -1,0 +1,150 @@
+Return-Path: <fan.ni@gmx.us>
+Authentication-Results:  gmx.net; dkim=pass header.i=fan.ni@gmx.us
+Received: from mout.gmx.net ([212.227.15.18]) by mx-ha.gmx.net (mxgmx006
+ [212.227.15.10]) with ESMTPS (Nemesis) id 1MRnfk-1q7uDJ1p2g-00S847 for
+ <fan.ni@gmx.us>; Tue, 29 Aug 2023 22:17:47 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.us;
+ s=s31663417; t=1693340267; x=1693945067; i=fan.ni@gmx.us;
+ bh=a8bGkV9OMmeWxNxQuz+eZb4iyqaeeAIi6vWVmX6mmIQ=;
+ h=X-UI-Sender-Class:From:To:Subject:Date;
+ b=LwkrUnCLsjccX1gFjuebbQBdIMaDzAhE6A9iP7b1gN3J84l1CUnEohXbQjNkASdsYizBbY/
+ tOlfNSng/e59UZHxI/aBUeMompnsbBiud3Q/5BGpHJ482z/SSHoYVc7Cg1VZL0IUViTEIAXmt
+ 0KlRAW5LWLDsrqwMqKf/iHtTjncYfK0TikRShiavWbelRpxal3Aee/FUIuw8OTlaAkjeofZUC
+ la/dG1Dx9ysY22C8iEFMdaaJ7OeuMm+c+/oVCczW3KjE1iCtQj2QOKKCtuKDYINm8kblDV/xs
+ efqtvedyHjDn824UhzYxg+3WMo8uLkSAeIPAEZ0YIonOve5h3Uww==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from localhost.localdomain ([50.205.20.42]) by mail.gmx.net
+ (mrgmx005 [212.227.17.184]) with ESMTPSA (Nemesis) id
+ 1MUXtS-1qAeJ02ZzU-00QUSl for <fan.ni@gmx.us>; Tue, 29 Aug 2023 22:17:47 +0200
+From: fan.ni@gmx.us
+To: fan.ni@gmx.us
+Subject: [PATCH 0/3] CXL: Add dynamic capacity device test support in kdevops
+Date: Tue, 29 Aug 2023 13:17:22 -0700
+Message-Id: <20230829201725.29241-1-fan.ni@gmx.us>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:yeQd9oDtUccsCoBEljUO++32G0tSc51O9RHsGipmVl+wCiCkCOL
+ DuOIRCdvr5ikkvvhMQN5bmJuWpGTe4vPHxbalT/QyrhsUBN6zgKcOE9HBD/7sY4K1ktTs2I
+ M/dgeAR3mapIwIH0neisKhxXlZhij6yhVbWCpAaBya0nBhHx6bpKFc3BaToyJyZY4LrfAZm
+ rFTbeHLII4dmFkPcO24rg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:/ilac4EHgYo=;J9eUsIQRagdWe8MwkNYFm/5sOM+
+ 1oT8Ds6FmlBKm63uFus/R5cyGS1JwbxtuZ+HjzAaHEumhxcdjKXPS52HJdxsmdCxmonOOC5Hs
+ arZX+MkD2pQdAnkBrwxTNf05PJ5O08HE57rAyn6oyy/1H7C4Exj+1stnzZH5m0ZuV0rhNQuco
+ CQNjcI8Ca4lJYWFZXthzKJvV23XSsQVpeT1ZttIedDhhrYoo6dMRwGxafmO4XV8Wvc0TxD7Ts
+ 4zKCShFtyNeKX1uVng+rERXq3pFDSKcWDRzQg3/EkClYn15Cqi8/X8XzGVjLydcy/B7GDo9Me
+ 7Hp5NJgiRbfzqX+PAAXpwZfLb4YRjS2ontpzWaszTat2g+kfexO4eOGK1bdKobgGnFL+jAtHG
+ 1kDzmo3YreaRFPx+1ANUIn2FJwSmYehQ5Ywzf49IxysRfwcWOspQu+/GrdZpGS5gUGd4Q6uKm
+ hsYzuS6dH8rm3NAWa1gnT5m2UyqVJ4sLViFBZryjM8UuwgolC21NrkD0wOApsOgCtnUlY++Nk
+ uNGTIeE9HVMg1NiiC21WUweSCxY/hc9cYznvWIK96PT+dwx6QpqixLNeyN4uXrLaGKTedO1tg
+ faPKmiQ/KbahBe093e7dNenQXitixiBaddeyq2mKeQVFcA+HLIKPWafMtGp6wPx0wo3SCkH+4
+ dEJsHl/+Eu7xcdKLwhNrGD78rCfyRynef4617FOIyy9HgyD/nmlc/e/NG6a8cUGKMeckQQWLC
+ pyGDWt33KpM9y2z1jUprEzMdkd44a4tKTZmwcG28QIprXccEQWoQd7v+TwyGPN+/GqKlIIbAz
+ LfuLHv3sUoD6s0lHpwONSiAwKvtaSMZ3v2Ml8zPjSuRoV4kkEyWHX3MRX37LoQwv4mphv9ODg
+ 3wI9AO0MyCido1+sy47cdXuZGdZRzZQF1xtvWedx6ye/ke1dCWgpUQs+/ozc33cGqm0AVrwrK
+ 9hJh5Q==
+Envelope-To: <fan.ni@gmx.us>
+X-GMX-Antispam: 0 (Mail was not recognized as spam); Detail=V3;
+X-Spam-Flag: NO
+UI-InboundReport: notjunk:1;M01:P0:6vE2/+bxy78=;/Mm0buGnXhA1UbZvColQPl2D6IMB
+ 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
+
+From: Fan Ni <fan.ni@gmx.us>
+
+This patch series include 3 patches for enabling dynamic capacity device (=
+DCD) test support in kdevops.
+Patch 1: Add a DCD device topology for users to select for DCD emulation.
+Patch 2: Add options to setup QMP interface for Qemu, through which users =
+can send control commands to Qemu instance. Currently, adding and releasin=
+g dc extents to dc regions are implemented through QMP interface.
+Patch 3: Add a new make command "cxl-create-dc-region" to create a dc regi=
+on so later we can add/release dc extents to the region through QMP interf=
+ace.
+
+
+Fan Ni (3):
+  CXL: Add a new topology to support DCD emulation
+  qemu: Add QMP connection option for QMP interface access
+  CXL: Add support to create a DC region for DCD
+
+ .../cxl/tasks/cxl-create-dc-region/main.yml   | 27 +++++++++++++++++++
+ playbooks/roles/cxl/tasks/main.yml            |  4 +++
+ playbooks/roles/gen_nodes/defaults/main.yml   |  4 +++
+ .../roles/gen_nodes/templates/Vagrantfile.j2  | 19 ++++++++++---
+ scripts/gen-nodes.Makefile                    | 12 +++++++++
+ vagrant/Kconfig                               | 24 +++++++++++++++++
+ workflows/cxl/Makefile                        |  6 +++++
+ 7 files changed, 93 insertions(+), 3 deletions(-)
+ create mode 100644 playbooks/roles/cxl/tasks/cxl-create-dc-region/main.ym=
+l
+
+=2D-
+2.40.1
+

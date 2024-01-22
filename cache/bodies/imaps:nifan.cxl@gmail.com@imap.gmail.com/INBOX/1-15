@@ -1,0 +1,219 @@
+Delivered-To: nifan.cxl@gmail.com
+Received: by 2002:a0c:ca11:0:b0:66b:410:b873 with SMTP id c17csp1231533qvk;
+        Mon, 23 Oct 2023 02:16:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFSyc8w8Y06VvERL8EoRXOpHoVd8rPoXIHrUxq2wrqj+cjrgowgbRscrCfuKGaZ0lR8uZqI
+X-Received: by 2002:a05:6870:71c4:b0:1d6:5c40:11b6 with SMTP id p4-20020a05687071c400b001d65c4011b6mr11457829oag.14.1698052575202;
+        Mon, 23 Oct 2023 02:16:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1698052575; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xgXcsMrfkokEX2Shw+FftCdhRZopF9cGlgW4HW33lAINHBzwHimdJGCGRCQaN47xM2
+         Nby9yEp7MHbtVd8LIkaEA1WaT9e0liQA4BP3xbu7j7GZFsWdGrLpFMg2bFN6j00btMtv
+         hbAp1sG5fPs4bxksRoNZ69KZ0+R9akVLjAbHV0Ta5rHY1rhBKRqlNAcTLNiuu6s//wnJ
+         nWc6vxeHBQpjh0fbgPYNpLpoI8ZtFCqW4EXFh6SHWWfDLJIIvitogxCpyVfxVdXRXAA6
+         SoDF9HAX4Ro/MqosvmxD11FTI0C6JCJdZ4JZGMj03HeOoiRwcGJD2m0IOXtoMS4CpOn8
+         QJPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:organization:references
+         :in-reply-to:message-id:subject:cc:to:from:date;
+        bh=SxcAml6G/KvzfknofekB9tXuKTAdGBCrTzIw6clvYek=;
+        fh=Kpu82EtlE6XOAN4mRFh10nlTm17ZWIAbRdkS604Z5Js=;
+        b=j2UVAIoh8EDXlbbKYCC3Ajcedxlxs7uRzjLQxK+dbAlkWniUEI6UNgffrR0V/z1NU5
+         5hwN3hodtnrGTjeGbt2p5MAstn1052GLLZYwxK9Z39hG37P0RG4N8hzKEsQ/q3988lzK
+         PO0clSmCznsfWz094vKVukUjwMjHpWi/f2b0qRw0BBnZRROjOF5OcDT03aIri0yFYwI2
+         AUSA0U24Cusq9RWN8I6Kd4IukklTCwN7lcUgtcSaPbmGrYasrHlprMc4l4A1yDtCqkL7
+         ad9qStyPxDvFm1SwHPGEtNjgWQOpKphsy+eyZ4ZoWVhiV2ZFem7cELtusLPT9dWdwXUF
+         cjCQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of jonathan.cameron@huawei.com designates 119.8.89.136 as permitted sender) smtp.mailfrom=jonathan.cameron@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Return-Path: <jonathan.cameron@huawei.com>
+Received: from bramsgout02.huawei.com (bramsgout02.huawei.com. [119.8.89.136])
+        by mx.google.com with ESMTPS id ek32-20020a056870f62000b001e133b942b1si2355906oab.189.2023.10.23.02.16.14
+        for <nifan.cxl@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 02:16:15 -0700 (PDT)
+Received-SPF: pass (google.com: domain of jonathan.cameron@huawei.com designates 119.8.89.136 as permitted sender) client-ip=119.8.89.136;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of jonathan.cameron@huawei.com designates 119.8.89.136 as permitted sender) smtp.mailfrom=jonathan.cameron@huawei.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=huawei.com
+Received: from saopeml500003.china.huawei.com (unknown [172.18.53.134])
+	by bramsgout02.huawei.com (SkyGuard) with ESMTP id 4SDTjX1mc8z9xGlB
+	for <nifan.cxl@gmail.com>; Mon, 23 Oct 2023 17:02:40 +0800 (CST)
+Received: from lhrpeml500005.china.huawei.com (7.191.163.240) by
+ saopeml500003.china.huawei.com (7.184.65.141) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.31; Mon, 23 Oct 2023 06:16:08 -0300
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 23 Oct
+ 2023 10:16:03 +0100
+Date: Mon, 23 Oct 2023 10:16:02 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: fan <nifan.cxl@gmail.com>
+CC: <fan.ni@samsung.com>
+Subject: Re: Question about the bitmap usage in dcd emulation patch
+Message-ID: <20231023101602.000071b4@Huawei.com>
+In-Reply-To: <ZTKzWIWXnAflQtYf@debian>
+References: <ZTGe3TtFdC-q6L3P@debian>
+	<20231020133333.00000ec6@Huawei.com>
+	<ZTKzWIWXnAflQtYf@debian>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+
+On Fri, 20 Oct 2023 10:05:28 -0700
+fan <nifan.cxl@gmail.com> wrote:
+
+> On Fri, Oct 20, 2023 at 01:33:33PM +0100, Jonathan Cameron wrote:
+> > On Thu, 19 Oct 2023 14:25:49 -0700
+> > Fan Ni <nifan.cxl@gmail.com> wrote:  
+> 
+> Thanks Jonathan. See below.
+Hi Fan,
+
+This is getting a bit technical, so if we want to go deeper should probably
+do it on list (entity list compliance etc).
+
+> 
+> >   
+> > > Hi Jonathan,
+> > > 
+> > > While reworking on the DCD emulation patches, I try to understand some
+> > > comments you added in the code in your tree.
+> > > https://gitlab.com/jic23/qemu/-/blob/cxl-2023-09-26/hw/mem/cxl_type3.c?ref_type=heads#L2095
+> > > /*
+> > >  * TODO: Should only update the bitmaps after host has accepted the
+> > >  * change (except for forced removal). It will be necessary to
+> > >  * track offered but not accepted changes. Perhaps a shadow bitmap
+> > >  * will be needed for this.
+> > >  */
+> > > 
+> > > Currently, the bitmap update (set/clear) is done when processing qmp
+> > > operation, also you mentioned we may need separate bitmaps to track offered
+> > >     and accepted changes. I have two questions about this.
+> > > 1. Why we need bitmap to track the offered changes? (FYI. In my latest change,
+> > > I added extent list to track pending add and pending release extents.)  
+> > 
+> > Couple of reasons.
+> > 1) Don't allow a guest to accept extents it wasn't offered.
+> > 2) Don't allow them to be reallocated to someone else or offered again until release issued.
+> > 3) Reporting available extents (which is total - offered) (could use a count for this)  
+> 
+> I think a list for extents pending to add/release respectively can
+> achieve the same goal as the offering bitmap, right?
+
+Sure. Don't mind what the data structure is as long as contains the information.
+List may make more sense for this as not as perf critical + we care more about the
+overall ranges rather than a simple mapping.  You may get fragmentation problems
+though depending on how things are accepted (no need for them to be in order
+I think?)
+
+
+> In my latest version, I use the pending extent list to verify the extent
+> list from the host in the processing of the dc add/release response
+> command.
+> 
+> Basically we have three extent list for DC in the device now;
+> 1: extents: tracking the extents that have been accepted by a host;
+> 2. extents_pending_to_add: tracking extents offered to host (currently
+> from QMP interface, will be from FM later when it is implemented);
+> When a Add response is received, will be used to verify the payload-in extent
+> list, and updated. But if the host does not accept any of the extents,
+> it seems we do not have a way to update the list correctly. (or just clean it
+> assuming there can be only one outstanding add request?)
+
+If the host doesn't respond, it's a bug on the host side and I think we
+can use a force removal from fmapi side to recover them.
+Otherwise if it wants none of them it should issue an
+Add Dynamic Capacity Response with no extents. After which we can scrub the
+list.  The flow indeed seems to rely on only one outstanding request or on the
+host accepting them.  (that does seem dubious - we might want to query
+that at SSWG).
+
+> 
+> 3. extents_pending_to_release: tracking extents to be released (Also
+> from QMP now and will from FM). When a release response is received,
+> will be used to verify the payload-in extent list, and updated. But if
+> the host does not release any of the extents, it seems we do not have a
+> way to update the list correctly (or just clean it assuming there can be
+> only one outstanding release request?)
+
+For this direction I don't think there is a 'no I won't' response possible
+so any extents could be released later and hence we need to keep them in
+this list.
+
+> 
+> And the bitmap is used to validate read/write requests, so we do not
+> need to iterate the "extents" to check whether it is backed or not. 
+> For this map, currently it is set/cleared when processing QMP requests,
+> but I think it should be in functions to process dc add/release
+> RESPONSE.
+> 
+> Let me know your thought.
+
+Sounds good but I think we should take the multiple add but host doesn't
+accept them question to SSWG as that's nasty.
+
+
+> 
+> > 
+> > 
+> >   
+> > > 2. If we only maintain a bitmap to track, we should track only accepted
+> > > extents, right? If so, we should update it in the add/release response command.  
+> > The one we use to return the extents list etc needs to be the one updated on
+> > acceptance, and release response. But we need the other to ensure that
+> > the action those commands indicate is a valid one.  
+> > > 
+> > > btw, I almost finished the rework and it is based on your cxl-2023-09-26
+> > > branch and is here:
+> > > https://github.com/moking/qemu-jic-clone/tree/dcd-dev  
+> > 
+> > Great -  Assuming I find time I want to add the FM-API side of things to
+> > allow us to prove that bit out as well before plumbers.  Life / work gotten
+> > a bit crazy recently so it might be on the Sunday in a hotel room ;)
+> > 
+> > Also we should talk about the Plumbers session.  I'm thinking we want to  
+> 
+> Yeah. I am planning to start to spend some time on it from next week.
+> 
+> > focus only on in flight stuff + future directions.  A big part of that will
+> > be DCD which I'm hoping you don't mind covering.  The future directions
+> > side of things needs some brainstorming so we have some bullet points to kick
+> > the discussion off around!   There is a session later on (mainly Ira + navneet  
+> 
+> I will provide some of my thoughts about DCD, maybe some drafted slides
+> so it will be easier to discuss. 
+> Of course, we can always chat through email or discard if needed. Do not
+> hesitate to contact me.
+
+Sure - One thing to keep in mind is session is short and we want plenty of time
+for questions / discussions, so we probably only want 10-12 mins of slides
+that we actually want to talk about (can have some backup material or things
+to leave on screen during discussions). Maybe half of that on DCD.
+
+J
+> 
+> Thanks,
+> Fan
+> > though I'm  down to introduce it) on the software stack on top.   We might
+> > well lean on the fact we already introduced it in the QEMU session to save
+> > time in that one!  (they have a long list of questions!)  
+> 
+> > 
+> > Jonathan
+> >   
+> > > 
+> > > Thanks,
+> > > Fan
+> > > 
+> > >   
+> >   
+> 
+

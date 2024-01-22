@@ -1,0 +1,77 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from debian ([2601:641:380:4e50:5e7c:68d3:5ea1:8eb2])
+        by smtp.gmail.com with ESMTPSA id gd22-20020a17090b0fd600b002791d5a3e29sm6136627pjb.6.2023.10.23.12.48.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Oct 2023 12:48:24 -0700 (PDT)
+From: fan <nifan.cxl@gmail.com>
+X-Google-Original-From: fan <fan@debian>
+Date: Mon, 23 Oct 2023 12:48:02 -0700
+To: Ira Weiny <ira.weiny@intel.com>
+Cc: Fan Ni <fan.ni@samsung.com>,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	"Singh, Naveen" <naveen.c.singh@intel.com>,
+	linux-cxl@vger.kernel.org, a.manzanares@samsung.com,
+	dave@stgolabs.net, nmtadam.samsung@gmail.com
+Subject: Re: Questions about the qemu DCD support in cxl-2023-09-13
+Message-ID: <ZTbN8mAa256JWTFE@debian>
+References: <650cc29ab3f64_50d07294e7@iweiny-mobl.notmuch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <650cc29ab3f64_50d07294e7@iweiny-mobl.notmuch>
+
+On Thu, Sep 21, 2023 at 03:24:26PM -0700, Ira Weiny wrote:
+> Fan,
+> 
+> I'm working off of Jonathan's latest CXL branch with the DCD patches.[1]
+> 
+> I've been testing various things and so far I have a couple of questions.
+> 
+> 1) If the qmp command is used to add extents which overlap other extents
+>    shouldn't that throw an error?  I don't see any validation of this and
+>    I would think a real device would reject such a request from the FM.
+> 
+> 2) Where is CXLType3Dev->dc.total_extent_count set?  Attempting to add
+>    extents prior to driver load does not seem to work.  And I think this
+>    is because total_extent_count is 0 in cmd_dcd_get_dyn_cap_ext_list().
+> 
+> Ira
+> 
+> [1] https://gitlab.com/jic23/qemu/-/tree/cxl-2023-09-13
+
+Hi Ira,
+FYI. I have updated the DCD emulation patch series based on feedbacks on
+the previous version.
+
+The new version is here:
+https://github.com/moking/qemu-jic-clone/tree/dcd-dev
+
+The code is based on Jonathan's branch cxl-2023-09-26.
+
+The main changes include,
+
+1. Update cxl_find_dc_region to detect the case the range of
+the extent cross multiple DC regions.
+2. Add comments to explain the checks performed in function
+cxl_detect_malformed_extent_list. (Jonathan)
+3. Minimize the checks in cmd_dcd_add_dyn_cap_rsp.(Jonathan)
+4. Update total_extent_count in add/release dynamic capacity response function.
+(Ira and Jorgen Hansen).
+5. Fix the logic issue in test_bits and renamed it to
+test_any_bits_set to clear its function.
+6. Add pending extent list for add/release extent event.
+7. When add/release extent response is received, use the pending list to
+verify the extents are valid.
+8. Add test_any_bits_set and cxl_insert_extent_to_extent_list declaration to
+cxl_device.h so it can be used in different files.
+9. Updated ct3d_qmp_cxl_event_log_enc to include dynamic capacity event log type.
+10. Extract the functionality to delete extent from extent list to a helper
+function.
+11. Move the update of the bitmap which reflects which blocks are backed with
+dc extents from the moment when a dc extent is offered to the moment when it
+is accepted from the host.
+
+I was able to test the DCD code you sent previously, let me know if you
+find any issues.
+
+Fan

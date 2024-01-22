@@ -1,0 +1,12 @@
+[user]
+	email = nifan.cxl@gmail.com
+	name = Fan Ni
+[core]
+	editor = vim
+[sendemail]
+    from = nifan.cxl@gmail.com
+    smtpserverport=587
+    smtpserver = smtp.gmail.com
+    smtpencryption = tls
+    smtpuser = nifan.cxl@gmail.com
+    chainreplyto = false

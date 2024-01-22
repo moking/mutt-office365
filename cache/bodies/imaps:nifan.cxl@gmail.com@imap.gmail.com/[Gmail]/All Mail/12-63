@@ -1,0 +1,98 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from localhost.localdomain ([50.205.20.42])
+        by smtp.gmail.com with ESMTPSA id w9-20020a817b09000000b0059a34cfa2a5sm4868355ywc.67.2023.11.06.15.30.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Nov 2023 15:30:24 -0800 (PST)
+From: nifan.cxl@gmail.com
+To: fan.ni@samsung.com
+Cc: Fan Ni <nifan.cxl@gmail.com>
+Subject: [QEMU PATCH v3 0/9] DCD emulation in Qemu
+Date: Mon,  6 Nov 2023 15:19:28 -0800
+Message-ID: <20231106232951.503066-1-nifan.cxl@gmail.com>
+X-Mailer: git-send-email 2.42.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+
+From: Fan Ni <nifan.cxl@gmail.com>
+
+This patch series are based on Jonathan's branch cxl-2023-09-26 (rebased
+for v2)
+
+The main changes include,
+1. Update cxl_find_dc_region to detect the case the range of the extent cross
+    multiple DC regions.
+2. Add comments to explain the checks performed in function
+    cxl_detect_malformed_extent_list. (Jonathan)
+3. Minimize the checks in cmd_dcd_add_dyn_cap_rsp.(Jonathan)
+4. Update total_extent_count in add/release dynamic capacity response function.
+    (Ira and Jorgen Hansen).
+5. Fix the logic issue in test_bits and renamed it to
+    test_any_bits_set to clear its function.
+6. Add pending extent list for dc extent add event.
+7. When add/release extent response is received, use the pending list to
+    verify the extents are valid.
+8. Add test_any_bits_set and cxl_insert_extent_to_extent_list declaration to
+    cxl_device.h so it can be used in different files.
+9. Updated ct3d_qmp_cxl_event_log_enc to include dynamic capacity event
+    log type.
+10. Extract the functionality to delete extent from extent list to a helper
+    function.
+11. Move the update of the bitmap which reflects which blocks are backed with
+dc extents from the moment when a dc extent is offered to the moment when it
+is accepted from the host.
+12. Free dc_name after calling address_space_init to avoid memory leak when
+    returning early. (Nathan)
+13. Add code to detect and reject QMP requests without any extents. (Jonathan)
+14. Add code to detect and reject QMP requests where the extent len is 0.
+15. Change the QMP interface and move the region-id out of extents and now
+    each command only takes care of extent add/release request in a single
+    region. (Jonathan)
+16. Change the region bitmap length from decode_len to len.
+17. Rename "dpa" to "offset" in the add/release dc extent qmp interface.
+    (Jonathan)
+18. Block any dc extent release command if the exact extent is not already in
+    the extent list of the device.
+
+The code is tested together with Ira's kernel DCD support:
+https://github.com/weiny2/linux-kernel/tree/dcd-v3-2023-10-30
+
+Cover letter from v2 is here:
+https://lore.kernel.org/linux-cxl/20230724162313.34196-1-fan.ni@samsung.com/T/#m63039621087023691c9749a0af1212deb5549ddf
+
+Last version (v2) is here:
+https://lore.kernel.org/linux-cxl/20230725183939.2741025-1-fan.ni@samsung.com/
+
+More DCD related discussions are here:
+https://lore.kernel.org/linux-cxl/650cc29ab3f64_50d07294e7@iweiny-mobl.notmuch/
+
+
+Fan Ni (9):
+  hw/cxl/cxl-mailbox-utils: Add dc_event_log_size field to output
+    payload of identify memory device command
+  hw/cxl/cxl-mailbox-utils: Add dynamic capacity region representative
+    and mailbox command support
+  include/hw/cxl/cxl_device: Rename mem_size as static_mem_size for
+    type3 memory devices
+  hw/mem/cxl_type3: Add support to create DC regions to type3 memory
+    devices
+  hw/mem/cxl_type3: Add host backend and address space handling for DC
+    regions
+  hw/mem/cxl_type3: Add DC extent list representative and get DC extent
+    list mailbox support
+  hw/cxl/cxl-mailbox-utils: Add mailbox commands to support add/release
+    dynamic capacity response
+  hw/cxl/events: Add qmp interfaces to add/release dynamic capacity
+    extents
+  hw/mem/cxl_type3: Add dpa range validation for accesses to dc regions
+
+ hw/cxl/cxl-mailbox-utils.c  | 468 +++++++++++++++++++++++++++++-
+ hw/mem/cxl_type3.c          | 548 +++++++++++++++++++++++++++++++++---
+ hw/mem/cxl_type3_stubs.c    |  14 +
+ include/hw/cxl/cxl_device.h |  64 ++++-
+ include/hw/cxl/cxl_events.h |  15 +
+ qapi/cxl.json               |  60 +++-
+ 6 files changed, 1122 insertions(+), 47 deletions(-)
+
+-- 
+2.42.0
+

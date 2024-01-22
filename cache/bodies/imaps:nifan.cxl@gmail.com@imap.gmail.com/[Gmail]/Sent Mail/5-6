@@ -1,0 +1,43 @@
+Return-Path: <nifan.cxl@gmail.com>
+Received: from debian (c-71-202-158-162.hsd1.ca.comcast.net. [71.202.158.162])
+        by smtp.gmail.com with ESMTPSA id z123-20020a626581000000b006b341144ad0sm244767pfb.102.2023.10.19.14.26.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Oct 2023 14:26:03 -0700 (PDT)
+From: Fan Ni <nifan.cxl@gmail.com>
+X-Google-Original-From: Fan Ni <nifan.cxl@gmal.com>
+Date: Thu, 19 Oct 2023 14:25:49 -0700
+To: jonathan.cameron@huawei.com
+Cc: fan.ni@samsung.com
+Subject: Question about the bitmap usage in dcd emulation patch
+Message-ID: <ZTGe3TtFdC-q6L3P@debian>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+Hi Jonathan,
+
+While reworking on the DCD emulation patches, I try to understand some
+comments you added in the code in your tree.
+https://gitlab.com/jic23/qemu/-/blob/cxl-2023-09-26/hw/mem/cxl_type3.c?ref_type=heads#L2095
+/*
+ * TODO: Should only update the bitmaps after host has accepted the
+ * change (except for forced removal). It will be necessary to
+ * track offered but not accepted changes. Perhaps a shadow bitmap
+ * will be needed for this.
+ */
+
+Currently, the bitmap update (set/clear) is done when processing qmp
+operation, also you mentioned we may need separate bitmaps to track offered
+    and accepted changes. I have two questions about this.
+1. Why we need bitmap to track the offered changes? (FYI. In my latest change,
+I added extent list to track pending add and pending release extents.)
+2. If we only maintain a bitmap to track, we should track only accepted
+extents, right? If so, we should update it in the add/release response command.
+
+btw, I almost finished the rework and it is based on your cxl-2023-09-26
+branch and is here:
+https://github.com/moking/qemu-jic-clone/tree/dcd-dev
+
+Thanks,
+Fan
+
