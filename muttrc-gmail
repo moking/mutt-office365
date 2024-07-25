@@ -17,7 +17,12 @@ set pager_index_lines = 15
 set pager_context = 3
 set pager_stop = yes
 set sort = threads
-set sort_aux = reverse-date-received
+#set sort_aux = reverse-date-received
+set sort_aux=reverse-last-date-received
+set from = "fan.ni@samsung.com"
+set realname="Fan Ni"
+
+
 set header_cache = "~/.mutt/hdr_cache"
 set copy = no
 set collapse_unread = "yes"
